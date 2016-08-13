@@ -25,10 +25,7 @@ class AppKernel extends Kernel
             // And finally, the storage and SonataAdminBundle
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
-
-
-
-
+            new UTN\Bundle\DashboardMainBundle\UTNDashboardMainBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

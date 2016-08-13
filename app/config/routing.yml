@@ -1,3 +1,7 @@
+utn_dashboard_main:
+    resource: "@UTNDashboardMainBundle/Resources/config/routing.yml"
+    prefix:   /
+
 # app/config/routing.yml
 app:
     resource: "@AppBundle/Controller/"

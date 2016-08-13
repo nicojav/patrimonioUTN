@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="UTN\Bundle\DashboardMainBundle\Entity\Especiespatrimonio" table="especiespatrimonio">
+    <id name="ctapatrimonio" type="smallint" column="CTAPATRIMONIO"/>
+    <id name="especiepatrimonio" type="integer" column="ESPECIEPATRIMONIO"/>
+    <id name="subespecie" type="smallint" column="SUBESPECIE"/>
+    <field name="nombre" type="string" column="NOMBRE" length="50" nullable="true">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="amortizacion" type="smallint" column="AMORTIZACION" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="inciso" type="smallint" column="INCISO" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="principal" type="smallint" column="PRINCIPAL" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="parcial" type="smallint" column="PARCIAL" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="subparcial" type="smallint" column="SUBPARCIAL" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="habilitada" type="string" column="HABILITADA" length="1" nullable="true">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="leyenda" type="string" column="LEYENDA" length="30" nullable="true">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="nuectapatrimonio" type="smallint" column="NUECTAPATRIMONIO" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="nueespeciepatrimonio" type="integer" column="NUEESPECIEPATRIMONIO" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="nuesubespecie" type="smallint" column="NUESUBESPECIE" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

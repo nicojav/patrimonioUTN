@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="UTN\Bundle\DashboardMainBundle\Entity\Departamentoscargos" table="DepartamentosCargos">
+    <id name="dependencia" type="smallint" column="dependencia"/>
+    <id name="departamento" type="smallint" column="departamento"/>
+    <field name="nombre" type="string" column="nombre" length="60" nullable="true">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="abreviatura" type="string" column="abreviatura" length="15" nullable="true">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="legajopersonal" type="integer" column="legajopersonal" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="alegajopersonal" type="integer" column="alegajopersonal" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="oper" type="string" column="__oper" length="1" nullable="true">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="usuario" type="string" column="__usuario" length="12" nullable="true">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="tiempo" type="datetime" column="__tiempo" nullable="true"/>
+  </entity>
+</doctrine-mapping>
