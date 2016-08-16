@@ -1,3 +1,7 @@
+utn_usuario:
+    resource: "@UTNUsuarioBundle/Resources/config/routing.yml"
+    prefix:   /
+
 utn_dashboard_main:
     resource: "@UTNDashboardMainBundle/Resources/config/routing.yml"
     prefix:   /
