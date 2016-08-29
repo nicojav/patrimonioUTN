@@ -3,7 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: @UTNUsuarioBundle/Resources/config/services.yml}
-#    - { resource: @UTNUsuarioBundle/Resources/config/routing.yml}
+    - { resource: @UTNDashboardMainBundle/Resources/config/services.yml}
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -11,10 +11,34 @@ parameters:
     locale: en
 
 
+#sonata_admin:
+#  dashboard:
+#        groups:
+#            sonata.admin.group.demo:
+#                            label: Transferencias
+#                            icon:  '<i class="fa fa-play-circle"></i>'
+#                            items:
+#                                - utn_usuario.admin.transferencia
+#                            #roles: [ ROLE_ADMIN ]
+#
+#            sonata.admin.group.demo:
+#                            label: Altas Bienes
+#                            icon:  '<i class="fa fa-play-circle"></i>'
+#                            items:
+#                                - utn_dashboard_main.admin.inventario
+#                            #roles: [ ROLE_SONATA_ADMIN ]
+
+
+sonata_user:
+    security_acl: true
+    manager_type: orm # can be orm or mongodb
+
 sonata_block:
     default_contexts: [cms]
     blocks:
         # enable the SonataAdminBundle block
+        sonata.user.block.menu:    # used to display the menu in profile pages
+        sonata.user.block.account: # used to display menu option (login option)
         sonata.admin.block.admin_list:
             contexts: [admin]
 
@@ -54,6 +78,8 @@ doctrine:
         dbname:   "%database_name%"
         user:     "%database_user%"
         password: "%database_password%"
+        types:
+                  json: Sonata\Doctrine\Types\JsonType
         #charset:  UTF8
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
@@ -74,3 +100,21 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+fos_user:
+    db_driver:      orm # can be orm or odm
+    firewall_name:  main
+    user_class:     Application\Sonata\UserBundle\Entity\User
+
+
+    group:
+        group_class:   Application\Sonata\UserBundle\Entity\Group
+        group_manager: sonata.user.orm.group_manager                    # If you're using doctrine orm (use sonata.user.mongodb.user_manager for mongodb)
+
+    service:
+        user_manager: sonata.user.orm.user_manager                      # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
+
+#doctrine:
+#    dbal:
+#        types:
+#            json: Sonata\Doctrine\Types\JsonType
