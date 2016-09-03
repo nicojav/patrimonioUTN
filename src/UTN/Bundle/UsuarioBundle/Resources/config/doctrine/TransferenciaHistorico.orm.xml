@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="UTN\Bundle\UsuarioBundle\Entity\TransferenciaHistorico" table="transferencia_historico">
+    <indexes>
+      <index name="IDX_14A17EB853EAF655" columns="id_transferencia"/>
+      <index name="IDX_14A17EB8825FEB10" columns="id_estado_transferencia"/>
+      <index name="IDX_14A17EB8FCF8192D" columns="id_usuario"/>
+    </indexes>
+    <id name="idTransferenciaHistorico" type="integer" column="id_transferencia_historico">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="descripcion" type="string" column="descripcion" length="1000" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="secuencia" type="smallint" column="secuencia" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="fecha" type="date" column="fecha" nullable="false"/>
+    <many-to-one field="idUsuario" target-entity="Usuario" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_usuario" referenced-column-name="id_usuario"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idEstadoTransferencia" target-entity="EstadoTransferencia" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_estado_transferencia" referenced-column-name="id_estado_transferencia"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idTransferencia" target-entity="Transferencia" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_transferencia" referenced-column-name="id_transferencia"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

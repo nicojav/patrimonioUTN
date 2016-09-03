@@ -1,14 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="UTN\Bundle\UsuarioBundle\Entity\Transferencia" table="Transferencia">
+  <entity name="UTN\Bundle\UsuarioBundle\Entity\Transferencia" table="transferencia">
+    <indexes>
+      <index name="IDX_EDC22730CF93CE22" columns="id_inventario"/>
+      <index name="IDX_EDC22730825FEB10" columns="id_estado_transferencia"/>
+      <index name="IDX_EDC2273052BB3AEC" columns="id_responsable_origen"/>
+      <index name="IDX_EDC22730DBD36EC2" columns="id_responsable_destino"/>
+      <index name="IDX_EDC22730B530471D" columns="id_usuario_origen"/>
+      <index name="IDX_EDC22730118E2735" columns="id_usuario_destino"/>
+    </indexes>
     <id name="idTransferencia" type="integer" column="id_transferencia">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="idInventario" type="integer" column="id_inventario" nullable="false"/>
-    <field name="idResponsableAnterior" type="integer" column="id_responsable_anterior" nullable="false"/>
-    <field name="idResponsableNuevo" type="integer" column="id_responsable_nuevo" nullable="true"/>
-    <field name="aprobado" type="smallint" column="aprobado" nullable="true"/>
-    <field name="fechaSolicitud" type="datetime" column="fecha_solicitud" nullable="true"/>
-    <field name="fechaFin" type="datetime" column="fecha_fin" nullable="true"/>
+    <field name="descripcion" type="string" column="descripcion" length="1000" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="fechaInicio" type="date" column="fecha_inicio" nullable="false"/>
+    <field name="fechaActualizacion" type="date" column="fecha_actualizacion" nullable="false"/>
+    <many-to-one field="idUsuarioOrigen" target-entity="Usuario" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_usuario_origen" referenced-column-name="id_usuario"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idUsuarioDestino" target-entity="Usuario" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_usuario_destino" referenced-column-name="id_usuario"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idResponsableDestino" target-entity="Usuario" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_responsable_destino" referenced-column-name="id_usuario"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idResponsableOrigen" target-entity="Usuario" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_responsable_origen" referenced-column-name="id_usuario"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idEstadoTransferencia" target-entity="EstadoTransferencia" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_estado_transferencia" referenced-column-name="id_estado_transferencia"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idInventario" target-entity="Inventario" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_inventario" referenced-column-name="id_inventario"/>
+      </join-columns>
+    </many-to-one>
   </entity>
 </doctrine-mapping>
