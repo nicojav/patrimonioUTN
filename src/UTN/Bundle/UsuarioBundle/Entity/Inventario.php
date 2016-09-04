@@ -529,7 +529,7 @@ class Inventario
      */
     public function __toString()
     {
-        return  $this->getDescripcion() ?: "n/a";
+        return  (String)$this->getDescripcion() ?: "n/a";
     }
 
 

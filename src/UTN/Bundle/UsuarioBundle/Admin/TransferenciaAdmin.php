@@ -3,6 +3,7 @@
 namespace UTN\Bundle\UsuarioBundle\Admin;
 
 use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Doctrine\ORM\EntityRepository;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -57,23 +58,45 @@ class TransferenciaAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $em = $this->modelManager->getEntityManager('UTN\Bundle\UsuarioBundle\Entity\Inventario');
+        /*$em = $this->modelManager->getEntityManager('UTN\Bundle\UsuarioBundle\Entity\Inventario');
 
         $query = $em->createQueryBuilder('s')
            ->select('s.descripcion')
-           ->from('UTN\Bundle\UsuarioBundle\Entity\Inventario','s') //->from('UTNUsuarioBundle:Inventario', 's')
+           ->from('UTN\Bundle\UsuarioBundle\Entity\Inventario') //->from('UTNUsuarioBundle:Inventario', 's')
            ->groupBy('s.descripcion')
-        ;
+        ;*/
 
 
 
         $formMapper
         //  ->add('idInventario')
-            ->add('idInventario', 'sonata_type_model', array(
+          /*  ->add('idInventario', 'sonata_type_model', array(
                 //'class' => 'UTN\Bundle\UsuarioBundle\Entity\Inventario',
+                //'property' => '[descripcion]',
                 'multiple' => true ,
                 'required' => true,
                 'query' => $query
+            ))*/
+
+            ->add('idInventario', 'entity',
+            array(
+                'label' => 'Inventario',
+                'multiple' => true,
+                'expanded' => true,
+                //'read_only' => true,
+                'class' => 'UTN\Bundle\UsuarioBundle\Entity\Inventario',
+                'property' => 'descripcion',
+                'query_builder' => function (EntityRepository $er)
+                {
+                    return $er
+                        ->createQueryBuilder('s')
+                        //->select('s.descripcion')
+                        ->andWhere('s.descripcion = ?1' )
+                        ->setParameter( 1 , 'BANCO'); //TEST
+                        //->groupBy('s.descripcion');
+                        //->from('UTN\Bundle\UsuarioBundle\Entity\Inventario','s');
+
+                }
             ))
             ->add('idResponsableOrigen')
             ->add('idResponsableDestino')
