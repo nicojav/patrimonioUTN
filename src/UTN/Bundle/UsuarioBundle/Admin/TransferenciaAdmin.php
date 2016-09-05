@@ -81,7 +81,7 @@ class TransferenciaAdmin extends AbstractAdmin
             ->add('idInventario', 'entity',
             array(
                 'label' => 'Inventario',
-                'multiple' => true,
+                'multiple' => false,
                 'expanded' => true,
                 //'read_only' => true,
                 'class' => 'UTN\Bundle\UsuarioBundle\Entity\Inventario',
@@ -89,10 +89,10 @@ class TransferenciaAdmin extends AbstractAdmin
                 'query_builder' => function (EntityRepository $er)
                 {
                     return $er
-                        ->createQueryBuilder('s')
-                        //->select('s.descripcion')
-                        ->andWhere('s.descripcion = ?1' )
-                        ->setParameter( 1 , 'BANCO'); //TEST
+                        ->createQueryBuilder('s');
+                        //->select('s.descripcion');
+                        //->andWhere('s.descripcion = ?1' )
+                        //->setParameter( 1 , 'BANCO'); //TEST
                         //->groupBy('s.descripcion');
                         //->from('UTN\Bundle\UsuarioBundle\Entity\Inventario','s');
 
@@ -106,7 +106,7 @@ class TransferenciaAdmin extends AbstractAdmin
             ->add('descripcion')
             ->add('fechaInicio')
             ->add('fechaActualizacion')
-            ->add('idTransferencia')
+            //->add('idTransferencia')
         ;
     }
 
@@ -127,5 +127,10 @@ class TransferenciaAdmin extends AbstractAdmin
             ->add('fechaActualizacion')
             ->add('idTransferencia')
         ;
+    }
+
+    public function getExportFormats()
+    {
+        return array_merge(parent::getExportFormats(), array('pdf'));
     }
 }

@@ -118,3 +118,11 @@ fos_user:
 #    dbal:
 #        types:
 #            json: Sonata\Doctrine\Types\JsonType
+
+
+## Snappy Configuration
+knp_snappy:
+       pdf:
+          enabled:    true
+          binary:   "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" for Windows users
+          options:  []

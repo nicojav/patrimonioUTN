@@ -1,0 +1,22 @@
+<table border="1">
+    <tr>
+        <th>Inventario</th>
+        <th>RespOrig</th>
+        <th>RespDest</th>
+        <th>UsuarioOrig</th>
+        <th>UsuarioDest</th>
+        <th>descripicon</th>
+        <th>estadoTrans</th>
+        <th>fecInicio</th>
+        <th>fecActualiz</th>
+        <th>idTransfer</th>
+
+    </tr>
+    {% for elements in source %}
+    <tr>
+        {% for element in elements %}
+        <td>{{ element }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>

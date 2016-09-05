@@ -64,20 +64,13 @@ class EstadoTransferencia
         return $this->idEstadoTransferencia;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getName()
-    {
-        return 'estadoTransferencia';
-    }
 
     /**
      * @return string
      */
     public function __toString()
     {
-        return  $this->getName() ?: "n/a";
+        return  $this->getDescripcion() ?: "n/a";
     }
 
 

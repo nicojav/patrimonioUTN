@@ -226,22 +226,13 @@ class Usuario
     }
 
 
-    /**
-     * @return mixed
-     */
-    public function getName()
-    {
-        return 'usuario';
-    }
-
-
 
     /**
      * @return string
      */
     public function __toString()
     {
-        return  $this->getName() ?: "n/a";
+        return  $this->getUsuario() ?: "n/a";
     }
 
 

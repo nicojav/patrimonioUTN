@@ -7,3 +7,9 @@ services:
         arguments: [~, UTN\Bundle\UsuarioBundle\Entity\Transferencia, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Transferencia }
+
+    sonata.admin.exporter:
+        class: UTN\Bundle\UsuarioBundle\Export\Exporter
+        calls:
+            - [setKnpSnappyPdf, ['@knp_snappy.pdf']]
+            - [setTemplateEngine, ['@templating']]
