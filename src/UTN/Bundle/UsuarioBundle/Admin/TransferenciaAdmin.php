@@ -133,4 +133,33 @@ class TransferenciaAdmin extends AbstractAdmin
     {
         return array_merge(parent::getExportFormats(), array('pdf'));
     }
+
+    public function getExportFields()
+    {
+       /* $results = $this->getModelManager()->getExportFields($this->getClass());
+
+        // Need to add again our foreign key field here
+        $results[] = 'idInventario';
+
+        return $results;*/
+
+        $ret = array();
+        $list = $this->getList();
+
+        $names = array();
+
+        $excluded_columns = array("batch","_action");
+
+        foreach($list->getElements() as $k=>$v){
+
+            if(!in_array($k,$excluded_columns)){
+                $ret[] = $k;
+                $names[] = $v->getOption('label');
+            }
+        }
+
+        return ($k);
+
+    }
+
 }

@@ -12,11 +12,20 @@
         <th>idTransfer</th>
 
     </tr>
-    {% for elements in source %}
+   {# {% for elements in source %}
     <tr>
         {% for element in elements %}
         <td>{{ element }}</td>
         {% endfor %}
     </tr>
-    {% endfor %}
+    {% endfor %}#}
 </table>
+
+
+{% for elements in source %}
+  <ul>
+      {% for element in elements %}
+          {{ element }}
+      {% endfor %}
+  </ul>
+{% endfor %}
