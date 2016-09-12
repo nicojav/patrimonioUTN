@@ -134,6 +134,7 @@ class TransferenciaAdmin extends AbstractAdmin
         return array_merge(parent::getExportFormats(), array('pdf'));
     }
 
+
     public function getExportFields()
     {
        /* $results = $this->getModelManager()->getExportFields($this->getClass());
@@ -143,8 +144,14 @@ class TransferenciaAdmin extends AbstractAdmin
 
         return $results;*/
 
+
         $ret = array();
         $list = $this->getList();
+
+        //TEST DEBUG
+        //dump($list);
+        //error_log(print_r(\Doctrine\Common\Util\Debug::export($list, 2),1));
+        //\Doctrine\Common\Util\Debug::dump($list,'TEST');
 
         $names = array();
 
@@ -158,8 +165,9 @@ class TransferenciaAdmin extends AbstractAdmin
             }
         }
 
-        return ($k);
+        return $ret;
 
     }
+
 
 }
