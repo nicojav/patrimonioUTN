@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="UTN\Bundle\UsuarioBundle\Entity\TransferenciaInventario" table="transferencia_inventario">
+    <indexes>
+      <index name="IDX_25DF64653EAF655" columns="id_transferencia"/>
+      <index name="IDX_25DF646CF93CE22" columns="id_inventario"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="UK_transferencia_inventario" columns="id_transferencia,id_inventario"/>
+    </unique-constraints>
+    <id name="idTransferenciaInventario" type="integer" column="id_transferencia_inventario">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="descripcion" type="string" column="descripcion" length="1000" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="idInventario" target-entity="Inventario" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_inventario" referenced-column-name="id_inventario"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idTransferencia" target-entity="Transferencia" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_transferencia" referenced-column-name="id_transferencia"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

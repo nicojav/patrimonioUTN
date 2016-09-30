@@ -8,6 +8,9 @@
       <index name="IDX_6A194EF517F00A22" columns="id_cuenta"/>
       <index name="IDX_6A194EF52195BD9D" columns="id_especie"/>
     </indexes>
+    <unique-constraints>
+      <unique-constraint name="UK_inventario" columns="cod_nro_inventario,cod_dependencia,cod_grupo"/>
+    </unique-constraints>
     <id name="idInventario" type="integer" column="id_inventario">
       <generator strategy="IDENTITY"/>
     </id>

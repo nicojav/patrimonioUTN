@@ -93,15 +93,16 @@ class Transferencia
     private $idEstadoTransferencia;
 
     /**
-     * @var \UTN\Bundle\UsuarioBundle\Entity\Inventario
+     * @var \Doctrine\Common\Collections\ArrayCollection
      *
-     * @ORM\ManyToOne(targetEntity="UTN\Bundle\UsuarioBundle\Entity\Inventario")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_inventario", referencedColumnName="id_inventario")
-     * })
+     * @ORM\OneToMany(targetEntity="UTN\Bundle\UsuarioBundle\Entity\TransferenciaInventario.php", mappedBy="idTransferencia", cascade={"persist"})
      */
-    private $idInventario;
+    public $idInventario;
 
+
+    public function __construct() {
+        $this->idInventario = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
 
     /**
@@ -306,6 +307,32 @@ class Transferencia
         return $this->idEstadoTransferencia;
     }
 
+
+    /**
+     * Add Inventario
+     *
+     * @param \UTN\Bundle\UsuarioBundle\Entity\Inventario $idInventario
+     * @return \UTN\Bundle\UsuarioBundle\Entity\Inventario
+     */
+    public function addIdInventario(\UTN\Bundle\UsuarioBundle\Entity\Inventario $inventario)
+    {
+        $inventario->addTransferencia($this);
+        $this ->idInventario[] = $inventario;
+        //$idInventario[] = $inventario;
+        return $this;
+    }
+
+    /**
+     * Remove entityTwo
+     *
+     * @param \UTN\Bundle\UsuarioBundle\Entity\Inventario $idInventario
+     */
+    public function removeIdInventario(\UTN\Bundle\UsuarioBundle\Entity\Inventario $inventario)
+    {
+        $this->idInventario->removeElement($inventario);
+    }
+
+
     /**
      * Set idInventario
      *
@@ -313,12 +340,12 @@ class Transferencia
      *
      * @return Transferencia
      */
-    public function setIdInventario(\UTN\Bundle\UsuarioBundle\Entity\Inventario $idInventario = null)
+    /*public function setIdInventario(\UTN\Bundle\UsuarioBundle\Entity\Inventario $idInventario = null)
     {
-        $this->idInventario = $idInventario;
+        $this->idInventario[] = $idInventario;
 
         return $this;
-    }
+    }*/
 
     /**
      * Get idInventario

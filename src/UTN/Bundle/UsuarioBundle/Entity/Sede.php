@@ -63,4 +63,33 @@ class Sede
     {
         return $this->idSede;
     }
+    /**
+     * @var integer
+     */
+    private $codSede;
+
+
+    /**
+     * Set codSede
+     *
+     * @param integer $codSede
+     *
+     * @return Sede
+     */
+    public function setCodSede($codSede)
+    {
+        $this->codSede = $codSede;
+
+        return $this;
+    }
+
+    /**
+     * Get codSede
+     *
+     * @return integer
+     */
+    public function getCodSede()
+    {
+        return $this->codSede;
+    }
 }

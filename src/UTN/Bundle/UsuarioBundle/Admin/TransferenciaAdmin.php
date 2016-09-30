@@ -3,6 +3,9 @@
 namespace UTN\Bundle\UsuarioBundle\Admin;
 
 use Sonata\AdminBundle\Admin\AbstractAdmin;
+#use Exporter\Source\DoctrineORMQuerySourceIterator;
+#use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
+#use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Doctrine\ORM\EntityRepository;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -17,7 +20,7 @@ class TransferenciaAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('idInventario')
+            //->add('idInventario')
             ->add('idResponsableOrigen')
             ->add('idResponsableDestino')
             ->add('descripcion')
@@ -33,7 +36,7 @@ class TransferenciaAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('idInventario')
+            //->add('idInventario')
             ->add('idResponsableOrigen')
             ->add('idResponsableDestino')
             ->add('idUsuarioOrigen')
@@ -69,19 +72,30 @@ class TransferenciaAdmin extends AbstractAdmin
 
 
         $formMapper
-        //  ->add('idInventario')
-          /*  ->add('idInventario', 'sonata_type_model', array(
-                //'class' => 'UTN\Bundle\UsuarioBundle\Entity\Inventario',
-                //'property' => '[descripcion]',
+          //->add('idInventario')
+            /*->add('idInventario', 'sonata_type_model', array(
+                'class' => 'UTN\Bundle\UsuarioBundle\Entity\Inventario',
+                'property' => 'descripcion',
                 'multiple' => true ,
                 'required' => true,
-                'query' => $query
+                'expanded' => true,
+                'by_reference' => false
             ))*/
 
-            ->add('idInventario', 'entity',
+
+            ->add('idInventario', 'sonata_type_collection', array(
+                'required' => false
+            ), array(
+                'edit' => 'inline',
+                'inline' => 'table',
+                'sortable'  => 'position',
+            ))
+
+
+           /* ->add('idInventario', 'entity',
             array(
                 'label' => 'Inventario',
-                'multiple' => false,
+                'multiple' => true,
                 'expanded' => true,
                 //'read_only' => true,
                 'class' => 'UTN\Bundle\UsuarioBundle\Entity\Inventario',
@@ -97,7 +111,7 @@ class TransferenciaAdmin extends AbstractAdmin
                         //->from('UTN\Bundle\UsuarioBundle\Entity\Inventario','s');
 
                 }
-            ))
+            ))*/
             ->add('idResponsableOrigen')
             ->add('idResponsableDestino')
             ->add('idUsuarioOrigen')
@@ -134,6 +148,35 @@ class TransferenciaAdmin extends AbstractAdmin
         return array_merge(parent::getExportFormats(), array('pdf'));
     }
 
+    /**
+     * {@inheritdoc}
+     */
+   /* public function getDataSourceIterator()
+    {
+
+        $datagrid = $this->getDatagrid();
+        $datagrid->buildPager();
+        $fields=$this->getExportFields();
+        $query = $datagrid->getQuery();
+
+
+        $query->select('DISTINCT ' . $query->getRootAlias());
+        $query->setFirstResult(null);
+        $query->setMaxResults(null);
+
+
+
+        if ($query instanceof ProxyQueryInterface) {
+            $query->addOrderBy($query->getSortBy(), $query->getSortOrder());
+            $query = $query->getQuery();
+        }
+
+
+        return new DoctrineORMQuerySourceIterator($query, $fields,'d.m.Y');
+    }*/
+
+
+
 
     public function getExportFields()
     {
@@ -147,11 +190,6 @@ class TransferenciaAdmin extends AbstractAdmin
 
         $ret = array();
         $list = $this->getList();
-
-        //TEST DEBUG
-        //dump($list);
-        //error_log(print_r(\Doctrine\Common\Util\Debug::export($list, 2),1));
-        //\Doctrine\Common\Util\Debug::dump($list,'TEST');
 
         $names = array();
 

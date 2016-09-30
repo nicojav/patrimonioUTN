@@ -142,6 +142,14 @@ class Inventario
     private $idEstado;
 
 
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     *
+     */
+    //public $transferencia;
+
+
+
 
     /**
      * Set descripcion
@@ -521,6 +529,15 @@ class Inventario
 //    {
 //        return $descripcion;
 //    }
+
+
+    /*public function addTransferencia(\UTN\Bundle\UsuarioBundle\Entity\Transferencia $transferencia)
+    {
+        //$transferencia->addIdInventario($this);
+        $this->transferencia[] = $transferencia;
+
+        return $this;
+    }*/
 
 
 

@@ -4,6 +4,9 @@
     <indexes>
       <index name="IDX_FF0814ED17F00A22" columns="id_cuenta"/>
     </indexes>
+    <unique-constraints>
+      <unique-constraint name="UK_especie" columns="cod_cuenta,cod_especie,cod_sub_especie"/>
+    </unique-constraints>
     <id name="idEspecie" type="integer" column="id_especie">
       <generator strategy="IDENTITY"/>
     </id>

@@ -6,6 +6,9 @@
       <index name="IDX_14A17EB8825FEB10" columns="id_estado_transferencia"/>
       <index name="IDX_14A17EB8FCF8192D" columns="id_usuario"/>
     </indexes>
+    <unique-constraints>
+      <unique-constraint name="UK_transferencia_historico" columns="id_transferencia,secuencia"/>
+    </unique-constraints>
     <id name="idTransferenciaHistorico" type="integer" column="id_transferencia_historico">
       <generator strategy="IDENTITY"/>
     </id>

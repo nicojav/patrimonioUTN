@@ -13,3 +13,9 @@ services:
         calls:
             - [setKnpSnappyPdf, ['@knp_snappy.pdf']]
             - [setTemplateEngine, ['@templating']]
+
+    utn_usuario.admin.transferencia_inventario:
+        class: UTN\Bundle\UsuarioBundle\Admin\TransferenciaInventarioAdmin
+        arguments: [~, UTN\Bundle\UsuarioBundle\Entity\TransferenciaInventario, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: TransferenciaInventario }
