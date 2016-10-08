@@ -21,7 +21,7 @@
         <join-column name="id_inventario" referenced-column-name="id_inventario"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="idTransferencia" target-entity="Transferencia" fetch="LAZY">
+    <many-to-one field="idTransferencia" target-entity="Transferencia" inversed-by="idInventario" fetch="LAZY">
       <join-columns>
         <join-column name="id_transferencia" referenced-column-name="id_transferencia"/>
       </join-columns>

@@ -95,9 +95,9 @@ class Transferencia
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="UTN\Bundle\UsuarioBundle\Entity\TransferenciaInventario.php", mappedBy="idTransferencia", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="UTN\Bundle\UsuarioBundle\Entity\TransferenciaInventario", mappedBy="idTransferencia", cascade={"persist"})
      */
-    public $idInventario;
+    protected $idInventario;
 
 
     public function __construct() {
@@ -311,35 +311,49 @@ class Transferencia
     /**
      * Add Inventario
      *
-     * @param \UTN\Bundle\UsuarioBundle\Entity\Inventario $idInventario
-     * @return \UTN\Bundle\UsuarioBundle\Entity\Inventario
+     * @param \UTN\Bundle\UsuarioBundle\Entity\TransferenciaInventario $idInventario
+     * @return \UTN\Bundle\UsuarioBundle\Entity\TransferenciaInventario
      */
-    public function addIdInventario(\UTN\Bundle\UsuarioBundle\Entity\Inventario $inventario)
+    public function addIdInventario(\UTN\Bundle\UsuarioBundle\Entity\TransferenciaInventario $idInventario)
     {
-        $inventario->addTransferencia($this);
-        $this ->idInventario[] = $inventario;
-        //$idInventario[] = $inventario;
-        return $this;
+
+        //        $inventario->addTransferencia($this);
+        //        $this ->idInventario[] = $inventario;
+        //        //$idInventario[] = $inventario;
+        //    return $this;
+        $idInventario->setIdInventario($this);
+        $this->idInventario[] = $idInventario;
+
     }
 
     /**
      * Remove entityTwo
      *
-     * @param \UTN\Bundle\UsuarioBundle\Entity\Inventario $idInventario
+     * @param \UTN\Bundle\UsuarioBundle\Entity\TransferenciaInventario $transInventario
      */
-    public function removeIdInventario(\UTN\Bundle\UsuarioBundle\Entity\Inventario $inventario)
+    public function removeIdInventario(\UTN\Bundle\UsuarioBundle\Entity\TransferenciaInventario $transInventario)
     {
-        $this->idInventario->removeElement($inventario);
+        $this->idInventario->removeElement($transInventario);
     }
 
 
     /**
      * Set idInventario
      *
-     * @param \UTN\Bundle\UsuarioBundle\Entity\Inventario $idInventario
+     * @param \UTN\Bundle\UsuarioBundle\Entity\TransferenciaInventario $transInventario
      *
      * @return Transferencia
      */
+    public function setIdInventario($transInventario) //Array transInventario
+    {
+        $this->idInventario = new ArrayCollection(); //necesario??
+
+        foreach ($transInventario as $idTrans) {
+            $this->addLinks($idTrans);
+        }
+    }
+
+    //OLD!!!
     /*public function setIdInventario(\UTN\Bundle\UsuarioBundle\Entity\Inventario $idInventario = null)
     {
         $this->idInventario[] = $idInventario;

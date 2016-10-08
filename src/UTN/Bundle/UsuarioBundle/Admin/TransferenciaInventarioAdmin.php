@@ -27,7 +27,7 @@ class TransferenciaInventarioAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('descripcion')
+            //->add('descripcion')
             ->add('idTransferenciaInventario')
             ->add('_action', null, array(
                 'actions' => array(
@@ -44,13 +44,35 @@ class TransferenciaInventarioAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+
+        $link_parameters = array();
+
+        if ($this->hasParentFieldDescription()) {
+            $link_parameters = $this->getParentFieldDescription()->getOption('link_parameters', array());
+        }
+
+        if ($this->hasRequest()) {
+            $context = $this->getRequest()->get('context', null);
+
+            if (null !== $context) {
+                $link_parameters['context'] = $context;
+            }
+        }
+
+
         $formMapper
            /* ->add('descripcion')
             ->add('idTransferenciaInventario')
             ->add('idInventario')
             ->add('idTransferencia')*/
-            ->add('media', 'sonata_type_model_list', array('required' => false))
-            ->add('position', 'hidden')
+           ->add('idInventario', 'sonata_type_model', array('required' => false)
+           ,array(
+               'link_parameters' => $link_parameters
+           ))
+           /*->add('idInventario', 'sonata_type_model_list', array('required' => false), array(
+            'link_parameters' => $link_parameters
+           ))*/
+           //->add('position', 'hidden')
         ;
 
 

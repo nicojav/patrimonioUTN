@@ -25,7 +25,7 @@ class TransferenciaInventario
      * @ORM\ManyToOne(targetEntity="\UTN\Bundle\UsuarioBundle\Entity\Inventario", cascade={"persist"})
      * @ORM\JoinColumn(name="id_inventario", referencedColumnName="id_inventario",nullable=true)
      */
-    private $idInventario;
+    protected $idInventario;
 
     /**
      * @var \UTN\Bundle\UsuarioBundle\Entity\Transferencia
@@ -33,7 +33,7 @@ class TransferenciaInventario
      * @ORM\ManyToOne(targetEntity="\UTN\Bundle\UsuarioBundle\Entity\Transferencia", inversedBy="idInventario", cascade={"persist"})
      * @ORM\JoinColumn(name="id_transferencia", referencedColumnName="id_transferencia",nullable=true)
      */
-    private $idTransferencia;
+    protected $idTransferencia;
 
 
     /**
@@ -77,9 +77,9 @@ class TransferenciaInventario
      *
      * @return TransferenciaInventario
      */
-    public function setIdInventario(\UTN\Bundle\UsuarioBundle\Entity\Inventario $idInventario = null)
+    public function setIdInventario(\UTN\Bundle\UsuarioBundle\Entity\Transferencia $transferencia = null)
     {
-        $this->idInventario = $idInventario;
+        $this->idInventario = $transferencia;
 
         return $this;
     }

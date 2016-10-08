@@ -20,14 +20,14 @@ class Inventario
     private $descripcion;
 
     /**
-     * @var \DateTime
+     * @var date
      *
      * @ORM\Column(name="fecha_alta", type="date", nullable=false)
      */
     private $fechaAlta;
 
     /**
-     * @var \DateTime
+     * @var date
      *
      * @ORM\Column(name="fecha_actualizacion", type="date", nullable=false)
      */
@@ -50,7 +50,7 @@ class Inventario
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha_control", type="date", nullable=true)
+     * @ORM\Column(name="fecha_control", type="datetime", nullable=true)
      */
     private $fechaControl;
 
@@ -149,7 +149,9 @@ class Inventario
     //public $transferencia;
 
 
-
+    public function __construct() {
+        $this->fechaControl = new \DateTime();
+    }
 
     /**
      * Set descripcion

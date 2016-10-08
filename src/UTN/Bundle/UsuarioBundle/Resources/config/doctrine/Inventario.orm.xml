@@ -23,7 +23,7 @@
     <field name="fechaActualizacion" type="date" column="fecha_actualizacion" nullable="false"/>
     <field name="alarmaActiva" type="boolean" column="alarma_activa" nullable="false"/>
     <field name="etiquetaImpresa" type="boolean" column="etiqueta_impresa" nullable="false"/>
-    <field name="fechaControl" type="date" column="fecha_control" nullable="true"/>
+    <field name="fechaControl" type="datetime" column="fecha_control" nullable="true"/>
     <field name="idUsuarioControl" type="integer" column="id_usuario_control" nullable="true">
       <options>
         <option name="unsigned"/>

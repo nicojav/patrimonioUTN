@@ -50,7 +50,7 @@ class Inventario
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha_control", type="date", nullable=true)
+     * @ORM\Column(name="fecha_control", type="datetime", nullable=true)
      */
     private $fechaControl;
 
@@ -90,6 +90,10 @@ class Inventario
      */
     private $idAulaControl;
 
+
+    public function __construct() {
+        $this->fechaControl = new \DateTime();
+    }
 
 
     /**

@@ -89,6 +89,7 @@ class TransferenciaAdmin extends AbstractAdmin
                 'edit' => 'inline',
                 'inline' => 'table',
                 'sortable'  => 'position',
+                //'admin_code' => 'utn_usuario.admin.transferencia_inventario'
             ))
 
 
