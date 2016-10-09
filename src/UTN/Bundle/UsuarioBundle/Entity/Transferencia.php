@@ -344,7 +344,7 @@ class Transferencia
      *
      * @return Transferencia
      */
-    public function setIdInventario($transInventario) //Array transInventario
+    public function setIdInventario(\UTN\Bundle\UsuarioBundle\Entity\TransferenciaInventario $transInventario) //Array transInventario
     {
         $this->idInventario = new ArrayCollection(); //necesario??
 

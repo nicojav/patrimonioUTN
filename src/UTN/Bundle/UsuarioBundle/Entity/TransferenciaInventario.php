@@ -20,9 +20,9 @@ class TransferenciaInventario
     private $idTransferenciaInventario;
 
     /**
-     * @var \UTN\Bundle\UsuarioBundle\Entity\Inventario
+     * @var \UTN\Bundle\DashboardMainBundle\Entity\Inventario
      *
-     * @ORM\ManyToOne(targetEntity="\UTN\Bundle\UsuarioBundle\Entity\Inventario", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="\UTN\Bundle\DashboardMainBundle\Entity\Inventario", cascade={"persist"})
      * @ORM\JoinColumn(name="id_inventario", referencedColumnName="id_inventario",nullable=true)
      */
     protected $idInventario;
@@ -77,6 +77,13 @@ class TransferenciaInventario
      *
      * @return TransferenciaInventario
      */
+    /* public function setIdInventario(\UTN\Bundle\DashboardMainBundle\Entity\Inventario $inventario = null)
+     {
+        $this->idInventario = $inventario;
+
+        return $this;
+     }*/
+
     public function setIdInventario(\UTN\Bundle\UsuarioBundle\Entity\Transferencia $transferencia = null)
     {
         $this->idInventario = $transferencia;
@@ -87,7 +94,7 @@ class TransferenciaInventario
     /**
      * Get idInventario
      *
-     * @return \UTN\Bundle\UsuarioBundle\Entity\Inventario
+     * @return \UTN\Bundle\DashboardMainBundle\Entity\Inventario
      */
     public function getIdInventario()
     {

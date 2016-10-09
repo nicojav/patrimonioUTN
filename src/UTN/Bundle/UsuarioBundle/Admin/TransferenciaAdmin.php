@@ -84,7 +84,9 @@ class TransferenciaAdmin extends AbstractAdmin
 
 
             ->add('idInventario', 'sonata_type_collection', array(
-                'required' => false
+              'cascade_validation' => false,
+              'type_options' => array('delete' => false),
+              'required' => false
             ), array(
                 'edit' => 'inline',
                 'inline' => 'table',
@@ -142,6 +144,20 @@ class TransferenciaAdmin extends AbstractAdmin
             ->add('fechaActualizacion')
             ->add('idTransferencia')
         ;
+    }
+
+    public function prePersist($object)
+    {
+        foreach ($object->getIdinvent as $image) {
+            $image->setProduct($object);
+        }
+    }
+
+    public function preUpdate($object)
+    {
+        foreach ($object->getIdInventario() as $inventario) {
+            $inventario->setProduct($object);
+        }
     }
 
     public function getExportFormats()
