@@ -73,23 +73,23 @@ class TransferenciaInventario
     /**
      * Set idInventario
      *
-     * @param \UTN\Bundle\UsuarioBundle\Entity\Inventario $idInventario
+     * @param \UTN\Bundle\DashboardMainBundle\Entity\Inventario $idInventario
      *
      * @return TransferenciaInventario
      */
-    /* public function setIdInventario(\UTN\Bundle\DashboardMainBundle\Entity\Inventario $inventario = null)
+     public function setIdInventario(\UTN\Bundle\DashboardMainBundle\Entity\Inventario $idInventario = null)
      {
-        $this->idInventario = $inventario;
+        $this->idInventario = $idInventario;
 
         return $this;
-     }*/
+     }
 
-    public function setIdInventario(\UTN\Bundle\UsuarioBundle\Entity\Transferencia $transferencia = null)
+    /*public function setIdInventario(\UTN\Bundle\UsuarioBundle\Entity\Transferencia $transferencia = null)
     {
         $this->idInventario = $transferencia;
 
-        return $this;
-    }
+    //return $this;
+    }*/
 
     /**
      * Get idInventario

@@ -148,17 +148,18 @@ class TransferenciaAdmin extends AbstractAdmin
 
     public function prePersist($object)
     {
-        foreach ($object->getIdinvent as $image) {
-            $image->setProduct($object);
+        foreach ($object->getIdInventario() as $trasnInv) {
+            $trasnInv->setIdTransferencia($object);
         }
     }
 
     public function preUpdate($object)
     {
-        foreach ($object->getIdInventario() as $inventario) {
-            $inventario->setProduct($object);
+        foreach ($object->getIdInventario() as $trasnInv) {
+            $trasnInv->setIdTransferencia($object);
         }
     }
+
 
     public function getExportFormats()
     {

@@ -312,4 +312,10 @@ class Inventario
     {
         return $this->idAulaControl;
     }
+
+    public function __toString()
+    {
+        return  (String)$this->getDescripcion() ?: "n/a";
+    }
+
 }

@@ -16,7 +16,7 @@
         <option name="fixed"/>
       </options>
     </field>
-    <many-to-one field="idInventario" target-entity="Inventario" fetch="LAZY">
+    <many-to-one field="idInventario" target-entity="UTN\Bundle\DashboardMainBundle\Entity\Inventario" fetch="LAZY">
       <join-columns>
         <join-column name="id_inventario" referenced-column-name="id_inventario"/>
       </join-columns>

@@ -65,14 +65,15 @@ class TransferenciaInventarioAdmin extends AbstractAdmin
             ->add('idTransferenciaInventario')
             ->add('idInventario')
             ->add('idTransferencia')*/
-           /*->add('idInventario', 'sonata_type_model', array('required' => false)
+           ->add('idInventario', 'sonata_type_model', array('required' => false)
            ,array(
-               'link_parameters' => $link_parameters
-           ))*/
-           ->add('idInventario', 'sonata_type_model_list', array('required' => false), array(
+                'admin_code' => 'utn_dashboard_main.admin.inventario',
+                'link_parameters' => $link_parameters
+           ))
+          /* ->add('idInventario', 'sonata_type_model_list', array('required' => false), array(
                'admin_code' => 'utn_dashboard_main.admin.inventario',
                'link_parameters' => $link_parameters
-           ))
+           ))*/
            //->add('position', 'hidden')
         ;
 

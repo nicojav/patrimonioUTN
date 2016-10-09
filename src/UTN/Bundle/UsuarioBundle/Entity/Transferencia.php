@@ -314,15 +314,15 @@ class Transferencia
      * @param \UTN\Bundle\UsuarioBundle\Entity\TransferenciaInventario $idInventario
      * @return \UTN\Bundle\UsuarioBundle\Entity\TransferenciaInventario
      */
-    public function addIdInventario(\UTN\Bundle\UsuarioBundle\Entity\TransferenciaInventario $idInventario)
+    public function addIdInventario(\UTN\Bundle\UsuarioBundle\Entity\TransferenciaInventario $transferenciaInventario)
     {
 
         //        $inventario->addTransferencia($this);
         //        $this ->idInventario[] = $inventario;
         //        //$idInventario[] = $inventario;
         //    return $this;
-        $idInventario->setIdInventario($this);
-        $this->idInventario[] = $idInventario;
+        $transferenciaInventario->setIdTransferencia($this);
+        $this->idInventario[] = $transferenciaInventario;
 
     }
 
@@ -349,7 +349,7 @@ class Transferencia
         $this->idInventario = new ArrayCollection(); //necesario??
 
         foreach ($transInventario as $idTrans) {
-            $this->addLinks($idTrans);
+            $this->addIdInventario($idTrans);
         }
     }
 
