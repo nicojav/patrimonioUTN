@@ -1,0 +1,3 @@
+rfid_homepage:
+    path:     /rfid
+    defaults: { _controller: RfidBundle:Default:index }

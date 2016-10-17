@@ -1,0 +1,4 @@
+arduino_homepage:
+#    path:     /arduino
+    pattern: /arduino/{id}
+    defaults: { _controller: ArduinoBundle:Default:index }
