@@ -1,19 +1,23 @@
 <?php
 
-namespace UTN\Bundle\UsuarioBundle\Admin;
+namespace UTN\Bundle\DashboardMainBundle\Admin;
 
-use Sonata\AdminBundle\Admin\AbstractAdmin;
-#use Exporter\Source\DoctrineORMQuerySourceIterator;
-#use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
-#use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Doctrine\ORM\EntityRepository;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class TransferenciaAdmin extends AbstractAdmin
+
+class TransferPatrimonioAdmin extends AbstractAdmin
 {
+
+    protected $baseRouteName = 'admin_transfer_patrimonio';
+
+    protected $baseRoutePattern = '/TrasnferenciasPatrimonio';
+
+
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -64,7 +68,7 @@ class TransferenciaAdmin extends AbstractAdmin
             ->add('idTransferencia')
             ->add('_action', null, array(
                 'actions' => array(
-                    //'show' => array(),
+                    'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 )
@@ -88,7 +92,7 @@ class TransferenciaAdmin extends AbstractAdmin
 
 
         $formMapper
-          //->add('idInventario')
+            //->add('idInventario')
             /*->add('idInventario', 'sonata_type_model', array(
                 'class' => 'UTN\Bundle\UsuarioBundle\Entity\Inventario',
                 'property' => 'descripcion',
@@ -100,9 +104,11 @@ class TransferenciaAdmin extends AbstractAdmin
 
 
             ->add('idInventario', 'sonata_type_collection', array(
-              'cascade_validation' => false,
-              'type_options' => array('delete' => false),
-              'required' => false
+                'cascade_validation' => false,
+                'type_options' => array('delete' => false,'btn_add' => false), //'type_options' => array('delete' => false),
+                'attr' => array('readonly' => true),
+                'disabled'  => true, //Disabled para Patrimonio
+                'required' => false
             ), array(
                 'edit' => 'inline',
                 'inline' => 'table',
@@ -111,34 +117,62 @@ class TransferenciaAdmin extends AbstractAdmin
             ))
 
 
-           /* ->add('idInventario', 'entity',
-            array(
-                'label' => 'Inventario',
-                'multiple' => true,
-                'expanded' => true,
-                //'read_only' => true,
-                'class' => 'UTN\Bundle\UsuarioBundle\Entity\Inventario',
-                'property' => 'descripcion',
-                'query_builder' => function (EntityRepository $er)
-                {
-                    return $er
-                        ->createQueryBuilder('s');
-                        //->select('s.descripcion');
-                        //->andWhere('s.descripcion = ?1' )
-                        //->setParameter( 1 , 'BANCO'); //TEST
-                        //->groupBy('s.descripcion');
-                        //->from('UTN\Bundle\UsuarioBundle\Entity\Inventario','s');
+            /* ->add('idInventario', 'entity',
+             array(
+                 'label' => 'Inventario',
+                 'multiple' => true,
+                 'expanded' => true,
+                 //'read_only' => true,
+                 'class' => 'UTN\Bundle\UsuarioBundle\Entity\Inventario',
+                 'property' => 'descripcion',
+                 'query_builder' => function (EntityRepository $er)
+                 {
+                     return $er
+                         ->createQueryBuilder('s');
+                         //->select('s.descripcion');
+                         //->andWhere('s.descripcion = ?1' )
+                         //->setParameter( 1 , 'BANCO'); //TEST
+                         //->groupBy('s.descripcion');
+                         //->from('UTN\Bundle\UsuarioBundle\Entity\Inventario','s');
 
-                }
-            ))*/
-            ->add('idResponsableOrigen')
-            ->add('idResponsableDestino')
-            ->add('idUsuarioOrigen')
-            ->add('idUsuarioDestino')
-            ->add('idEstadoTransferencia')
-            ->add('descripcion')
-            ->add('fechaInicio')
-            ->add('fechaActualizacion')
+                 }
+             ))*/
+            ->add('idResponsableOrigen',null,array(
+                    'disabled'  => true))
+            ->add('idResponsableDestino',null,array(
+                    'disabled'  => true))
+            ->add('idUsuarioOrigen',null,array(
+                    'disabled'  => true))
+            ->add('idUsuarioDestino',null,array(
+                    'disabled'  => true))
+            //->add('idEstadoTransferencia'//Patrimonio solo actualiza estado de transferencia
+            ->add('idEstadoTransferencia', 'entity',
+             array(
+                 'label' => 'Estado Transferencia',
+                 'expanded' => true,
+                 //'read_only' => true,
+                 'class' => 'UTN\Bundle\UsuarioBundle\Entity\EstadoTransferencia',
+                 'property' => 'descripcion',
+                 'query_builder' => function (EntityRepository $er)
+                 {
+                     return $er
+                         ->createQueryBuilder('s')
+                         //->select('s.descripcion')
+                         //->from('UTN\Bundle\UsuarioBundle\Entity\EstadoTransferencia','s')
+                         ->andWhere('s.idEstadoTransferencia in (?1,?2,?3)' )
+                         ->setParameter( 1 ,'1') //Pendiente Aprobacion
+                         ->setParameter( 2 ,'2') //Aprobar
+                         ->setParameter( 3 ,'4'); //Rechazar
+
+
+                 }
+             ))
+            ->add('descripcion',null,array(
+                    'disabled'  => true))
+            ->add('fechaInicio',null,array(
+                    'disabled'  => true))
+            ->add('fechaActualizacion',null,array(
+                    'disabled'  => true))
             //->add('idTransferencia')
         ;
     }
@@ -186,41 +220,41 @@ class TransferenciaAdmin extends AbstractAdmin
     /**
      * {@inheritdoc}
      */
-   /* public function getDataSourceIterator()
-    {
+    /* public function getDataSourceIterator()
+     {
 
-        $datagrid = $this->getDatagrid();
-        $datagrid->buildPager();
-        $fields=$this->getExportFields();
-        $query = $datagrid->getQuery();
-
-
-        $query->select('DISTINCT ' . $query->getRootAlias());
-        $query->setFirstResult(null);
-        $query->setMaxResults(null);
+         $datagrid = $this->getDatagrid();
+         $datagrid->buildPager();
+         $fields=$this->getExportFields();
+         $query = $datagrid->getQuery();
 
 
-
-        if ($query instanceof ProxyQueryInterface) {
-            $query->addOrderBy($query->getSortBy(), $query->getSortOrder());
-            $query = $query->getQuery();
-        }
+         $query->select('DISTINCT ' . $query->getRootAlias());
+         $query->setFirstResult(null);
+         $query->setMaxResults(null);
 
 
-        return new DoctrineORMQuerySourceIterator($query, $fields,'d.m.Y');
-    }*/
+
+         if ($query instanceof ProxyQueryInterface) {
+             $query->addOrderBy($query->getSortBy(), $query->getSortOrder());
+             $query = $query->getQuery();
+         }
+
+
+         return new DoctrineORMQuerySourceIterator($query, $fields,'d.m.Y');
+     }*/
 
 
 
 
     public function getExportFields()
     {
-       /* $results = $this->getModelManager()->getExportFields($this->getClass());
+        /* $results = $this->getModelManager()->getExportFields($this->getClass());
 
-        // Need to add again our foreign key field here
-        $results[] = 'idInventario';
+         // Need to add again our foreign key field here
+         $results[] = 'idInventario';
 
-        return $results;*/
+         return $results;*/
 
 
         $ret = array();
