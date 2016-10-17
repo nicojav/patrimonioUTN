@@ -22,7 +22,8 @@ class LogMovimientoAdmin extends AbstractAdmin
             ->add('idLogMovimiento')
             ->add('fecha')
             ->add('idInventario')
-#            ->add('idSensor')
+            ->add('idSensor')
+            ->add('idEstadoMovimiento')
         ;
     }
 
@@ -32,12 +33,12 @@ class LogMovimientoAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('idLogMovimiento')
-            ->add('fecha')
-            ->add('idInventario')
-#            ->add('idSensor')
-
-        ;
+//            ->add('idLogMovimiento')
+            ->add('idInventario','text',array('label'=>'Código Inventario'))
+            ->add('idEstadoMovimiento','text',array('label'=>'Tipo de Movimiento'))
+            ->add('fecha','datetime',array('label'=>'Fecha'))
+            ->add('idSensor','text',array('label'=>'Sensor'))
+         ;
     }
 
     /**
@@ -47,9 +48,10 @@ class LogMovimientoAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('idLogMovimiento')
-            ->add('fecha')
             ->add('idInventario')
-#            ->add('idSensor')
+            ->add('idEstadoMovimiento')
+            ->add('fecha')
+            ->add('idSensor')
         ;
     }
 
@@ -60,14 +62,20 @@ class LogMovimientoAdmin extends AbstractAdmin
     {
         $showMapper
             ->add('idLogMovimiento')
-            ->add('fecha')
             ->add('idInventario')
- #           ->add('idSensor')
-        ;
+            ->add('idEstadoMovimiento')
+            ->add('fecha')
+            ->add('idSensor')
+    ;
     }
 
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->remove('create');
     }
+
+
+
+
+
 }

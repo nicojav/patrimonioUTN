@@ -5,39 +5,37 @@ namespace UTN\Bundle\RfidBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Sensor
+ * EstadoMovimiento
  *
- * @ORM\Table(name="sensor")
+ * @ORM\Table(name="estado_movimiento", indexes={@ORM\Index(name="IDX_5A238DEC52171949", columns={"id_estado_movimiento"})})
  * @ORM\Entity
  */
-class Sensor
+class EstadoMovimiento
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id_sensor", type="integer", nullable=false)
+     * @ORM\Column(name="id_estado_movimiento", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idSensor;
+    private $idEstadoMovimiento;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="descripcion", type="string", length=30, nullable=false)
+     * @ORM\Column(name="descripcion", type="string", length=1000, nullable=true)
      */
     private $descripcion;
 
-
-
     /**
-     * Get idSensor
+     * Get idEstadoMovimiento
      *
      * @return integer
      */
-    public function getIdSensor()
+    public function getIdEstadoMovimiento()
     {
-        return $this->idSensor;
+        return $this->idEstadoMovimiento;
     }
 
     /**
@@ -45,7 +43,7 @@ class Sensor
      *
      * @param string $descripcion
      *
-     * @return Sensor
+     * @return EstadoMovimiento
      */
     public function setDescripcion($descripcion)
     {
@@ -68,7 +66,6 @@ class Sensor
     {
         return  (String)$this->getDescripcion() ?: "n/a";
     }
-
 
 
 }

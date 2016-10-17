@@ -7,3 +7,4 @@ services:
         arguments: [~, UTN\Bundle\RfidBundle\Entity\LogMovimiento, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Movimientos }
+        display: [ Inventario, Movimiento, Fecha, Sensor ]

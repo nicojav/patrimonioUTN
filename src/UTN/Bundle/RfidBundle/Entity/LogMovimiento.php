@@ -48,7 +48,15 @@ class LogMovimiento
      */
     private $idSensor;
 
-
+    /**
+     * @var \EstadoMovimiento
+     *
+     * @ORM\ManyToOne(targetEntity="UTN\Bundle\RfidBundle\Entity\EstadoMovimiento")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_estado_movimiento", referencedColumnName="id_estado_movimiento")
+     * })
+     */
+    private $idEstadoMovimiento;
 
     /**
      * Get idLogMovimiento
@@ -130,5 +138,29 @@ class LogMovimiento
     public function getIdSensor()
     {
         return $this->idSensor;
+    }
+
+    /**
+     * Set idEstadoMovimiento
+     *
+     * @param \UTN\Bundle\RfidBundle\Entity\EstadoMovimiento $idEstadoMovimiento
+     *
+     * @return LogMovimiento
+     */
+    public function setIdEstadoMovimiento(\UTN\Bundle\RfidBundle\Entity\EstadoMovimiento $idEstadoMovimiento = null)
+    {
+        $this->idEstadoMovimiento = $idEstadoMovimiento;
+
+        return $this;
+    }
+
+    /**
+     * Get idEstadoMovimiento
+     *
+     * @return \UTN\Bundle\RfidBundle\Entity\EstadoMovimiento
+     */
+    public function getIdEstadoMovimiento()
+    {
+        return $this->idEstadoMovimiento;
     }
 }
