@@ -30,22 +30,6 @@ class TransferenciaAdmin extends AbstractAdmin
         ;
     }
 
-    /*
-     * Filtra las transferencias que NO son pendientes de Aprobacion
-     *
-     */
-//    public function createQuery($context = 'list')
-//    {
-//        $query = parent::createQuery($context);
-//        $query->andWhere(
-//            $query->expr()->eq($query->getRootAliases()[0] . '.idEstadoTransferencia', ':my_param')
-//        );
-//        $query->setParameter('my_param', '1'); //pendienteAprobacion
-//        return $query;
-//    }
-
-
-
     /**
      * @param ListMapper $listMapper
      */
@@ -64,7 +48,7 @@ class TransferenciaAdmin extends AbstractAdmin
             ->add('idTransferencia')
             ->add('_action', null, array(
                 'actions' => array(
-                    //'show' => array(),
+                    'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 )
@@ -148,8 +132,7 @@ class TransferenciaAdmin extends AbstractAdmin
      */
     protected function configureShowFields(ShowMapper $showMapper)
     {
-        parent::configureShowFields($showMapper);
-        /* $showMapper
+        $showMapper
             ->add('idInventario')
             ->add('idResponsableOrigen')
             ->add('idResponsableDestino')
@@ -160,7 +143,7 @@ class TransferenciaAdmin extends AbstractAdmin
             ->add('fechaInicio')
             ->add('fechaActualizacion')
             ->add('idTransferencia')
-        ;*/
+        ;
     }
 
     public function prePersist($object)

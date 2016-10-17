@@ -4,37 +4,33 @@ imports:
     - { resource: services.yml }
     - { resource: @UTNUsuarioBundle/Resources/config/services.yml}
     - { resource: @UTNDashboardMainBundle/Resources/config/services.yml}
+    - { resource: "@RfidBundle/Resources/config/services.yml" }
+    - { resource: "@ArduinoBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: es
+    locale: en
 
 
 sonata_admin:
-  dashboard:
-        groups:
-
-            sonata.admin.group.demo1:
-                            label: Altas Bienes
-                            icon:  '<i class="fa fa-television"></i>'
-                            items:
-                                - utn_dashboard_main.admin.inventario
-                                - utn_dashboard_main.admin.transfer_patrimonio
-                            roles: [ ROLE_SUPER_ADMIN ]
-            sonata.admin.group.demo2:
-                            label: Transferencias
-                            icon:  '<i class="fa fa-play-circle"></i>'
-                            items:
-                                - utn_usuario.admin.transferencia
-                            roles: [ ROLE_SUPER_ADMIN ]
-            sonata.admin.group.demo3:
-                            label: Usuario
-                            icon:  '<i class="fa fa-users"></i>'
-                            items:
-                                - sonata.user.admin.user
-                                - sonata.user.admin.group
-                            roles: [ ROLE_SUPER_ADMIN ]
+  title: PATRIMONIO FRBA
+  title_logo: bundles/sonataadmin/logo_utn.png
+#  dashboard:
+#        groups:
+#            sonata.admin.group.demo:
+#                            label: Transferencias
+#                            icon:  '<i class="fa fa-play-circle"></i>'
+#                            items:
+#                                - utn_usuario.admin.transferencia
+#                            #roles: [ ROLE_ADMIN ]
+#
+#            sonata.admin.group.demo:
+#                            label: Altas Bienes
+#                            icon:  '<i class="fa fa-play-circle"></i>'
+#                            items:
+#                                - utn_dashboard_main.admin.inventario
+#                            #roles: [ ROLE_SONATA_ADMIN ]
 
 
 sonata_user:
@@ -63,7 +59,7 @@ framework:
     #serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
-    default_locale:  "%locale%"
+    default_locale:  es
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
@@ -81,11 +77,11 @@ twig:
 doctrine:
     dbal:
         driver:   sqlsrv
-        host:     "%database_host%"
-        port:     "%database_port%"
-        dbname:   "%database_name%"
-        user:     "%database_user%"
-        password: "%database_password%"
+        host:     utn.c0gs5ej8mv5r.us-west-2.rds.amazonaws.com
+        port:     null
+        dbname:   patrimonioUTN
+        user:     administrator
+        password: administrator
         types:
                   json: Sonata\Doctrine\Types\JsonType
         mapping_types:

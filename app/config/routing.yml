@@ -1,3 +1,12 @@
+arduino:
+    resource: "@ArduinoBundle/Resources/config/routing.yml"
+    prefix:   /
+
+rfid:
+    resource: "@RfidBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
 utn_usuario:
     resource: "@UTNUsuarioBundle/Resources/config/routing.yml"
     prefix:   /
