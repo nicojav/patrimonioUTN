@@ -19,9 +19,7 @@ class LogMovimientoAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('idLogMovimiento')
             ->add('fecha')
-            ->add('idInventario')
             ->add('idSensor')
             ->add('idEstadoMovimiento')
         ;
@@ -33,10 +31,10 @@ class LogMovimientoAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-//            ->add('idLogMovimiento')
-            ->add('idInventario','text',array('label'=>'Código Inventario'))
+            ->addIdentifier('idInventario','text',array('label'=>'Descripción'))
+            ->add('inventario.idInventario','text',array('label'=>'Nro. Inventario'))
             ->add('idEstadoMovimiento','text',array('label'=>'Tipo de Movimiento'))
-            ->add('fecha','datetime',array('label'=>'Fecha'))
+            ->add('fecha','datetime',array('label'=>'Fecha','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires'))
             ->add('idSensor','text',array('label'=>'Sensor'))
          ;
     }
@@ -63,19 +61,19 @@ class LogMovimientoAdmin extends AbstractAdmin
         $showMapper
             ->add('idLogMovimiento')
             ->add('idInventario')
-            ->add('idEstadoMovimiento')
-            ->add('fecha')
-            ->add('idSensor')
+            ->add('inventario.idInventario','integer',array('label'=>'Nro. Inventario'))
+            ->add('idEstadoMovimiento','text',array('label'=>'Tipo de Movimiento'))
+            ->add('fecha','datetime',array('label'=>'Fecha','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires'))
+            ->add('idSensor','text',array('label'=>'Sensor'))
     ;
     }
 
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->remove('create');
+        $collection->remove('edit');
+        $collection->remove('delete');
     }
-
-
-
 
 
 }
