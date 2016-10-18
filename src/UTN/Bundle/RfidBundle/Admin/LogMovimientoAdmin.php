@@ -20,8 +20,8 @@ class LogMovimientoAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('fecha')
-            ->add('idSensor')
-            ->add('idEstadoMovimiento')
+            ->add('idSensor',null,array('label'=>'Sensor'))
+            ->add('idEstadoMovimiento',null,array('label'=>'Tipo de Movimiento'))
         ;
     }
 
@@ -34,7 +34,7 @@ class LogMovimientoAdmin extends AbstractAdmin
             ->addIdentifier('idInventario','text',array('label'=>'Descripción'))
             ->add('inventario.idInventario','text',array('label'=>'Nro. Inventario'))
             ->add('idEstadoMovimiento','text',array('label'=>'Tipo de Movimiento'))
-            ->add('fecha','datetime',array('label'=>'Fecha','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires'))
+            ->add('fecha','datetime',array('label'=>'Fecha','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
             ->add('idSensor','text',array('label'=>'Sensor'))
          ;
     }

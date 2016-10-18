@@ -16,6 +16,9 @@ parameters:
 sonata_admin:
   title: PATRIMONIO FRBA
   title_logo: bundles/sonataadmin/logo_utn.png
+  show_mosaic_button: false
+
+
 #  dashboard:
 #        groups:
 #            sonata.admin.group.demo:
