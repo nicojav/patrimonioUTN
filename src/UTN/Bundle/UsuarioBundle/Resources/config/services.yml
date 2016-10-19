@@ -6,7 +6,7 @@ services:
         class: UTN\Bundle\UsuarioBundle\Admin\TransferenciaAdmin
         arguments: [~, UTN\Bundle\UsuarioBundle\Entity\Transferencia, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Transferencia }
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Solicitar Transferencia }
 
     sonata.admin.exporter:
         class: UTN\Bundle\UsuarioBundle\Export\Exporter

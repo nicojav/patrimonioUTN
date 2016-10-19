@@ -30,6 +30,22 @@ class TransferenciaAdmin extends AbstractAdmin
         ;
     }
 
+    /*
+     * Filtra las transferencias que NO son pendientes de Aprobacion
+     *
+     */
+//    public function createQuery($context = 'list')
+//    {
+//        $query = parent::createQuery($context);
+//        $query->andWhere(
+//            $query->expr()->eq($query->getRootAliases()[0] . '.idEstadoTransferencia', ':my_param')
+//        );
+//        $query->setParameter('my_param', '1'); //pendienteAprobacion
+//        return $query;
+//    }
+
+
+
     /**
      * @param ListMapper $listMapper
      */
@@ -48,7 +64,7 @@ class TransferenciaAdmin extends AbstractAdmin
             ->add('idTransferencia')
             ->add('_action', null, array(
                 'actions' => array(
-                    'show' => array(),
+                    //'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 )
@@ -72,7 +88,7 @@ class TransferenciaAdmin extends AbstractAdmin
 
 
         $formMapper
-          //->add('idInventario')
+            //->add('idInventario')
             /*->add('idInventario', 'sonata_type_model', array(
                 'class' => 'UTN\Bundle\UsuarioBundle\Entity\Inventario',
                 'property' => 'descripcion',
@@ -84,9 +100,9 @@ class TransferenciaAdmin extends AbstractAdmin
 
 
             ->add('idInventario', 'sonata_type_collection', array(
-              'cascade_validation' => false,
-              'type_options' => array('delete' => false),
-              'required' => false
+                'cascade_validation' => false,
+                'type_options' => array('delete' => false),
+                'required' => false
             ), array(
                 'edit' => 'inline',
                 'inline' => 'table',
@@ -95,26 +111,26 @@ class TransferenciaAdmin extends AbstractAdmin
             ))
 
 
-           /* ->add('idInventario', 'entity',
-            array(
-                'label' => 'Inventario',
-                'multiple' => true,
-                'expanded' => true,
-                //'read_only' => true,
-                'class' => 'UTN\Bundle\UsuarioBundle\Entity\Inventario',
-                'property' => 'descripcion',
-                'query_builder' => function (EntityRepository $er)
-                {
-                    return $er
-                        ->createQueryBuilder('s');
-                        //->select('s.descripcion');
-                        //->andWhere('s.descripcion = ?1' )
-                        //->setParameter( 1 , 'BANCO'); //TEST
-                        //->groupBy('s.descripcion');
-                        //->from('UTN\Bundle\UsuarioBundle\Entity\Inventario','s');
+            /* ->add('idInventario', 'entity',
+             array(
+                 'label' => 'Inventario',
+                 'multiple' => true,
+                 'expanded' => true,
+                 //'read_only' => true,
+                 'class' => 'UTN\Bundle\UsuarioBundle\Entity\Inventario',
+                 'property' => 'descripcion',
+                 'query_builder' => function (EntityRepository $er)
+                 {
+                     return $er
+                         ->createQueryBuilder('s');
+                         //->select('s.descripcion');
+                         //->andWhere('s.descripcion = ?1' )
+                         //->setParameter( 1 , 'BANCO'); //TEST
+                         //->groupBy('s.descripcion');
+                         //->from('UTN\Bundle\UsuarioBundle\Entity\Inventario','s');
 
-                }
-            ))*/
+                 }
+             ))*/
             ->add('idResponsableOrigen')
             ->add('idResponsableDestino')
             ->add('idUsuarioOrigen')
@@ -132,7 +148,8 @@ class TransferenciaAdmin extends AbstractAdmin
      */
     protected function configureShowFields(ShowMapper $showMapper)
     {
-        $showMapper
+        parent::configureShowFields($showMapper);
+        /* $showMapper
             ->add('idInventario')
             ->add('idResponsableOrigen')
             ->add('idResponsableDestino')
@@ -143,7 +160,7 @@ class TransferenciaAdmin extends AbstractAdmin
             ->add('fechaInicio')
             ->add('fechaActualizacion')
             ->add('idTransferencia')
-        ;
+        ;*/
     }
 
     public function prePersist($object)
@@ -169,41 +186,41 @@ class TransferenciaAdmin extends AbstractAdmin
     /**
      * {@inheritdoc}
      */
-   /* public function getDataSourceIterator()
-    {
+    /* public function getDataSourceIterator()
+     {
 
-        $datagrid = $this->getDatagrid();
-        $datagrid->buildPager();
-        $fields=$this->getExportFields();
-        $query = $datagrid->getQuery();
-
-
-        $query->select('DISTINCT ' . $query->getRootAlias());
-        $query->setFirstResult(null);
-        $query->setMaxResults(null);
+         $datagrid = $this->getDatagrid();
+         $datagrid->buildPager();
+         $fields=$this->getExportFields();
+         $query = $datagrid->getQuery();
 
 
-
-        if ($query instanceof ProxyQueryInterface) {
-            $query->addOrderBy($query->getSortBy(), $query->getSortOrder());
-            $query = $query->getQuery();
-        }
+         $query->select('DISTINCT ' . $query->getRootAlias());
+         $query->setFirstResult(null);
+         $query->setMaxResults(null);
 
 
-        return new DoctrineORMQuerySourceIterator($query, $fields,'d.m.Y');
-    }*/
+
+         if ($query instanceof ProxyQueryInterface) {
+             $query->addOrderBy($query->getSortBy(), $query->getSortOrder());
+             $query = $query->getQuery();
+         }
+
+
+         return new DoctrineORMQuerySourceIterator($query, $fields,'d.m.Y');
+     }*/
 
 
 
 
     public function getExportFields()
     {
-       /* $results = $this->getModelManager()->getExportFields($this->getClass());
+        /* $results = $this->getModelManager()->getExportFields($this->getClass());
 
-        // Need to add again our foreign key field here
-        $results[] = 'idInventario';
+         // Need to add again our foreign key field here
+         $results[] = 'idInventario';
 
-        return $results;*/
+         return $results;*/
 
 
         $ret = array();

@@ -6,4 +6,10 @@ services:
         class: UTN\Bundle\DashboardMainBundle\Admin\InventarioAdmin
         arguments: [~, UTN\Bundle\DashboardMainBundle\Entity\Inventario, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Inventario }
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Alta Bienes }
+
+    utn_dashboard_main.admin.transfer_patrimonio:
+            class: UTN\Bundle\DashboardMainBundle\Admin\TransferPatrimonioAdmin
+            arguments: [~, UTN\Bundle\UsuarioBundle\Entity\Transferencia, SonataAdminBundle:CRUD]
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: admin, label: Transferencias Patrimonio}

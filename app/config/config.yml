@@ -10,30 +10,42 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: es
 
 
 sonata_admin:
   title: PATRIMONIO FRBA
   title_logo: bundles/sonataadmin/logo_utn.png
   show_mosaic_button: false
+  dashboard:
+        groups:
 
-
-#  dashboard:
-#        groups:
-#            sonata.admin.group.demo:
-#                            label: Transferencias
-#                            icon:  '<i class="fa fa-play-circle"></i>'
-#                            items:
-#                                - utn_usuario.admin.transferencia
-#                            #roles: [ ROLE_ADMIN ]
-#
-#            sonata.admin.group.demo:
-#                            label: Altas Bienes
-#                            icon:  '<i class="fa fa-play-circle"></i>'
-#                            items:
-#                                - utn_dashboard_main.admin.inventario
-#                            #roles: [ ROLE_SONATA_ADMIN ]
+            sonata.admin.group.demo1:
+                            label: Patrimonio
+                            icon:  '<i class="fa fa-television"></i>'
+                            items:
+                                - utn_dashboard_main.admin.inventario
+                                - utn_dashboard_main.admin.transfer_patrimonio
+                            roles: [ ROLE_SUPER_ADMIN ]
+            sonata.admin.group.demo2:
+                            label: Transferencias
+                            icon:  '<i class="fa fa-play-circle"></i>'
+                            items:
+                                - utn_usuario.admin.transferencia
+                            roles: [ ROLE_SUPER_ADMIN ]
+            sonata.admin.group.demo3:
+                            label: Usuario
+                            icon:  '<i class="fa fa-users"></i>'
+                            items:
+                                - sonata.user.admin.user
+                                - sonata.user.admin.group
+                            roles: [ ROLE_SUPER_ADMIN ]
+            sonata.admin.group.demo4:
+                            label: Seguridad
+                            icon : '<i class="fa fa-lock"></i>'
+                            items:
+                                - rfid.admin.log_movimiento
+                            roles: [ ROLE_SUPER_ADMIN ]
 
 sonata_user:
     security_acl: true
@@ -61,7 +73,7 @@ framework:
     #serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
-    default_locale:  es
+    default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
@@ -79,11 +91,11 @@ twig:
 doctrine:
     dbal:
         driver:   sqlsrv
-        host:     utn.c0gs5ej8mv5r.us-west-2.rds.amazonaws.com
-        port:     null
-        dbname:   patrimonioUTN
-        user:     administrator
-        password: administrator
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
         types:
                   json: Sonata\Doctrine\Types\JsonType
         mapping_types:
