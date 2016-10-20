@@ -35,8 +35,7 @@ class ControlInventarioAdmin extends AbstractAdmin
             ->addIdentifier('idEstadoControl',null,array('label'=>'Estado'))
             ->add('_action', null, array('label'=>'Acciones',
                 'actions' => array(
-                    'show' => array(),
-                    'edit' => array()
+                    'edit' => array('template' => 'ControlMovilBundle:CRUD:list__action_edit.html.twig')
                 )
             ))
         ;

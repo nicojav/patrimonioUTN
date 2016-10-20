@@ -43,7 +43,7 @@ class ControlAdmin extends AbstractAdmin
             ->add('idEstadoControl','text',array('label'=>'Estado'))
             ->add('_action', null, array('label'=>'Acciones',
                 'actions' => array(
-                    'edit' => array()
+                    'edit' => array('template' => 'ControlMovilBundle:CRUD:list__action_edit.html.twig')
                 )
             ))      ;
     }

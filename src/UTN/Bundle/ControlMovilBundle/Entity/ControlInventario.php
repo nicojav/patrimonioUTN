@@ -165,4 +165,5 @@ class ControlInventario
     {
         return $this->idInventario;
     }
+
 }
