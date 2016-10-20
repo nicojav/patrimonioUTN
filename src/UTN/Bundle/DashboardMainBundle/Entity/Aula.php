@@ -95,4 +95,11 @@ class Aula
     {
         return $this->idSede;
     }
+
+    public function __toString()
+    {
+        return  (String)$this->getDescripcion() ?: "n/a";
+    }
+
+
 }

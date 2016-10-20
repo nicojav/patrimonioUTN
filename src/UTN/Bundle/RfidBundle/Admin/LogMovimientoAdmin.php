@@ -25,6 +25,19 @@ class LogMovimientoAdmin extends AbstractAdmin
         ;
     }
 
+   public function createQuery($context = 'list')
+    {
+        $query = parent::createQuery($context);
+        $query->getQueryBuilder()
+            ->select('o, c')
+            ->leftjoin('o.idInventario','c')
+        ;
+
+        return $query;
+
+    }
+
+
     /**
      * @param ListMapper $listMapper
      */
@@ -35,9 +48,12 @@ class LogMovimientoAdmin extends AbstractAdmin
             ->add('inventario.idInventario','text',array('label'=>'Nro. Inventario'))
             ->add('idEstadoMovimiento','text',array('label'=>'Tipo de Movimiento'))
             ->add('fecha','datetime',array('label'=>'Fecha','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
-            ->add('idSensor','text',array('label'=>'Sensor'))
+            ->add('sensor.idSensor','text',array('label'=>'Sensor'))
+            ->add('idInventario.idAulaControl','text',array('label'=>'Aula'))
+
+
          ;
-    }
+ }
 
     /**
      * @param FormMapper $formMapper
