@@ -41,7 +41,11 @@ class ControlAdmin extends AbstractAdmin
             ->add('codUsuario','text',array('label'=>'Relevó'))
     //        ->add('xml')
             ->add('idEstadoControl','text',array('label'=>'Estado'))
-        ;
+            ->add('_action', null, array('label'=>'Acciones',
+                'actions' => array(
+                    'edit' => array()
+                )
+            ))      ;
     }
 
     /**
@@ -50,13 +54,13 @@ class ControlAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('xml')
-            ->add('fecha')
-            ->add('codFecha')
-            ->add('codAula')
-            ->add('codUsuario')
-            ->add('fechaCorrida')
-            ->add('idControl')
+ //           ->add('xml')
+//            ->add('codFecha')
+            ->add('idControl',null,array('label'=>'ID Control','read_only'=>true))
+            ->add('codAula','text',array('label'=>'Aula'))
+            ->add('codUsuario','text',array('label'=>'Relevó','read_only'=>true))
+//            ->add('fechaCorrida')
+
         ;
     }
 
@@ -80,6 +84,6 @@ class ControlAdmin extends AbstractAdmin
     {
         $collection->remove('create');
         $collection->remove('delete');
-        $collection->remove('edit');
+//        $collection->remove('edit');
     }
 }

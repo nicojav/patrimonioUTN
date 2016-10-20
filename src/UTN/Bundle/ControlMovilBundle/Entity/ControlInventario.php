@@ -2,37 +2,62 @@
 
 namespace UTN\Bundle\ControlMovilBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * ControlInventario
+ *
+ * @ORM\Table(name="control_inventario", indexes={@ORM\Index(name="IDX_27DD2C2CCF93CE22", columns={"id_inventario"}), @ORM\Index(name="IDX_27DD2C2CF2EC3E9C", columns={"id_estado_control"}), @ORM\Index(name="IDX_27DD2C2C3346853B", columns={"id_control"})})
+ * @ORM\Entity
  */
 class ControlInventario
 {
     /**
      * @var string
+     *
+     * @ORM\Column(name="cod_inventario", type="string", length=10, nullable=true)
      */
     private $codInventario;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id_control_inventario", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idControlInventario;
 
     /**
      * @var \UTN\Bundle\ControlMovilBundle\Entity\Control
+     *
+     * @ORM\ManyToOne(targetEntity="UTN\Bundle\ControlMovilBundle\Entity\Control")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_control", referencedColumnName="id_control")
+     * })
      */
     private $idControl;
 
     /**
      * @var \UTN\Bundle\ControlMovilBundle\Entity\EstadoControl
+     *
+     * @ORM\ManyToOne(targetEntity="UTN\Bundle\ControlMovilBundle\Entity\EstadoControl")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_estado_control", referencedColumnName="id_estado_control")
+     * })
      */
     private $idEstadoControl;
 
-
-
     /**
      * @var \UTN\Bundle\DashboardMainBundle\Entity\Inventario
+     *
+     * @ORM\ManyToOne(targetEntity="UTN\Bundle\DashboardMainBundle\Entity\Inventario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_inventario", referencedColumnName="id_inventario")
+     * })
      */
     private $idInventario;
+
 
 
     /**
@@ -141,4 +166,3 @@ class ControlInventario
         return $this->idInventario;
     }
 }
-

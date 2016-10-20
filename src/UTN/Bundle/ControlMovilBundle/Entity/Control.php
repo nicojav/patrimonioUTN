@@ -2,60 +2,98 @@
 
 namespace UTN\Bundle\ControlMovilBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use UTN\Bundle\UsuarioBundle\Entity;
+
 /**
  * Control
+ *
+ * @ORM\Table(name="control", indexes={@ORM\Index(name="IDX_EDDB2C4BFCF8192D", columns={"id_usuario"}), @ORM\Index(name="IDX_EDDB2C4B88398CA6", columns={"id_aula"}), @ORM\Index(name="IDX_EDDB2C4BF2EC3E9C", columns={"id_estado_control"})})
+ * @ORM\Entity
  */
 class Control
 {
     /**
      * @var string
+     *
+     * @ORM\Column(name="xml", type="string", length=-1, nullable=false)
      */
     private $xml;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="fecha", type="datetime", nullable=true)
      */
     private $fecha;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="cod_fecha", type="string", length=20, nullable=true)
      */
     private $codFecha;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="cod_aula", type="string", length=10, nullable=true)
      */
     private $codAula;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="cod_usuario", type="string", length=30, nullable=true)
      */
     private $codUsuario;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_corrida", type="datetime", nullable=false)
      */
     private $fechaCorrida;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id_control", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idControl;
 
     /**
      * @var \UTN\Bundle\ControlMovilBundle\Entity\EstadoControl
+     *
+     * @ORM\ManyToOne(targetEntity="UTN\Bundle\ControlMovilBundle\Entity\EstadoControl")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_estado_control", referencedColumnName="id_estado_control")
+     * })
      */
     private $idEstadoControl;
 
     /**
-     * @var \UTN\Bundle\ControlMovilBundle\Entity\Aula
+     * @var \UTN\Bundle\UsuarioBundle\Entity\Aula
+     *
+     * @ORM\ManyToOne(targetEntity="UTN\Bundle\UsuarioBundle\Entity\Aula")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_aula", referencedColumnName="id_aula")
+     * })
      */
     private $idAula;
 
     /**
-     * @var \UTN\Bundle\ControlMovilBundle\Entity\Usuario
+     * @var \UTN\Bundle\UsuarioBundle\Entity\Usuario
+     *
+     * @ORM\ManyToOne(targetEntity="UTN\Bundle\UsuarioBundle\Entity\Usuario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_usuario", referencedColumnName="id_usuario")
+     * })
      */
     private $idUsuario;
+
 
 
     /**
@@ -239,11 +277,11 @@ class Control
     /**
      * Set idAula
      *
-     * @param \UTN\Bundle\ControlMovilBundle\Entity\Aula $idAula
+     * @param \UTN\Bundle\UsuarioBundle\Entity\Aula $idAula
      *
      * @return Control
      */
-    public function setIdAula(\UTN\Bundle\ControlMovilBundle\Entity\Aula $idAula = null)
+    public function setIdAula(\UTN\Bundle\UsuarioBundle\Entity\Aula $idAula = null)
     {
         $this->idAula = $idAula;
 
@@ -253,7 +291,7 @@ class Control
     /**
      * Get idAula
      *
-     * @return \UTN\Bundle\ControlMovilBundle\Entity\Aula
+     * @return \UTN\Bundle\UsuarioBundle\Entity\Aula
      */
     public function getIdAula()
     {
@@ -263,11 +301,11 @@ class Control
     /**
      * Set idUsuario
      *
-     * @param \UTN\Bundle\ControlMovilBundle\Entity\Usuario $idUsuario
+     * @param \UTN\Bundle\UsuarioBundle\Entity\Usuario $idUsuario
      *
      * @return Control
      */
-    public function setIdUsuario(\UTN\Bundle\ControlMovilBundle\Entity\Usuario $idUsuario = null)
+    public function setIdUsuario(\UTN\Bundle\UsuarioBundle\Entity\Usuario $idUsuario = null)
     {
         $this->idUsuario = $idUsuario;
 
@@ -277,11 +315,14 @@ class Control
     /**
      * Get idUsuario
      *
-     * @return \UTN\Bundle\ControlMovilBundle\Entity\Usuario
+     * @return \UTN\Bundle\UsuarioBundle\Entity\Usuario
      */
     public function getIdUsuario()
     {
         return $this->idUsuario;
     }
+    public function __toString()
+    {
+        return  (String)$this->getIdControl() ?: "n/a";
+    }
 }
-

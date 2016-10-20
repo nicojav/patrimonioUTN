@@ -36,12 +36,12 @@
         <join-column name="id_estado_control" referenced-column-name="id_estado_control"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="idAula" target-entity="Aula" fetch="LAZY">
+    <many-to-one field="idAula" target-entity="UTN\Bundle\UsuarioBundle\Entity\Aula" fetch="LAZY">
       <join-columns>
         <join-column name="id_aula" referenced-column-name="id_aula"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="idUsuario" target-entity="Usuario" fetch="LAZY">
+    <many-to-one field="idUsuario" target-entity="UTN\Bundle\UsuarioBundle\Entity\Usuario" fetch="LAZY">
       <join-columns>
         <join-column name="id_usuario" referenced-column-name="id_usuario"/>
       </join-columns>
