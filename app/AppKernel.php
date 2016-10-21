@@ -34,6 +34,7 @@ class AppKernel extends Kernel
             new UTN\Bundle\UsuarioBundle\UTNUsuarioBundle(),
             new UTN\Bundle\RfidBundle\RfidBundle(),
             new UTN\Bundle\ArduinoBundle\ArduinoBundle(),
+            new UTN\Bundle\ControlMovilBundle\ControlMovilBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

@@ -1,0 +1,3 @@
+control_movil_homepage:
+    path:     /controlmovil
+    defaults: { _controller: ControlMovilBundle:Default:index }

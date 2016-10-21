@@ -1,3 +1,7 @@
+control_movil:
+    resource: "@ControlMovilBundle/Resources/config/routing.yml"
+    prefix:   /
+
 arduino:
     resource: "@ArduinoBundle/Resources/config/routing.yml"
     prefix:   /
