@@ -46,6 +46,8 @@ sonata_admin:
                             icon : '<i class="fa fa-lock"></i>'
                             items:
                                 - rfid.admin.log_movimiento
+                                - control_movil.admin.control
+                                - control_movil.admin.control_inventario
                             roles: [ ROLE_SUPER_ADMIN ]
 
 sonata_user:
