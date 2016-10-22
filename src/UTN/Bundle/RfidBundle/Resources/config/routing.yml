@@ -1,3 +1,3 @@
 rfid_homepage:
-    path:     /movimientos
+    path:     /seguridad
     defaults: { _controller: RfidBundle:Default:index }
