@@ -17,13 +17,12 @@ class ControlAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('fecha')
-            ->add('codFecha')
+            ->add('fecha','doctrine_orm_date_range')
+            ->add('codFecha','doctrine_orm_date_range',array('label'=>'Fecha Relevamiento'))
             ->add('codAula',null,array('label'=>'Aula Relevada'))
             ->add('codUsuario',null,array('label'=>'Usuario'))
-            ->add('fechaCorrida')
+            ->add('fechaCorrida','doctrine_orm_date_range',array('label'=>'Fecha Consolidación'))
             ->add('idEstadoControl',null,array('label'=>'Estado'))
-
         ;
     }
 
@@ -90,4 +89,5 @@ class ControlAdmin extends AbstractAdmin
         // criterio de ordenamiento
         '_sort_by' => 'fechaCorrida',
     );
+
 }
