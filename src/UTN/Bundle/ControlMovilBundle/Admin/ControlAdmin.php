@@ -82,5 +82,12 @@ class ControlAdmin extends AbstractAdmin
         $collection->remove('create');
         $collection->remove('delete');
     }
-
+    protected $datagridValues = array(
+        // mostrar pagina principal
+        '_page' => 1,
+        // por defecto ASC
+        '_sort_order' => 'DESC',
+        // criterio de ordenamiento
+        '_sort_by' => 'fechaCorrida',
+    );
 }
