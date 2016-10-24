@@ -7,9 +7,13 @@ services:
         arguments: [~, UTN\Bundle\ControlMovilBundle\Entity\Control, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Control Móvil }
+        calls:
+            - [addChild, ['@control_movil.admin.control_inventario']]
 
     control_movil.admin.control_inventario:
         class: UTN\Bundle\ControlMovilBundle\Admin\ControlInventarioAdmin
         arguments: [~, UTN\Bundle\ControlMovilBundle\Entity\ControlInventario, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Control Inventario }
+
+

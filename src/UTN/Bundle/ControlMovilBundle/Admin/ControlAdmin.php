@@ -17,13 +17,12 @@ class ControlAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('fecha')
-            ->add('codFecha')
+            ->add('fecha','doctrine_orm_date_range')
+            ->add('codFecha','doctrine_orm_date_range',array('label'=>'Fecha Relevamiento'))
             ->add('codAula',null,array('label'=>'Aula Relevada'))
             ->add('codUsuario',null,array('label'=>'Usuario'))
-            ->add('fechaCorrida')
+            ->add('fechaCorrida','doctrine_orm_date_range',array('label'=>'Fecha Consolidación'))
             ->add('idEstadoControl',null,array('label'=>'Estado'))
-
         ;
     }
 
@@ -35,15 +34,16 @@ class ControlAdmin extends AbstractAdmin
         $listMapper
             ->addIdentifier('idControl',null,array('label'=>'ID Control'))
             ->add('fecha','datetime',array('label'=>'Fecha','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires'))
-            ->add('codFecha','datetime',array('label'=>'Fecha','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires'))
-            ->add('fechaCorrida','datetime',array('label'=>'Fecha','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires'))
+            ->add('codFecha','datetime',array('label'=>'Fecha Relevamiento','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires'))
+            ->add('fechaCorrida','datetime',array('label'=>'Fecha Consolidación','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires'))
             ->add('codAula','text',array('label'=>'Aula'))
             ->add('codUsuario','text',array('label'=>'Relevó'))
     //        ->add('xml')
             ->add('idEstadoControl','text',array('label'=>'Estado'))
             ->add('_action', null, array('label'=>'Acciones',
                 'actions' => array(
-                    'edit' => array('template' => 'ControlMovilBundle:CRUD:list__action_edit.html.twig')
+                    'edit' => array('template' => 'ControlMovilBundle:CRUD:list__action_edit.html.twig'),
+                    'comments' => array('template' => 'ControlMovilBundle:CRUD:ver_detalle_control.html.twig')
                 )
             ))      ;
     }
@@ -54,13 +54,9 @@ class ControlAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
- //           ->add('xml')
-//            ->add('codFecha')
             ->add('idControl',null,array('label'=>'ID Control','read_only'=>true))
             ->add('codAula','text',array('label'=>'Aula'))
             ->add('codUsuario','text',array('label'=>'Relevó','read_only'=>true))
-//            ->add('fechaCorrida')
-
         ;
     }
 
@@ -84,6 +80,14 @@ class ControlAdmin extends AbstractAdmin
     {
         $collection->remove('create');
         $collection->remove('delete');
-//        $collection->remove('edit');
     }
+    protected $datagridValues = array(
+        // mostrar pagina principal
+        '_page' => 1,
+        // por defecto ASC
+        '_sort_order' => 'DESC',
+        // criterio de ordenamiento
+        '_sort_by' => 'fechaCorrida',
+    );
+
 }
