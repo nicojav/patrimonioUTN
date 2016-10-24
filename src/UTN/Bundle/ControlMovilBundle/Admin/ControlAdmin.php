@@ -18,7 +18,7 @@ class ControlAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('fecha','doctrine_orm_date_range', array('field_type'=>'sonata_type_date_range_picker',))
-            ->add('codFecha','doctrine_orm_date_range',array('label'=>'Fecha Relevamiento','field_type'=>'sonata_type_date_range_picker',))
+//            ->add('codFecha','doctrine_orm_date_range',array('label'=>'Fecha Relevamiento','field_type'=>'sonata_type_date_range_picker',))
             ->add('codAula',null,array('label'=>'Aula Relevada'))
             ->add('codUsuario',null,array('label'=>'Usuario'))
             ->add('fechaCorrida','doctrine_orm_date_range',array('label'=>'Fecha Consolidación','field_type'=>'sonata_type_date_range_picker',))
@@ -34,9 +34,10 @@ class ControlAdmin extends AbstractAdmin
         $listMapper
             ->addIdentifier('idControl',null,array('label'=>'ID Control'))
             ->add('fecha','datetime',array('label'=>'Fecha','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires'))
-            ->add('codFecha','datetime',array('label'=>'Fecha Relevamiento','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires'))
+//            ->add('codFecha','datetime',array('label'=>'Fecha Relevamiento','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires'))
             ->add('fechaCorrida','datetime',array('label'=>'Fecha Consolidación','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires'))
-            ->add('codAula','text',array('label'=>'Aula'))
+            ->add('codAula','text',array('label'=>'Aula','editable'=>true))
+            ->add('idAula','choice',array('label'=>'Ubicación Inventarios','editable'=>true))
             ->add('codUsuario','text',array('label'=>'Relevó'))
     //        ->add('xml')
             ->add('idEstadoControl','text',array('label'=>'Estado'))
@@ -57,6 +58,7 @@ class ControlAdmin extends AbstractAdmin
             ->add('idControl',null,array('label'=>'ID Control','read_only'=>true))
             ->add('codAula','text',array('label'=>'Aula'))
             ->add('codUsuario','text',array('label'=>'Relevó','read_only'=>true))
+            ->add('idAula',null,array('label'=>'Aulas Habilitadas'))
         ;
     }
 
@@ -89,5 +91,6 @@ class ControlAdmin extends AbstractAdmin
         // criterio de ordenamiento
         '_sort_by' => 'fechaCorrida',
     );
+
 
 }

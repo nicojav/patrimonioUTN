@@ -1,4 +1,5 @@
-<a href="{{ path('admin_utn_controlmovil_control_controlinventario_list', {'id': object.idControl })  }}" class="btn btn-sm btn-default edit_link" title="{{ 'Ver Detalle'|trans({}, 'SonataAdminBundle') }}">
+<a href="{{ path('admin_utn_controlmovil_control_controlinventario_list', {'id': object.idControl,'filter[idControl][value]': object.idControl })  }}" class="btn btn-sm btn-default edit_link" title="{{ 'Ver Detalle'|trans({}, 'SonataAdminBundle') }}">
    <i class="glyphicon glyphicon-zoom-in"></i>
    {{ 'Ver Detalle'|trans({}, 'SonataAdminBundle') }}
 </a>
+
