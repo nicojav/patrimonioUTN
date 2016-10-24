@@ -24,13 +24,14 @@ class InventarioAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('descripcion')
-            ->add('fechaAlta')
-            ->add('fechaActualizacion')
-            ->add('alarmaActiva')
-            ->add('etiquetaImpresa')
-            ->add('fechaControl')
-            ->add('idUsuarioControl')
-            ->add('idInventario')
+            ->add('fechaAlta','doctrine_orm_date_range',array('field_type'=>'sonata_type_date_range_picker',))
+            ->add('fechaActualizacion','doctrine_orm_date_range',array('field_type'=>'sonata_type_date_range_picker',))
+            ->add('alarmaActiva',null,array('label'=>'Alarma Activa'))
+            ->add('etiquetaImpresa',null,array('label'=>'Etiqueta Impresa'))
+            ->add('fechaControl','doctrine_orm_date_range',array('field_type'=>'sonata_type_date_range_picker',))
+            ->add('idUsuarioControl',null,array('label'=>'Controló'))
+            ->add('idInventario',null,array('label'=>'Nro. Inventario'))
+
         ;
     }
 
@@ -40,14 +41,14 @@ class InventarioAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add('idInventario','integer',array('label'=>'Nro. Inventario'))
             ->add('descripcion')
-            ->add('fechaAlta')
-            ->add('fechaActualizacion')
+            ->add('fechaAlta','datetime',array('label'=>'Fecha Alta','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
+            ->add('fechaActualizacion','datetime',array('label'=>'Fecha Actualización','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
             ->add('alarmaActiva')
             ->add('etiquetaImpresa')
-            ->add('fechaControl')
-            ->add('idUsuarioControl')
-            ->add('idInventario')
+            ->add('fechaControl','datetime',array('label'=>'Fecha Último Control','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
+            ->add('idUsuarioControl','text',array('label'=>'Id Usuario Control'))
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),

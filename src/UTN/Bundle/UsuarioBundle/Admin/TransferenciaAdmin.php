@@ -21,11 +21,11 @@ class TransferenciaAdmin extends AbstractAdmin
     {
         $datagridMapper
             //->add('idInventario')
-            ->add('idResponsableOrigen')
-            ->add('idResponsableDestino')
+            ->add('idResponsableOrigen',null,array('label'=>'Responsable Origen'))
+            ->add('idResponsableDestino',null,array('label'=>'Responsable Destino'))
             ->add('descripcion')
-            ->add('fechaInicio')
-            ->add('fechaActualizacion')
+            ->add('fechaInicio','doctrine_orm_date_range',array('field_type'=>'sonata_type_date_range_picker',))
+            ->add('fechaActualizacion','doctrine_orm_date_range',array('field_type'=>'sonata_type_date_range_picker',))
             ->add('idTransferencia')
         ;
     }
@@ -53,15 +53,15 @@ class TransferenciaAdmin extends AbstractAdmin
     {
         $listMapper
             //->add('idInventario')
-            ->add('idResponsableOrigen')
-            ->add('idResponsableDestino')
-            ->add('idUsuarioOrigen')
-            ->add('idUsuarioDestino')
+            ->add('idTransferencia','integer',array('label'=>'Nro Trámite'))
+            ->add('idResponsableOrigen','integer',array('label'=>'Responsable Origen'))
+            ->add('idResponsableDestino','integer',array('label'=>'Responsable Destino'))
+            ->add('idUsuarioOrigen','integer',array('label'=>'Usuario Origen'))
+            ->add('idUsuarioDestino','integer',array('label'=>'Usuario Destino'))
             ->add('descripcion')
-            ->add('idEstadoTransferencia')
+            ->add('idEstadoTransferencia','integer',array('label'=>'Estado Transferencia'))
             ->add('fechaInicio')
             ->add('fechaActualizacion')
-            ->add('idTransferencia')
             ->add('_action', null, array(
                 'actions' => array(
                     //'show' => array(),
@@ -140,6 +140,8 @@ class TransferenciaAdmin extends AbstractAdmin
             ->add('fechaInicio')
             ->add('fechaActualizacion')
             //->add('idTransferencia')
+
+
         ;
     }
 

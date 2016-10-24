@@ -19,7 +19,7 @@ class LogMovimientoAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('fecha','doctrine_orm_date_range')
+            ->add('fecha','doctrine_orm_date_range',array('field_type'=>'sonata_type_date_range_picker',))
             ->add('idSensor', null, array('label' => 'Sensor'))
             ->add('idEstadoMovimiento', null, array('label' => 'Tipo de Movimiento'));
     }

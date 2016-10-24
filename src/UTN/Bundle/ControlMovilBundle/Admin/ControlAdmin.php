@@ -17,11 +17,11 @@ class ControlAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('fecha','doctrine_orm_date_range')
-            ->add('codFecha','doctrine_orm_date_range',array('label'=>'Fecha Relevamiento'))
+            ->add('fecha','doctrine_orm_date_range', array('field_type'=>'sonata_type_date_range_picker',))
+            ->add('codFecha','doctrine_orm_date_range',array('label'=>'Fecha Relevamiento','field_type'=>'sonata_type_date_range_picker',))
             ->add('codAula',null,array('label'=>'Aula Relevada'))
             ->add('codUsuario',null,array('label'=>'Usuario'))
-            ->add('fechaCorrida','doctrine_orm_date_range',array('label'=>'Fecha Consolidación'))
+            ->add('fechaCorrida','doctrine_orm_date_range',array('label'=>'Fecha Consolidación','field_type'=>'sonata_type_date_range_picker',))
             ->add('idEstadoControl',null,array('label'=>'Estado'))
         ;
     }
