@@ -47,9 +47,9 @@ class ControlInventarioAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('codInventario',null,array('label'=>'Cod Inventario'))
-            ->add('idControlInventario',null,array('label'=>'Inventario Escaneado','read_only'=>true,'disabled'=>true))
-            ->add('idInventario',null,array('label'=>'Descripcion','read_only'=>true,'disabled'=>true))
+            ->add('idControl',null,array('label'=>'ID Control'))
+            ->add('codInventario',null,array('label'=>'Cod Inventario Ecaneado'))
+            ->add('idInventario',null,array('label'=>'Descripcion Inventario','read_only'=>true,'disabled'=>true))
         ;
     }
 
@@ -59,8 +59,9 @@ class ControlInventarioAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('codInventario')
-            ->add('idControlInventario')
+            ->add('idControl',null,array('label'=>'ID Control'))
+            ->add('codInventario',null,array('label'=>'Cod Inventario Escaneado'))
+            ->add('idInventario',null,array('label'=>'Descripcion Inventario','read_only'=>true,'disabled'=>true))
         ;
     }
 

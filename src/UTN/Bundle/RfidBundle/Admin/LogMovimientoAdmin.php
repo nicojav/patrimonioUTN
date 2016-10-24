@@ -44,11 +44,12 @@ class LogMovimientoAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('idInventario','text',array('label'=>'Descripción'))
-            ->add('inventario.idInventario','text',array('label'=>'Nro. Inventario'))
+ #           ->add('inventario.idInventario','text',array('label'=>'Nro. Inventario'))
             ->add('idEstadoMovimiento','text',array('label'=>'Tipo de Movimiento'))
             ->add('fecha','datetime',array('label'=>'Fecha','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
-            ->add('sensor.idSensor','text',array('label'=>'Sensor'))
             ->add('idInventario.idAulaControl','text',array('label'=>'Aula'))
+            ->add('sensor.idSensor','text',array('label'=>'Sensor'))
+
 
 
          ;
@@ -73,12 +74,14 @@ class LogMovimientoAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('idLogMovimiento')
-            ->add('idInventario')
-            ->add('inventario.idInventario', 'integer', array('label' => 'Nro. Inventario'))
+            ->add('idLogMovimiento','text',array('label'=>'Nro. Movimiento'))
+            ->add('idInventario','text',array('label'=>'Descripción Inventario'))
+    #        ->add('inventario.idInventario', 'integer', array('label' => 'Nro. Inventario'))
             ->add('idEstadoMovimiento', 'text', array('label' => 'Tipo de Movimiento'))
             ->add('fecha', 'datetime', array('label' => 'Fecha', 'format' => 'd-m-Y H:i', 'timezone' => 'America/Buenos_aires'))
-            ->add('idSensor', 'text', array('label' => 'Sensor'));
+            ->add('idSensor', 'text', array('label' => 'Sensor'))
+            ->add('idInventario.idAulaControl','text',array('label'=>'Ubicacion'))
+        ;
     }
 
     protected function configureRoutes(RouteCollection $collection)

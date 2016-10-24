@@ -37,7 +37,7 @@ class ControlAdmin extends AbstractAdmin
 //            ->add('codFecha','datetime',array('label'=>'Fecha Relevamiento','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires'))
             ->add('fechaCorrida','datetime',array('label'=>'Fecha Consolidación','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires'))
             ->add('codAula','text',array('label'=>'Aula','editable'=>true))
-            ->add('idAula','choice',array('label'=>'Ubicación Inventarios','editable'=>true))
+            ->add('idAula','choice',array('label'=>'Ubicación Inventarios'))
             ->add('codUsuario','text',array('label'=>'Relevó'))
     //        ->add('xml')
             ->add('idEstadoControl','text',array('label'=>'Estado'))

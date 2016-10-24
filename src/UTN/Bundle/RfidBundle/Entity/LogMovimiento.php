@@ -163,4 +163,10 @@ class LogMovimiento
     {
         return $this->idEstadoMovimiento;
     }
+
+    public function __toString()
+    {
+        return  (String)$this->getIdLogMovimiento();
+    }
+
 }

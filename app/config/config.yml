@@ -49,7 +49,7 @@ sonata_admin:
                             items:
                                 - rfid.admin.log_movimiento
                                 - control_movil.admin.control
-                                - control_movil.admin.control_inventario
+#                                - control_movil.admin.control_inventario
                                 - utn_dashboard_main.admin.notificacion # SACAR
                             roles: [ ROLE_SUPER_ADMIN ]
 

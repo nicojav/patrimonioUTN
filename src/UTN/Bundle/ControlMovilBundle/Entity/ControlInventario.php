@@ -168,4 +168,8 @@ class ControlInventario
         return $this->idInventario;
     }
 
+    public function __toString()
+    {
+        return  (String)$this->getIdControlInventario();
+    }
 }
