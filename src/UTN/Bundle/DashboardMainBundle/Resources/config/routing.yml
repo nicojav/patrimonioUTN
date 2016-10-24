@@ -1,3 +1,6 @@
 utn_dashboard_main_homepage:
     path:     /
     defaults: { _controller: UTNDashboardMainBundle:Default:index }
+get_notificaciones_alert:
+    path: /admin/utn/dashboardmain/notificacion/get_notificaciones_alert
+    defaults: { _controller: UTNDashboardMainBundle:NotificacionAdmin:getNotificacionesPoll}

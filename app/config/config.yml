@@ -17,10 +17,12 @@ parameters:
 sonata_admin:
   title: PATRIMONIO FRBA
   title_logo: bundles/sonataadmin/logo_utn.png
+  templates:
+          ## default global templates
+          ## layout: UTNDashboardMainBundle::standard_layout.html.twig
   show_mosaic_button: false
   dashboard:
         groups:
-
             sonata.admin.group.demo1:
                             label: Patrimonio
                             icon:  '<i class="fa fa-television"></i>'
@@ -35,7 +37,7 @@ sonata_admin:
                                 - utn_usuario.admin.transferencia
                             roles: [ ROLE_SUPER_ADMIN ]
             sonata.admin.group.demo3:
-                            label: Usuario
+                            label: Gestión de Usuarios
                             icon:  '<i class="fa fa-users"></i>'
                             items:
                                 - sonata.user.admin.user
@@ -48,6 +50,7 @@ sonata_admin:
                                 - rfid.admin.log_movimiento
                                 - control_movil.admin.control
                                 - control_movil.admin.control_inventario
+                                - utn_dashboard_main.admin.notificacion # SACAR
                             roles: [ ROLE_SUPER_ADMIN ]
 
 sonata_user:

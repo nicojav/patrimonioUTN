@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="UTN\Bundle\DashboardMainBundle\Entity\Notificacion" table="notificacion">
+    <indexes>
+      <index name="IDX_729A19EC118E2735" columns="id_usuario_destino"/>
+    </indexes>
+    <id name="idNotificacion" type="integer" column="id_notificacion">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="mensaje" type="string" column="mensaje" length="2000" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="notificada" type="boolean" column="notificada" nullable="false">
+      <options>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <many-to-one field="idUsuarioDestino" target-entity="UTN\Bundle\UsuarioBundle\Entity\Usuario" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_usuario_destino" referenced-column-name="id_usuario"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
