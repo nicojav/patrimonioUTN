@@ -2,7 +2,9 @@
 
 namespace UTN\Bundle\DashboardMainBundle\Controller;
 
+use Doctrine\DBAL\Types\IntegerType;
 use Sonata\AdminBundle\Controller\CRUDController;
+use Sonata\AdminBundle\Model\ModelManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use UTN\Bundle\DashboardMainBundle\Entity;
@@ -12,6 +14,8 @@ use Doctrine\ORM;
 
 class NotificacionAdminController extends CRUDController
 {
+    protected  $result_idNotif;
+
     public function  getNotificacionesPollAction(Request $request)
     {
         if($request->isXmlHttpRequest()) {
@@ -32,8 +36,11 @@ class NotificacionAdminController extends CRUDController
             if($result){ //Si Array==null : FALSE
 
                 $result_mensaje = $result[0]['mensaje'];
-                $result_idNotif = $result[0]['idNotificacion'];
+                $this->result_idNotif = $result[0]['idNotificacion'];
                 $this->addFlash('warning',$result_mensaje);
+
+                //Updateo la notificacion
+                $this->updateNotificacion($modelManager);
 
                 return new JsonResponse(array(
                     'mensaje' => $result_mensaje
@@ -51,4 +58,19 @@ class NotificacionAdminController extends CRUDController
         $response->setStatusCode(404); //ERROR
         return $response;
     }
+
+
+
+    public function  updateNotificacion (ModelManagerInterface $managerInterface)
+    {
+        $qb = $managerInterface->getEntityManager('UTN\Bundle\DashboardMainBundle\Entity\Notificacion');
+        $q = $qb->createQueryBuilder()
+            ->update('UTN\Bundle\DashboardMainBundle\Entity\Notificacion', 'n')
+            ->set('n.notificada', 1)
+            ->where('n.idNotificacion = ?1')
+            ->setParameter(1, $this->result_idNotif)
+            ->getQuery();
+        $q->execute();
+
+     }
 }
