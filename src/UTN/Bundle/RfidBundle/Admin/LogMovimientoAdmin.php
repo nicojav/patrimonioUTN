@@ -100,4 +100,9 @@ class LogMovimientoAdmin extends AbstractAdmin
         '_sort_by' => 'fecha',
     );
 
+    public function getExportFields() {
+        return array('idInventario','fecha','idInventario.idAulaControl',
+            'idSensor','idEstadoMovimiento'
+        );
+    }
 }

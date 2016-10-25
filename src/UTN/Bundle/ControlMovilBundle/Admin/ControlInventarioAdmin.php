@@ -70,4 +70,11 @@ class ControlInventarioAdmin extends AbstractAdmin
         $collection->remove('create');
         $collection->remove('delete');
     }
+    public function getExportFields() {
+        return array('idControl','codInventario','idInventario',
+            'idEstadoControl'
+        );
+    }
+
+
 }
