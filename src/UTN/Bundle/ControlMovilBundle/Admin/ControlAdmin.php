@@ -9,8 +9,10 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 
+
 class ControlAdmin extends AbstractAdmin
 {
+
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -83,6 +85,7 @@ class ControlAdmin extends AbstractAdmin
         $collection->remove('create');
         $collection->remove('delete');
     }
+
     protected $datagridValues = array(
         // mostrar pagina principal
         '_page' => 1,
@@ -91,6 +94,7 @@ class ControlAdmin extends AbstractAdmin
         // criterio de ordenamiento
         '_sort_by' => 'fechaCorrida',
     );
+
 
 
 }

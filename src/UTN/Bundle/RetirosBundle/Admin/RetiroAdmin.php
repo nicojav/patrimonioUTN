@@ -81,9 +81,9 @@ class RetiroAdmin extends AbstractAdmin
                 'edit' => 'inline',
                 'inline' => 'table',
                 'sortable'  => 'position',
-                //'admin_code' => 'utn_usuario.admin.transferencia_inventario'
                 'admin_code' => 'retiros.admin.retiro_body'
                 ))
+
 
 
         ;
@@ -122,14 +122,14 @@ class RetiroAdmin extends AbstractAdmin
     public function prePersist($object)
     {
         foreach ($object->getIdInventario() as $trasnInv) {
-            $trasnInv->setIdTransferencia($object);
+            $trasnInv->setIdRetiro($object);
         }
     }
 
     public function preUpdate($object)
     {
         foreach ($object->getIdInventario() as $trasnInv) {
-            $trasnInv->setIdTransferencia($object);
+            $trasnInv->setIdRetiro($object);
         }
     }
 

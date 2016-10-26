@@ -259,7 +259,7 @@ class Retiro
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="UTN\Bundle\RetirosBundle\Entity\RetiroBody", mappedBy="id", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="UTN\Bundle\RetirosBundle\Entity\RetiroBody", mappedBy="idRetiro", cascade={"persist"})
      */
     protected $idInventario;
 
@@ -278,7 +278,7 @@ class Retiro
     public function addIdInventario(\UTN\Bundle\RetirosBundle\Entity\RetiroBody $retiroBody )
     {
 
-        $retiroBody->setIdTransferencia($this);
+        $retiroBody->setIdRetiro($this);
         $this->idInventario[] = $retiroBody;
 
     }
@@ -313,7 +313,7 @@ class Retiro
     /**
      * Get idInventario
      *
-     * @return \UTN\Bundle\UsuarioBundle\Entity\Inventario
+     * @return \UTN\Bundle\DashboardMainBundle\Entity\Inventario
      */
     public function getIdInventario()
     {

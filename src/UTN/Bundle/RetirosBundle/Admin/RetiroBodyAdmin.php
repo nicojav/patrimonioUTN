@@ -61,6 +61,7 @@ class RetiroBodyAdmin extends AbstractAdmin
                     'admin_code' => 'utn_dashboard_main.admin.inventario',
                     'link_parameters' => $link_parameters
                 ))
+
         ;
     }
 
@@ -78,7 +79,7 @@ class RetiroBodyAdmin extends AbstractAdmin
     {
         $collection->remove('delete');
         //$collection->remove('create');
-        $collection->remove('edit');
+        //$collection->remove('edit');
     }
     protected $datagridValues = array(
         // mostrar pagina principal
