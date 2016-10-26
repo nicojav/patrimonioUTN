@@ -7,6 +7,7 @@ imports:
     - { resource: "@RfidBundle/Resources/config/services.yml" }
     - { resource: "@ArduinoBundle/Resources/config/services.yml" }
     - { resource: "@ControlMovilBundle/Resources/config/services.yml" }
+    - { resource: "@RetirosBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -51,6 +52,8 @@ sonata_admin:
                                 - control_movil.admin.control
 #                                - control_movil.admin.control_inventario
                                 - utn_dashboard_main.admin.notificacion # SACAR
+                                - retiros.admin.retiro
+                                - retiros.admin.retiro_body
                             roles: [ ROLE_SUPER_ADMIN ]
 
 sonata_user:

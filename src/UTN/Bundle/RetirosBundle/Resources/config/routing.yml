@@ -1,0 +1,3 @@
+retiros_homepage:
+    path:     /
+    defaults: { _controller: RetirosBundle:Default:index }

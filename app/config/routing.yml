@@ -1,3 +1,7 @@
+retiros:
+    resource: "@RetirosBundle/Resources/config/routing.yml"
+    prefix:   /
+
 control_movil:
     resource: "@ControlMovilBundle/Resources/config/routing.yml"
     prefix:   /

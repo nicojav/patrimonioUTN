@@ -44,7 +44,7 @@ class ControlAdmin extends AbstractAdmin
             ->add('_action', null, array('label'=>'Acciones',
                 'actions' => array(
                     'edit' => array('template' => 'ControlMovilBundle:CRUD:list__action_edit.html.twig'),
-                    'comments' => array('template' => 'ControlMovilBundle:CRUD:ver_detalle_control.html.twig')
+                    'detalle' => array('template' => 'ControlMovilBundle:CRUD:ver_detalle_control.html.twig')
                 )
             ))      ;
     }

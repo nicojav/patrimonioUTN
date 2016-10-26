@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="UTN\Bundle\RetirosBundle\Entity\RetiroBody" table="retiro_body">
+    <indexes>
+      <index name="IDX_5A164C9ACF93CE22" columns="id_inventario"/>
+      <index name="IDX_5A164C9AE392E060" columns="id_retiro"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <many-to-one field="idRetiro" target-entity="Retiro" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_retiro" referenced-column-name="id_retiro"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idInventario" target-entity="UTN\Bundle\DashboardMainBundle\Entity\Inventario" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_inventario" referenced-column-name="id_inventario"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
