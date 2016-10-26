@@ -255,4 +255,69 @@ class Retiro
         return  (String)$this->getIdRetiro() ?: "n/a";
     }
 
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="UTN\Bundle\RetirosBundle\Entity\RetiroBody", mappedBy="id", cascade={"persist"})
+     */
+    protected $idInventario;
+
+
+    public function __construct() {
+        $this->idInventario = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
+    /**
+     * Add Inventario
+     *
+     * @param \UTN\Bundle\RetirosBundle\Entity\RetiroBody $idInventario
+     * @return \UTN\Bundle\RetirosBundle\Entity\RetiroBody
+     */
+    public function addIdInventario(\UTN\Bundle\RetirosBundle\Entity\RetiroBody $retiroBody )
+    {
+
+        $retiroBody->setIdTransferencia($this);
+        $this->idInventario[] = $retiroBody;
+
+    }
+
+    /**
+     * Remove entityTwo
+     *
+     * @param \UTN\Bundle\RetirosBundle\Entity\RetiroBody $transInventario
+     */
+    public function removeIdInventario(\UTN\Bundle\RetirosBundle\Entity\RetiroBody $transInventario)
+    {
+        $this->idInventario->removeElement($transInventario);
+    }
+
+
+    /**
+     * Set idInventario
+     *
+     * @param \UTN\Bundle\RetirosBundle\Entity\RetiroBody $transInventario
+     *
+     * @return Retiro
+     */
+    public function setIdInventario(\UTN\Bundle\RetirosBundle\Entity\RetiroBody $transInventario) //Array transInventario
+    {
+        $this->idInventario = new ArrayCollection(); //necesario??
+
+        foreach ($transInventario as $idTrans) {
+            $this->addIdInventario($idTrans);
+        }
+    }
+
+    /**
+     * Get idInventario
+     *
+     * @return \UTN\Bundle\UsuarioBundle\Entity\Inventario
+     */
+    public function getIdInventario()
+    {
+        return $this->idInventario;
+    }
+
 }

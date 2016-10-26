@@ -39,8 +39,28 @@ class RetiroBodyAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+
+        $link_parameters = array();
+
+        if ($this->hasParentFieldDescription()) {
+            $link_parameters = $this->getParentFieldDescription()->getOption('link_parameters', array());
+        }
+
+        if ($this->hasRequest()) {
+            $context = $this->getRequest()->get('context', null);
+
+            if (null !== $context) {
+                $link_parameters['context'] = $context;
+            }
+        }
+
         $formMapper
-            ->add('id')
+            ->add('idRetiro')
+            ->add('idInventario', 'sonata_type_model', array('required' => false)
+                ,array(
+                    'admin_code' => 'utn_dashboard_main.admin.inventario',
+                    'link_parameters' => $link_parameters
+                ))
         ;
     }
 
@@ -57,7 +77,7 @@ class RetiroBodyAdmin extends AbstractAdmin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->remove('delete');
-        $collection->remove('create');
+        //$collection->remove('create');
         $collection->remove('edit');
     }
     protected $datagridValues = array(

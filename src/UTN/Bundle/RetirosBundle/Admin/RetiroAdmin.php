@@ -73,6 +73,18 @@ class RetiroAdmin extends AbstractAdmin
                     'C' => 'Confirmado'
                 )))
             ->add('motivo')
+            ->add('idInventario', 'sonata_type_collection', array(
+                'cascade_validation' => false,
+                'type_options' => array('delete' => false),
+                'required' => false
+            ), array(
+                'edit' => 'inline',
+                'inline' => 'table',
+                'sortable'  => 'position',
+                //'admin_code' => 'utn_usuario.admin.transferencia_inventario'
+                'admin_code' => 'retiros.admin.retiro_body'
+                ))
+
 
         ;
     }
@@ -107,6 +119,18 @@ class RetiroAdmin extends AbstractAdmin
         '_sort_by' => 'idRetiro',
     );
 
+    public function prePersist($object)
+    {
+        foreach ($object->getIdInventario() as $trasnInv) {
+            $trasnInv->setIdTransferencia($object);
+        }
+    }
 
+    public function preUpdate($object)
+    {
+        foreach ($object->getIdInventario() as $trasnInv) {
+            $trasnInv->setIdTransferencia($object);
+        }
+    }
 
 }
