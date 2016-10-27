@@ -73,7 +73,9 @@ class RetiroAdmin extends AbstractAdmin
                     'C' => 'Confirmado'
                 )))
             ->add('motivo')
-            ->add('idInventario', 'sonata_type_collection', array(
+            ->end()
+            ->with('Inventarios Autorizados', array('collapsed' => true))
+            ->add('idInventario', 'sonata_type_collection', array('label'=>'Descripcion',
                 'cascade_validation' => false,
                 'type_options' => array('delete' => false),
                 'required' => false
@@ -81,9 +83,8 @@ class RetiroAdmin extends AbstractAdmin
                 'edit' => 'inline',
                 'inline' => 'table',
                 'sortable'  => 'position',
-                'admin_code' => 'retiros.admin.retiro_body'
                 ))
-
+            ->end()
 
 
         ;

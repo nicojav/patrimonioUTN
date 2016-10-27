@@ -53,7 +53,7 @@ sonata_admin:
 #                                - control_movil.admin.control_inventario
                                 - utn_dashboard_main.admin.notificacion # SACAR
                                 - retiros.admin.retiro
-                                - retiros.admin.retiro_body
+#                                - retiros.admin.retiro_body
                             roles: [ ROLE_SUPER_ADMIN ]
 
 sonata_user:

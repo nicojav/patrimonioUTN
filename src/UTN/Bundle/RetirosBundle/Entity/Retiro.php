@@ -17,49 +17,49 @@ class Retiro
      *
      * @ORM\Column(name="nombre_completo", type="string", length=60, nullable=false)
      */
-    private $nombreCompleto;
+    protected $nombreCompleto;
 
     /**
      * @var string
      *
      * @ORM\Column(name="documento", type="decimal", precision=8, scale=0, nullable=false)
      */
-    private $documento;
+    protected $documento;
 
     /**
      * @var string
      *
      * @ORM\Column(name="telefono", type="string", length=15, nullable=false)
      */
-    private $telefono;
+    protected $telefono;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="fecha_desde", type="datetime", nullable=true)
      */
-    private $fechaDesde;
+    protected $fechaDesde;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="fecha_hasta", type="datetime", nullable=true)
      */
-    private $fechaHasta;
+    protected $fechaHasta;
 
     /**
      * @var string
      *
      * @ORM\Column(name="estado_retiro", type="string", length=1, nullable=false)
      */
-    private $estadoRetiro = 'P';
+    protected $estadoRetiro = 'P';
 
     /**
      * @var string
      *
      * @ORM\Column(name="motivo", type="string", length=60, nullable=true)
      */
-    private $motivo = 'Sin Motivo';
+    protected $motivo = 'Sin Motivo';
 
     /**
      * @var integer
@@ -68,7 +68,7 @@ class Retiro
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idRetiro;
+    protected $idRetiro;
 
 
 

@@ -55,7 +55,7 @@ class RetiroBodyAdmin extends AbstractAdmin
         }
 
         $formMapper
-            ->add('idRetiro')
+//            ->add('idRetiro')
             ->add('idInventario', 'sonata_type_model', array('required' => false)
                 ,array(
                     'admin_code' => 'utn_dashboard_main.admin.inventario',

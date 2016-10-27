@@ -29,5 +29,10 @@
         <option name="default">Sin Motivo</option>
       </options>
     </field>
+    <one-to-many field="idInventario" target-entity="RetiroBody" mapped-by="idRetiro">
+      <cascade>
+        <cascade-persist/>
+      </cascade>
+    </one-to-many>
   </entity>
 </doctrine-mapping>

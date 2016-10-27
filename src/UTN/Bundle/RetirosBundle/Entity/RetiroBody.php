@@ -21,27 +21,25 @@ class RetiroBody
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var \UTN\Bundle\RetirosBundle\Entity\Retiro
      *
-     * @ORM\ManyToOne(targetEntity="UTN\Bundle\RetirosBundle\Entity\Retiro")
+     * @ORM\ManyToOne(targetEntity="UTN\Bundle\RetirosBundle\Entity\Retiro", inversedBy="idInventario", cascade={"persist"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_retiro", referencedColumnName="id_retiro")
+     *   @ORM\JoinColumn(name="id_retiro", referencedColumnName="id_retiro",nullable=true)
      * })
      */
-    private $idRetiro;
+    protected $idRetiro;
 
     /**
      * @var \UTN\Bundle\DashboardMainBundle\Entity\Inventario
      *
-     * @ORM\ManyToOne(targetEntity="UTN\Bundle\DashboardMainBundle\Entity\Inventario")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_inventario", referencedColumnName="id_inventario")
-     * })
+     * @ORM\ManyToOne(targetEntity="\UTN\Bundle\DashboardMainBundle\Entity\Inventario", cascade={"persist"})
+     * @ORM\JoinColumn(name="id_inventario", referencedColumnName="id_inventario",nullable=true)
      */
-    private $idInventario;
+    protected $idInventario;
 
 
 
@@ -101,5 +99,10 @@ class RetiroBody
     public function getIdInventario()
     {
         return $this->idInventario;
+    }
+
+    public function __toString()
+    {
+        return  (String)$this->getIdRetiro().' | '.$this->getIdInventario();
     }
 }
