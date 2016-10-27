@@ -67,15 +67,15 @@ class RetiroAdmin extends AbstractAdmin
             ->add('telefono')
             ->add('fechaDesde','sonata_type_date_picker')
             ->add('fechaHasta','sonata_type_date_picker')
-            ->add('estadoRetiro', 'choice', array('label'=>'Estado','read_only'=>true,
-                'choices' => array(
-                    'P' => 'Pendiente Recepcion',
-                    'C' => 'Confirmado'
-                )))
+//            ->add('estadoRetiro', 'choice', array('label'=>'Estado','read_only'=>true,
+//                'choices' => array(
+//                    'P' => 'Pendiente Recepcion',
+//                    'C' => 'Confirmado'
+//                )))
             ->add('motivo')
             ->end()
             ->with('Inventarios Autorizados', array('collapsed' => true))
-            ->add('idInventario', 'sonata_type_collection', array('label'=>'Descripcion',
+            ->add('idInventario', 'sonata_type_collection', array(
                 'cascade_validation' => false,
                 'type_options' => array('delete' => false),
                 'required' => false
@@ -118,6 +118,7 @@ class RetiroAdmin extends AbstractAdmin
         '_sort_order' => 'DESC',
         // criterio de ordenamiento
         '_sort_by' => 'idRetiro',
+        '_sort_by' => 'estadoRetiro'
     );
 
     public function prePersist($object)
