@@ -4,15 +4,17 @@ services:
 #        arguments: ["@service_id", "plain_value", %parameter%]
     utn_usuario.admin.transferencia:
         class: UTN\Bundle\UsuarioBundle\Admin\TransferenciaAdmin
-        arguments: [~, UTN\Bundle\UsuarioBundle\Entity\Transferencia, SonataAdminBundle:CRUD]
+        arguments: [~, UTN\Bundle\UsuarioBundle\Entity\Transferencia, UTNUsuarioBundle:UsuarioAdmin]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Solicitar Transferencia }
 
     sonata.admin.exporter:
         class: UTN\Bundle\UsuarioBundle\Export\Exporter
+        arguments: [@doctrine.orm.entity_manager]
         calls:
             - [setKnpSnappyPdf, ['@knp_snappy.pdf']]
             - [setTemplateEngine, ['@templating']]
+            - [setRequest, ["@request_stack"]]
 
     utn_usuario.admin.transferencia_inventario:
         class: UTN\Bundle\UsuarioBundle\Admin\TransferenciaInventarioAdmin

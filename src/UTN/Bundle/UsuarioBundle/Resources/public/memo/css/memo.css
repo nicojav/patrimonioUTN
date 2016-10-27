@@ -1,0 +1,165 @@
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+a {
+  color: #5D6975;
+  text-decoration: underline;
+}
+
+body {
+  position: relative;
+  width: 21cm;  
+  height: 29.7cm; 
+  margin: 0 auto; 
+  color: #001028;
+  background: #FFFFFF; 
+  font-family: Arial, sans-serif; 
+  font-size: 12px; 
+  font-family: Arial;
+}
+
+header {
+  padding: 10px 0;
+  margin-bottom: 30px;
+}
+
+#logo {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#logo img {
+  width: 90px;
+}
+
+h1 {
+  border-top: 1px solid  #5D6975;
+  border-bottom: 1px solid  #5D6975;
+  color: #5D6975;
+  font-size: 2.4em;
+  line-height: 1.4em;
+  font-weight: normal;
+  text-align: center;
+  margin: 0 0 20px 0;
+  background: url(../images/dimension.png);
+}
+
+#datos {
+  float: left;
+}
+
+#datos span {
+  color: #5D6975;
+  text-align: right;
+  width: 52px;
+  margin-right: 10px;
+  display: inline-block;
+  font-size: 1em;
+}
+
+#tipo_memo {
+  float: right;
+  text-align: right;
+}
+
+#project div,
+#tipo_memo div {
+  white-space: nowrap;        
+}
+
+#asunto{
+float: left;
+margin-bottom: 10px;
+margin-top: 10px;
+
+}
+
+#asunto span{
+  color: #5D6975;
+  text-align: right;
+  width: 52px;
+  margin-right: 10px;
+  font-size: 1.5em;
+}
+
+
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 20px;
+}
+
+table tr:nth-child(2n-1) td {
+  background: #F5F5F5;
+}
+
+table th,
+table td {
+  text-align: center;
+}
+
+table th {
+  padding: 5px 20px;
+  color: #5D6975;
+  border-bottom: 1px solid #5D6975;
+   border-top: 1px solid #5D6975;
+  white-space: nowrap;        
+  font-weight: normal;
+}
+
+table .descripcion,
+table .nro_inventario
+ {
+  text-align: left;
+}
+table .razon,
+table .destino,
+table .sede
+{
+	text-align: center;
+}
+
+table td {
+  padding: 20px;
+  text-align: right;
+}
+
+table td.descripcion,
+table td.nro_inventario,
+table td.razon,
+table td.destino,
+table td.sede {
+  vertical-align: top;
+}
+
+
+table td.grand {
+  border-top: 1px solid #5D6975;
+  border-bottom: 1px solid #5D6975;
+}
+
+#firma .texto {
+  color: #5D6975;
+  font-size: 1.2em;
+  float: right;
+  text-align: right;
+  border-top: 1px solid #5D6975;
+  margin-top: 100px;
+}
+
+footer {
+  color: #5D6975;
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  bottom: 0;
+  border-top: 1px solid #C1CED9;
+  padding: 8px 0;
+  text-align: center;
+}
