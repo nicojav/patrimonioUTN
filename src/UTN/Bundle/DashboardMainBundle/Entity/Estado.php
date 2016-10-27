@@ -62,4 +62,11 @@ class Estado
     {
         return $this->idEstado;
     }
+
+    public function __toString()
+    {
+        return (String)$this->getDescripcion();
+    }
+
+
 }

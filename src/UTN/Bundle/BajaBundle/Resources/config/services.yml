@@ -1,0 +1,17 @@
+services:
+#    baja.example:
+#        class: BajaBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    baja.admin.baja:
+        class: UTN\Bundle\BajaBundle\Admin\BajaAdmin
+        arguments: [~, UTN\Bundle\BajaBundle\Entity\Baja, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Solicitar Baja }
+        calls:
+            - [addChild, ['@baja.admin.baja_inventario']]
+
+    baja.admin.baja_inventario:
+        class: UTN\Bundle\BajaBundle\Admin\BajaInventarioAdmin
+        arguments: [~, UTN\Bundle\BajaBundle\Entity\BajaInventario, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: BajaInventario }
