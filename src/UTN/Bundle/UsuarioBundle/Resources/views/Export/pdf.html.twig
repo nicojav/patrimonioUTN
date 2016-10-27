@@ -1,31 +1,67 @@
-<table border="1">
-    <tr>
-        <th>Inventario</th>
-        <th>RespOrig</th>
-        <th>RespDest</th>
-        <th>UsuarioOrig</th>
-        <th>UsuarioDest</th>
-        <th>descripicon</th>
-        <th>estadoTrans</th>
-        <th>fecInicio</th>
-        <th>fecActualiz</th>
-        <th>idTransfer</th>
-
-    </tr>
-   {# {% for elements in source %}
-    <tr>
-        {% for element in elements %}
-        <td>{{ element }}</td>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Memorandum Transferencia</title>
+    <link rel="stylesheet" href="./css/style.css" media="all" />
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('bundles/utnusuario/memo/css/memo.css',absolute=true) }}" media="all" />
+    {% endblock %}
+</head>
+{% block body %}
+<header class="clearfix">
+    <div id="logo">
+        <img src="{{ asset('bundles/utnusuario/memo/images/logo.png', absolute=true) }}">
+    </div>
+    <h1>MEMORÁNDUM</h1>
+    <div id="datos">
+        {% for elements in cabecera %}
+        <div><span>De: </span>  {{ elements.usuario }} </div>
+        <div><span>A: </span> Secretaria de Administracion, Departamento de Patrimonio</div>
+        <div><span>Fecha:</span> {{ elements.fechaInicio|date("m/d/Y") }} {#Octubre 28, 2016#}
+        <div><span>Asunto: </span> Transferencia Interna </div>
+        <div><span>Trámite:</span> {{elements.idTransferencia}} </div>
         {% endfor %}
-    </tr>
-    {% endfor %}#}
-</table>
+    </div>
+</header>
+<main>
+    <div id="asunto">
+        <div><span>Solicito se de inicio al tramite de Transferencia Interna de los elementos que a continuacion se detallan:</span></div>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th class="descripcion">DESCRIPCIÓN</th>
+            <th class="nro_inventario">N° DE INVENTARIO</th>
+            <th class="destino">DESTINO</th>
+            <th class="sede">SEDE</th>
+        </tr>
+        </thead>
+
+    <tbody>
+    {% for elements in renglones %}
+        <tr>
+            {{ elements.idInventario  }} {#test!!#}
+        {% for element in elements %}
+            <td> {{ element }}</td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+    <div id="firma">
+        <div class="texto">Firma y Sello de Autoridad Competente.</div>
+    </div>
+</main>
+
+{% endblock %}
 
 
+{#
 {% for elements in source %}
   <ul>
       {% for element in elements %}
           {{ element }}
       {% endfor %}
   </ul>
-{% endfor %}
+{% endfor %}#}
+</html>
