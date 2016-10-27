@@ -22,6 +22,7 @@ class BajaAdmin extends AbstractAdmin
             ->add('fechaActualizacion','doctrine_orm_date_range',array('field_type'=>'sonata_type_date_range_picker',))
             ->add('idBaja',null,array('label'=>'Nro Baja'))
             ->add('idUsuario',null,array('label'=>'Usuario'))
+            ->add('idEstado',null,array('label'=>'Estado Trámite'))
         ;
     }
 
