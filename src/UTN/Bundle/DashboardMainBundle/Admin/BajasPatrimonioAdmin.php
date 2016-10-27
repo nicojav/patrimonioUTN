@@ -65,7 +65,7 @@ class BajasPatrimonioAdmin extends AbstractAdmin
             ->add('fechaActualizacion','sonata_type_date_picker',array('disabled'  => true))
             ->end()
             ->with('Inventarios Solicitud Baja', array('collapsed' => true))
-            ->add('idInventario', 'sonata_type_collection', array(
+            ->add('idInventario', 'sonata_type_collection', array('btn_add' => false,
                 'cascade_validation' => false,
                 'type_options' => array('delete' => false),
                 'required' => false,'disabled'  => true
@@ -149,6 +149,7 @@ class BajasPatrimonioAdmin extends AbstractAdmin
         $collection->remove('delete');
         $collection->remove('create');
     }
+
     protected $datagridValues = array(
         // mostrar pagina principal
         '_page' => 1,

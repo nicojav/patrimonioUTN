@@ -20,8 +20,8 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Notificaciones }
 
-    utn_dashboard_main.admin.bajas_patrimonio:
-            class: UTN\Bundle\DashboardMainBundle\Admin\BajasPatrimonioAdmin
-            arguments: [~, UTN\Bundle\BajaBundle\Entity\Baja, SonataAdminBundle:CRUD]
-            tags:
-                - { name: sonata.admin, manager_type: orm, group: admin, label: Bajas Patrimonio}
+#    utn_dashboard_main.admin.bajas_patrimonio:
+#            class: UTN\Bundle\DashboardMainBundle\Admin\BajasPatrimonioAdmin
+#            arguments: [~, UTN\Bundle\BajaBundle\Entity\Baja, SonataAdminBundle:CRUD]
+#            tags:
+#                - { name: sonata.admin, manager_type: orm, group: admin, label: Bajas Patrimonio}
