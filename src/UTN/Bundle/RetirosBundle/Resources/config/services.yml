@@ -1,0 +1,17 @@
+services:
+#    retiros.example:
+#        class: RetirosBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    retiros.admin.retiro:
+        class: UTN\Bundle\RetirosBundle\Admin\RetiroAdmin
+        arguments: [~, UTN\Bundle\RetirosBundle\Entity\Retiro, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Gestión de Retiros }
+        calls:
+            - [addChild, ['@retiros.admin.retiro_body']]
+
+    retiros.admin.retiro_body:
+        class: UTN\Bundle\RetirosBundle\Admin\RetiroBodyAdmin
+        arguments: [~, UTN\Bundle\RetirosBundle\Entity\RetiroBody, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: RetiroBody }

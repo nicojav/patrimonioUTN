@@ -99,16 +99,7 @@ class TransferenciaAdmin extends AbstractAdmin
             ))*/
 
 
-            ->add('idInventario', 'sonata_type_collection', array(
-                'cascade_validation' => false,
-                'type_options' => array('delete' => false),
-                'required' => false
-            ), array(
-                'edit' => 'inline',
-                'inline' => 'table',
-                'sortable'  => 'position',
-                //'admin_code' => 'utn_usuario.admin.transferencia_inventario'
-            ))
+
 
 
             /* ->add('idInventario', 'entity',
@@ -140,7 +131,16 @@ class TransferenciaAdmin extends AbstractAdmin
             ->add('fechaInicio')
             ->add('fechaActualizacion')
             //->add('idTransferencia')
-
+            ->add('idInventario', 'sonata_type_collection', array(
+                'cascade_validation' => false,
+                'type_options' => array('delete' => false),
+                'required' => false
+            ), array(
+                'edit' => 'inline',
+                'inline' => 'table',
+                'sortable'  => 'position',
+                //'admin_code' => 'utn_usuario.admin.transferencia_inventario'
+            ))
 
         ;
     }
