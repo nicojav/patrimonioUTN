@@ -58,7 +58,7 @@ class BajaAdmin extends AbstractAdmin
             ->add('fechaInicio','sonata_type_date_picker')
             ->add('motivo')
             ->add('fechaActualizacion','sonata_type_date_picker')
-            ->add('idEstado')
+           ->add('idEstado')
             ->end()
             ->with('Inventarios Solicitud Baja', array('collapsed' => true))
             ->add('idInventario', 'sonata_type_collection', array(

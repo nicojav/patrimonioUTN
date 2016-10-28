@@ -45,7 +45,7 @@ class RetiroAdmin extends AbstractAdmin
                     'C' => 'Confirmado'
                 )))
             ->add('motivo')
-            ->add('_action', null, array(
+            ->add('_action', null, array('label'=>'Acciones',
                 'actions' => array(
                     'show' => array(),
                     'edit' => array('template' => 'RetirosBundle:CRUD:list__action_edit.html.twig'),
