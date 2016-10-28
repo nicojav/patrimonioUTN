@@ -30,7 +30,7 @@ class NotificacionAdminController extends CRUDController
             $qb = $queryBuilder->createQueryBuilder()
                 ->select('n.idNotificacion, n.mensaje, n.notificada')
                 ->from('UTN\Bundle\DashboardMainBundle\Entity\Notificacion', 'n')
-                ->where('n.notificada = 0 AND n.mensaje like :param or n.mensaje like :param2')
+                ->where('n.notificada = 0 AND ( n.mensaje like :param OR n.mensaje like :param2 )')
                 ->setParameter('param', '%'.$auxPar.'%')
                 ->setParameter('param2', '%'.$auxPar2.'%')
                 ->setMaxResults(1);

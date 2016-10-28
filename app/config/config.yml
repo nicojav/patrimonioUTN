@@ -18,7 +18,7 @@ parameters:
 
 sonata_admin:
   title: PATRIMONIO FRBA
-  title_logo: bundles/sonataadmin/logo_utn.png
+  title_logo: bundles\utndashboardmain\admin\logo\logo.jpg
   templates:
           ## default global templates
           layout: UTNDashboardMainBundle::standard_layout.html.twig
