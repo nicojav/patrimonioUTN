@@ -3,22 +3,18 @@
 namespace UTN\Bundle\UsuarioBundle\Admin;
 
 use Sonata\AdminBundle\Admin\AbstractAdmin;
-#use Exporter\Source\DoctrineORMQuerySourceIterator;
-#use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
-#use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
-use Doctrine\ORM\EntityRepository;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Doctrine\ORM\EntityRepository;
 
-class TransferenciaResultadosAdmin extends AbstractAdmin
+class TrasnferenciaResultadosAdmin extends AbstractAdmin
 {
 
     protected $baseRouteName = 'admin_trasnferencias_resultados';
 
     protected $baseRoutePattern = '/adminTransferenciaResultados';
-
 
 
     /**
@@ -41,15 +37,16 @@ class TransferenciaResultadosAdmin extends AbstractAdmin
      * Filtra las transferencias que NO son pendientes de Aprobacion
      *
      */
-//    public function createQuery($context = 'list')
-//    {
-//        $query = parent::createQuery($context);
-//        $query->andWhere(
-//            $query->expr()->eq($query->getRootAliases()[0] . '.idEstadoTransferencia', ':my_param')
-//        );
-//        $query->setParameter('my_param', '1'); //pendienteAprobacion
-//        return $query;
-//    }
+    public function createQuery($context = 'list')
+    {
+        $query = parent::createQuery($context);
+        $query->getQueryBuilder()
+            ->where('o.idEstadoTransferencia IN (?1,?2,?3)')
+            ->setParameter(1, '2')//Aprobada(de patrimonio)
+            ->setParameter(2, '3')//Aceptada
+            ->setParameter(3, '4');//Rechazada
+        return $query;
+    }
 
 
 
@@ -60,15 +57,15 @@ class TransferenciaResultadosAdmin extends AbstractAdmin
     {
         $listMapper
             //->add('idInventario')
-            ->add('idResponsableOrigen')
-            ->add('idResponsableDestino')
-            ->add('idUsuarioOrigen')
-            ->add('idUsuarioDestino')
+            ->add('idTransferencia','integer',array('label'=>'Nro Trámite'))
+            ->add('idResponsableOrigen','integer',array('label'=>'Responsable Origen'))
+            ->add('idResponsableDestino','integer',array('label'=>'Responsable Destino'))
+            ->add('idUsuarioOrigen','integer',array('label'=>'Usuario Origen'))
+            ->add('idUsuarioDestino','integer',array('label'=>'Usuario Destino'))
             ->add('descripcion')
-            ->add('idEstadoTransferencia')
-            ->add('fechaInicio')
-            ->add('fechaActualizacion')
-            ->add('idTransferencia')
+            ->add('idEstadoTransferencia','integer',array('label'=>'Estado Transferencia'))
+            ->add('fechaInicio','datetime',array('label'=>'Fecha','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
+            ->add('fechaActualizacion','datetime',array('label'=>'Fecha','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
             ->add('_action', null, array(
                 'actions' => array(
                     //'show' => array(),
@@ -84,70 +81,59 @@ class TransferenciaResultadosAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-        /*$em = $this->modelManager->getEntityManager('UTN\Bundle\UsuarioBundle\Entity\Inventario');
 
-        $query = $em->createQueryBuilder('s')
-           ->select('s.descripcion')
-           ->from('UTN\Bundle\UsuarioBundle\Entity\Inventario') //->from('UTNUsuarioBundle:Inventario', 's')
-           ->groupBy('s.descripcion')
-        ;*/
+         $formMapper
+             ->add('idInventario', 'sonata_type_collection', array(
+                 'cascade_validation' => false,
+                 'type_options' => array('delete' => false,'btn_add' => false), //'type_options' => array('delete' => false),
+                 'attr' => array('readonly' => true),
+                 'disabled'  => true, //Disabled para Patrimonio
+                 'required' => false
+             ), array(
+                 'edit' => 'inline',
+                 'inline' => 'table',
+                 'sortable'  => 'position',
+                 //'admin_code' => 'utn_usuario.admin.transferencia_inventario'
+             ))
+
+             ->add('idResponsableOrigen',null,array(
+                 'disabled'  => true))
+             ->add('idResponsableDestino',null,array(
+                 'disabled'  => true))
+             ->add('idUsuarioOrigen',null,array(
+                 'disabled'  => true))
+             ->add('idUsuarioDestino',null,array(
+                 'disabled'  => true))
+             //->add('idEstadoTransferencia'//Patrimonio solo actualiza estado de transferencia
+             ->add('idEstadoTransferencia', 'entity',
+                 array(
+                     'label' => 'Estado Transferencia',
+                     'expanded' => true,
+                     //'read_only' => true,
+                     'class' => 'UTN\Bundle\UsuarioBundle\Entity\EstadoTransferencia',
+                     'property' => 'descripcion',
+                     'query_builder' => function (EntityRepository $er)
+                     {
+                         return $er
+                             ->createQueryBuilder('s')
+                             //->select('s.descripcion')
+                             //->from('UTN\Bundle\UsuarioBundle\Entity\EstadoTransferencia','s')
+                             ->andWhere('s.idEstadoTransferencia in (?1,?2,?3)' )
+                             ->setParameter( 1 ,'2') //Aprobar
+                             ->setParameter( 2 ,'3') //Aceptar
+                             ->setParameter( 3 ,'4');//Rechazar
 
 
-
-        $formMapper
-            //->add('idInventario')
-            /*->add('idInventario', 'sonata_type_model', array(
-                'class' => 'UTN\Bundle\UsuarioBundle\Entity\Inventario',
-                'property' => 'descripcion',
-                'multiple' => true ,
-                'required' => true,
-                'expanded' => true,
-                'by_reference' => false
-            ))*/
-
-
-            ->add('idInventario', 'sonata_type_collection', array(
-                'cascade_validation' => false,
-                'type_options' => array('delete' => false),
-                'required' => false
-            ), array(
-                'edit' => 'inline',
-                'inline' => 'table',
-                'sortable'  => 'position',
-                //'admin_code' => 'utn_usuario.admin.transferencia_inventario'
-            ))
-
-
-            /* ->add('idInventario', 'entity',
-             array(
-                 'label' => 'Inventario',
-                 'multiple' => true,
-                 'expanded' => true,
-                 //'read_only' => true,
-                 'class' => 'UTN\Bundle\UsuarioBundle\Entity\Inventario',
-                 'property' => 'descripcion',
-                 'query_builder' => function (EntityRepository $er)
-                 {
-                     return $er
-                         ->createQueryBuilder('s');
-                         //->select('s.descripcion');
-                         //->andWhere('s.descripcion = ?1' )
-                         //->setParameter( 1 , 'BANCO'); //TEST
-                         //->groupBy('s.descripcion');
-                         //->from('UTN\Bundle\UsuarioBundle\Entity\Inventario','s');
-
-                 }
-             ))*/
-            ->add('idResponsableOrigen')
-            ->add('idResponsableDestino')
-            ->add('idUsuarioOrigen')
-            ->add('idUsuarioDestino')
-            ->add('idEstadoTransferencia')
-            ->add('descripcion')
-            ->add('fechaInicio')
-            ->add('fechaActualizacion')
-            //->add('idTransferencia')
-        ;
+                     }
+                 ))
+             ->add('descripcion',null,array(
+                 'disabled'  => true))
+             ->add('fechaInicio','sonata_type_date_picker',array(
+                 'disabled'  => true))
+             ->add('fechaActualizacion','sonata_type_date_picker',array(
+                 'disabled'  => true))
+             //->add('idTransferencia')
+         ;
     }
 
     /**

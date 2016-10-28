@@ -1,5 +1,6 @@
 <?php
 
+
 namespace UTN\Bundle\DashboardMainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -7,11 +8,27 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Aula
  *
- * @ORM\Table(name="aula", indexes={@ORM\Index(name="IDX_31990A4A1BBFED3", columns={"id_sede"})})
+ * @ORM\Table(name="aula", uniqueConstraints={@ORM\UniqueConstraint(name="UK_aula", columns={"cod_aula"})}, indexes={@ORM\Index(name="IDX_31990A4A1BBFED3", columns={"id_sede"})})
  * @ORM\Entity
  */
 class Aula
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_aula", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idAula;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cod_aula", type="string", length=10, nullable=true)
+     */
+    private $codAula;
+
     /**
      * @var string
      *
@@ -20,18 +37,9 @@ class Aula
     private $descripcion;
 
     /**
-     * @var integer
+     * @var \Sede
      *
-     * @ORM\Column(name="id_aula", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $idAula;
-
-    /**
-     * @var \UTN\Bundle\DashboardMainBundle\Entity\Sede
-     *
-     * @ORM\ManyToOne(targetEntity="UTN\Bundle\DashboardMainBundle\Entity\Sede")
+     * @ORM\ManyToOne(targetEntity="Sede")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_sede", referencedColumnName="id_sede")
      * })
@@ -44,6 +52,7 @@ class Aula
      * Set descripcion
      *
      * @param string $descripcion
+     *
      * @return Aula
      */
     public function setDescripcion($descripcion)
@@ -56,7 +65,7 @@ class Aula
     /**
      * Get descripcion
      *
-     * @return string 
+     * @return string
      */
     public function getDescripcion()
     {
@@ -66,7 +75,7 @@ class Aula
     /**
      * Get idAula
      *
-     * @return integer 
+     * @return integer
      */
     public function getIdAula()
     {
@@ -77,6 +86,7 @@ class Aula
      * Set idSede
      *
      * @param \UTN\Bundle\DashboardMainBundle\Entity\Sede $idSede
+     *
      * @return Aula
      */
     public function setIdSede(\UTN\Bundle\DashboardMainBundle\Entity\Sede $idSede = null)
@@ -89,7 +99,7 @@ class Aula
     /**
      * Get idSede
      *
-     * @return \UTN\Bundle\DashboardMainBundle\Entity\Sede 
+     * @return \UTN\Bundle\DashboardMainBundle\Entity\Sede
      */
     public function getIdSede()
     {
@@ -98,8 +108,6 @@ class Aula
 
     public function __toString()
     {
-        return  (String)$this->getDescripcion() ?: "n/a";
+        return  $this->getDescripcion() ?: "n/a";
     }
-
-
 }

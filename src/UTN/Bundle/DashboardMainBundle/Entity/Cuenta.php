@@ -15,6 +15,15 @@ class Cuenta
     /**
      * @var integer
      *
+     * @ORM\Column(name="id_cuenta", type="smallint", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idCuenta;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="cod_cuenta", type="smallint", nullable=false)
      */
     private $codCuenta;
@@ -25,15 +34,6 @@ class Cuenta
      * @ORM\Column(name="descripcion", type="string", length=50, nullable=false)
      */
     private $descripcion;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_cuenta", type="smallint")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $idCuenta;
 
 
 
@@ -93,5 +93,10 @@ class Cuenta
     public function getIdCuenta()
     {
         return $this->idCuenta;
+    }
+
+    public function __toString()
+    {
+        return  $this->getDescripcion() ?: "n/a";
     }
 }

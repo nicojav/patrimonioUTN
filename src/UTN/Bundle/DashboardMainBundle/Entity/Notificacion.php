@@ -1,6 +1,5 @@
 <?php
 
-
 namespace UTN\Bundle\DashboardMainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -25,7 +24,7 @@ class Notificacion
     /**
      * @var string
      *
-     * @ORM\Column(name="mensaje", type="string", length=2000, nullable=true)
+     * @ORM\Column(name="mensaje", type="string", length=1000, nullable=true)
      */
     private $mensaje;
 
@@ -37,9 +36,9 @@ class Notificacion
     private $notificada = '0';
 
     /**
-     * @var \UTN\Bundle\UsuarioBundle\Entity\Usuario
+     * @var \Usuario
      *
-     * @ORM\ManyToOne(targetEntity="UTN\Bundle\UsuarioBundle\Entity\Usuario")
+     * @ORM\ManyToOne(targetEntity="Usuario")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_usuario_destino", referencedColumnName="id_usuario")
      * })

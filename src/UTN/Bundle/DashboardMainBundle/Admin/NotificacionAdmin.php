@@ -11,7 +11,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 class NotificacionAdmin extends AbstractAdmin
 {
 
-    public function getTemplate($name)
+   /* public function getTemplate($name)
     {
         switch ($name) {
             case 'layout':
@@ -21,7 +21,7 @@ class NotificacionAdmin extends AbstractAdmin
                 return parent::getTemplate($name);
                 break;
         }
-    }
+    }*/
 
     /*protected function configureRoutes(RouteCollection $collection)
     {

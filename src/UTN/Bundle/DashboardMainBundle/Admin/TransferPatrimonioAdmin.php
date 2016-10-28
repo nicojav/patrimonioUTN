@@ -38,15 +38,16 @@ class TransferPatrimonioAdmin extends AbstractAdmin
      * Filtra las transferencias que NO son pendientes de Aprobacion
      *
      */
-//    public function createQuery($context = 'list')
-//    {
-//        $query = parent::createQuery($context);
-//        $query->andWhere(
-//            $query->expr()->eq($query->getRootAliases()[0] . '.idEstadoTransferencia', ':my_param')
-//        );
-//        $query->setParameter('my_param', '1'); //pendienteAprobacion
-//        return $query;
-//    }
+    public function createQuery($context = 'list')
+    {
+        $query = parent::createQuery($context);
+        $query->getQueryBuilder()
+              ->where('o.idEstadoTransferencia IN (?1,?2,?3)')
+              ->setParameter(1, '1')//pendienteAprobacion
+              ->setParameter(2, '2')//Aprobada
+              ->setParameter(3, '4');//Rechazada
+        return $query;
+    }
 
 
 
@@ -77,9 +78,9 @@ class TransferPatrimonioAdmin extends AbstractAdmin
 //            ->add('idTransferencia')
             ->add('_action', null, array(
                 'actions' => array(
-                    'show' => array(),
+                    //'show' => array(),
                     'edit' => array(),
-                    'delete' => array(),
+                    //'delete' => array(),
                 )
             ))
         ;
@@ -171,16 +172,16 @@ class TransferPatrimonioAdmin extends AbstractAdmin
                          ->andWhere('s.idEstadoTransferencia in (?1,?2,?3)' )
                          ->setParameter( 1 ,'1') //Pendiente Aprobacion
                          ->setParameter( 2 ,'2') //Aprobar
-                         ->setParameter( 3 ,'4'); //Rechazar
+                         ->setParameter( 3 ,'4');//Rechazar
 
 
                  }
              ))
             ->add('descripcion',null,array(
                     'disabled'  => true))
-            ->add('fechaInicio',null,array(
+            ->add('fechaInicio','sonata_type_date_picker',array(
                     'disabled'  => true))
-            ->add('fechaActualizacion',null,array(
+            ->add('fechaActualizacion','sonata_type_date_picker',array(
                     'disabled'  => true))
             //->add('idTransferencia')
         ;

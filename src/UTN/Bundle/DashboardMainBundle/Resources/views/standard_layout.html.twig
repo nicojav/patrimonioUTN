@@ -1,9 +1,9 @@
 {% extends 'SonataAdminBundle::standard_layout.html.twig' %}
 
- {% block sonata_admin_content %}
-     TEST SONATA STANDARD BLOQUE!!
-     {{ parent() }}
- {% endblock sonata_admin_content %}
+ {#{% block sonata_admin_content %}#}
+     {#TEST SONATA STANDARD BLOQUE!!#}
+     {#{{ parent() }}#}
+ {#{% endblock sonata_admin_content %}#}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -11,27 +11,29 @@
     <link href="{{ asset('bundles/utndashboardmain/admin/css/alertify.default.css') }}" rel="stylesheet" type="text/css" />
 {% endblock %}
 
+{% if is_granted('ROLE_PATRIMONIO') %}
 
-
-{% block javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('bundles/utndashboardmain/admin/js/alertify.min.js') }}"></script>
-    <script type="text/javascript">
-        (function poll() {
-            $.ajax({
-                url:'{{ path('get_notificaciones_alert', {'_sonata_admin':'utn_dashboard_main.admin.notificacion'} )  }}',
-                method: 'POST',
-                success: function(data) {
-                    if(data.mensaje){
-                        alertify.log(data.mensaje);
+    {% block javascripts %}
+        {{ parent() }}
+        <script src="{{ asset('bundles/utndashboardmain/admin/js/alertify.min.js') }}"></script>
+        <script type="text/javascript">
+            (function poll() {
+                $.ajax({
+                    url:'{{ path('get_notificaciones_alert', {'_sonata_admin':'utn_dashboard_main.admin.notificacion'} )  }}',
+                    method: 'POST',
+                    success: function(data) {
+                        if(data.mensaje){
+                            alertify.log(data.mensaje);
+                        }
+                        //alert('New orders');
+                    },
+                    error: function() {},
+                    complete: function() {
+                        setTimeout(poll, 10000);
                     }
-                    //alert('New orders');
-                },
-                error: function() {},
-                complete: function() {
-                    setTimeout(poll, 10000);
-                }
-            });
-        })();
-    </script>
-{% endblock %}
+                });
+            })();
+        </script>
+    {% endblock %}
+
+{% endif %}

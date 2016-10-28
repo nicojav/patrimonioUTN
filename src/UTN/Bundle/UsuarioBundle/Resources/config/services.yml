@@ -21,3 +21,9 @@ services:
         arguments: [~, UTN\Bundle\UsuarioBundle\Entity\TransferenciaInventario, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: TransferenciaInventario }
+
+    utn_usuario.admin.transferencia_resultados:
+            class: UTN\Bundle\UsuarioBundle\Admin\TrasnferenciaResultadosAdmin
+            arguments: [~, UTN\Bundle\UsuarioBundle\Entity\Transferencia, SonataAdminBundle:CRUD]
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: admin, label: Mis Transferencias }

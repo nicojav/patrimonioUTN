@@ -13,20 +13,20 @@ use Doctrine\ORM\Mapping as ORM;
 class Estado
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_estado", type="smallint", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idEstado;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="descripcion", type="string", length=100, nullable=false)
      */
     private $descripcion;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_estado", type="smallint")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $idEstado;
 
 
 
@@ -34,6 +34,7 @@ class Estado
      * Set descripcion
      *
      * @param string $descripcion
+     *
      * @return Estado
      */
     public function setDescripcion($descripcion)
@@ -46,7 +47,7 @@ class Estado
     /**
      * Get descripcion
      *
-     * @return string 
+     * @return string
      */
     public function getDescripcion()
     {
@@ -56,10 +57,15 @@ class Estado
     /**
      * Get idEstado
      *
-     * @return integer 
+     * @return integer
      */
     public function getIdEstado()
     {
         return $this->idEstado;
+    }
+
+    public function __toString()
+    {
+        return  $this->getDescripcion() ?: "n/a";
     }
 }

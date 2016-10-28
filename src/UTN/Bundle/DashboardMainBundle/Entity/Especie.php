@@ -15,6 +15,15 @@ class Especie
     /**
      * @var integer
      *
+     * @ORM\Column(name="id_especie", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idEspecie;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="cod_cuenta", type="smallint", nullable=false)
      */
     private $codCuenta;
@@ -41,18 +50,9 @@ class Especie
     private $descripcion;
 
     /**
-     * @var integer
+     * @var \Cuenta
      *
-     * @ORM\Column(name="id_especie", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $idEspecie;
-
-    /**
-     * @var \UTN\Bundle\DashboardMainBundle\Entity\Cuenta
-     *
-     * @ORM\ManyToOne(targetEntity="UTN\Bundle\DashboardMain\Entity\Cuenta")
+     * @ORM\ManyToOne(targetEntity="Cuenta")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_cuenta", referencedColumnName="id_cuenta")
      * })
@@ -189,5 +189,10 @@ class Especie
     public function getIdCuenta()
     {
         return $this->idCuenta;
+    }
+
+    public function __toString()
+    {
+        return  $this->getDescripcion() ?: "n/a";
     }
 }

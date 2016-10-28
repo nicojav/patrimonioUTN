@@ -16,8 +16,8 @@
         <option name="fixed"/>
       </options>
     </field>
-    <field name="fechaInicio" type="date" column="fecha_inicio" nullable="false"/>
-    <field name="fechaActualizacion" type="date" column="fecha_actualizacion" nullable="false"/>
+    <field name="fechaInicio" type="datetime" column="fecha_inicio" nullable="false"/>
+    <field name="fechaActualizacion" type="datetime" column="fecha_actualizacion" nullable="false"/>
     <one-to-many field="idInventario" target-entity="TransferenciaInventario" mapped-by="idTransferencia">
       <cascade>
         <cascade-persist/>

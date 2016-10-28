@@ -20,7 +20,7 @@ sonata_admin:
   title_logo: bundles/sonataadmin/logo_utn.png
   templates:
           ## default global templates
-          ## layout: UTNDashboardMainBundle::standard_layout.html.twig
+          layout: UTNDashboardMainBundle::standard_layout.html.twig
   show_mosaic_button: false
   dashboard:
         groups:
@@ -30,20 +30,21 @@ sonata_admin:
                             items:
                                 - utn_dashboard_main.admin.inventario
                                 - utn_dashboard_main.admin.transfer_patrimonio
-                            roles: [ ROLE_SUPER_ADMIN ]
+                            roles: [ ROLE_SUPER_ADMIN,ROLE_PATRIMONIO ]
             sonata.admin.group.demo2:
                             label: Transferencias
                             icon:  '<i class="fa fa-play-circle"></i>'
                             items:
                                 - utn_usuario.admin.transferencia
-                            roles: [ ROLE_SUPER_ADMIN ]
+                                - utn_usuario.admin.transferencia_resultados
+                            roles: [ ROLE_SUPER_ADMIN,ROLE_USUARIO]
             sonata.admin.group.demo3:
                             label: Gestión de Usuarios
                             icon:  '<i class="fa fa-users"></i>'
                             items:
                                 - sonata.user.admin.user
                                 - sonata.user.admin.group
-                            roles: [ ROLE_SUPER_ADMIN ]
+                            roles: [ ROLE_SUPER_ADMIN,ROLE_PATRIMONIO]
             sonata.admin.group.demo4:
                             label: Seguridad
                             icon : '<i class="fa fa-lock"></i>'
@@ -54,7 +55,7 @@ sonata_admin:
                                 - utn_dashboard_main.admin.notificacion # SACAR
                                 - retiros.admin.retiro
 #                                - retiros.admin.retiro_body
-                            roles: [ ROLE_SUPER_ADMIN ]
+                            roles: [ ROLE_SUPER_ADMIN,ROLE_PATRIMONIO ]
 
 sonata_user:
     security_acl: true

@@ -23,12 +23,16 @@ class NotificacionAdminController extends CRUDController
             $modelManager = $this->admin->getModelManager();
             $queryBuilder = $modelManager->getEntityManager('UTN\Bundle\DashboardMainBundle\Entity\Notificacion');
 
-            $auxPar = 'no autorizado';
+            //Parametros
+            $auxPar = 'no autorizado'; //Seguridad
+            $auxPar2 = 'transferencia';//Seguridad
+
             $qb = $queryBuilder->createQueryBuilder()
                 ->select('n.idNotificacion, n.mensaje, n.notificada')
                 ->from('UTN\Bundle\DashboardMainBundle\Entity\Notificacion', 'n')
-                ->where('n.notificada = 0 AND n.mensaje like :param')
+                ->where('n.notificada = 0 AND n.mensaje like :param or n.mensaje like :param2')
                 ->setParameter('param', '%'.$auxPar.'%')
+                ->setParameter('param2', '%'.$auxPar2.'%')
                 ->setMaxResults(1);
 
             $result = $qb->getQuery()->getArrayResult();

@@ -17,7 +17,7 @@
         {% for elements in cabecera %}
         <div><span>De: </span>  {{ elements.usuario }} </div>
         <div><span>A: </span> Secretaria de Administracion, Departamento de Patrimonio</div>
-        <div><span>Fecha:</span> {{ elements.fechaInicio|date("m/d/Y") }} {#Octubre 28, 2016#}
+        <div><span>Fecha:</span> {{ elements.fechaInicio|date("d/m/Y") }} {#Octubre 28, 2016#}
         <div><span>Asunto: </span> Transferencia Interna </div>
         <div><span>Trámite:</span> {{elements.idTransferencia}} </div>
         {% endfor %}
@@ -30,8 +30,8 @@
     <table>
         <thead>
         <tr>
-            <th class="descripcion">DESCRIPCIÓN</th>
             <th class="nro_inventario">N° DE INVENTARIO</th>
+            <th class="descripcion">DESCRIPCIÓN</th>
             <th class="destino">DESTINO</th>
             <th class="sede">SEDE</th>
         </tr>
@@ -40,7 +40,7 @@
     <tbody>
     {% for elements in renglones %}
         <tr>
-            {{ elements.idInventario  }} {#test!!#}
+           {# {{ elements.idInventario  }} #}{#test!!#}
         {% for element in elements %}
             <td> {{ element }}</td>
         {% endfor %}

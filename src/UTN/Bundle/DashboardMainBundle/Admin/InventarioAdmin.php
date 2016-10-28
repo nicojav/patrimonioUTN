@@ -66,13 +66,16 @@ class InventarioAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('descripcion')
-            ->add('fechaAlta')
-            ->add('fechaActualizacion')
+            ->add('fechaAlta','sonata_type_date_picker')
+            ->add('fechaActualizacion','sonata_type_date_picker')
+            ->add('idEstado',null,array('label'=>'Estado'))
+            ->add('idCuenta',null,array('label'=>'Cuenta'))
+            ->add('idEspecie',null,array('label'=>'Especie'))
             ->add('alarmaActiva')
             ->add('etiquetaImpresa')
-            ->add('fechaControl')
-            ->add('idUsuarioControl')
-            ->add('idInventario')
+            //->add('fechaControl','sonata_type_datetime_picker')
+            //->add('idUsuarioControl')
+            //->add('idInventario')
         ;
     }
 
