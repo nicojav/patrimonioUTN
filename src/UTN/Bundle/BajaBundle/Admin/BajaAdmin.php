@@ -40,7 +40,7 @@ class BajaAdmin extends AbstractAdmin
             ->add('_action', null, array('label'=>'Acciones',
                 'actions' => array(
                     'show' => array(),
-                    'detalle' => array('template' => 'BajaBundle:CRUD:ver_detalle_control.html.twig')
+//                    'detalle' => array('template' => 'BajaBundle:CRUD:ver_detalle_control.html.twig')
                 )
             ))
 
@@ -81,12 +81,13 @@ class BajaAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-           ->add('idBaja')
-            ->add('idUsuario')
-            ->add('fechaInicio')
-            ->add('motivo')
-            ->add('fechaActualizacion')
-            ->add('idEstado')
+           ->add('idBaja',null,array('label'=>'Nro. Baja'))
+            ->add('idEstado',null,array('label'=>'Estado'))
+            ->add('idUsuario',null,array('label'=>'Usuario Solicitante'))
+            ->add('fechaInicio','date',array('label'=>'Fecha Inicio Trámite','format'=>'d-m-Y','timezone'=>'America/Buenos_aires'))
+            ->add('motivo',null,array('label'=>'Motivo'))
+            ->add('fechaActualizacion','date',array('label'=>'Fecha Actualización','format'=>'d-m-Y','timezone'=>'America/Buenos_aires'))
+
         ;
     }
 

@@ -95,4 +95,13 @@ class InventarioAdmin extends AbstractAdmin
             ->add('idInventario')
         ;
     }
+
+    protected $datagridValues = array(
+        // mostrar pagina principal
+        '_page' => 1,
+        // por defecto ASC
+        '_sort_order' => 'DESC',
+        // criterio de ordenamiento
+        '_sort_by' => 'idInventario'
+    );
 }
