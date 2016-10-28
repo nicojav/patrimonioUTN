@@ -1,0 +1,3 @@
+baja_homepage:
+    path:     /
+    defaults: { _controller: BajaBundle:Default:index }

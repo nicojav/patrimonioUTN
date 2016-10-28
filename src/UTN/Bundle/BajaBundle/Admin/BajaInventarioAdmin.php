@@ -1,6 +1,6 @@
 <?php
 
-namespace UTN\Bundle\RetirosBundle\Admin;
+namespace UTN\Bundle\BajaBundle\Admin;
 
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -9,16 +9,19 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 
-class RetiroBodyAdmin extends AbstractAdmin
+class BajaInventarioAdmin extends AbstractAdmin
 {
+    protected $parentAssociationMapping = 'baja';
     /**
      * @param DatagridMapper $datagridMapper
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('idRetiro',null,array('label'=>'Nro. Retiro'))
-            ;
+            ->add('idBaja',null,array('label'=>'Nro. Trámite'))
+            ->add('idInventario',null,array('label'=>'Nro. Inventario'))
+            ->add('motivo')
+        ;
     }
 
     /**
@@ -27,9 +30,9 @@ class RetiroBodyAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('idRetiro','number',array('label'=>'Nro Retiro'))
-            ->add('idInventario','number',array('label'=>'Inventario'))
-
+            ->add('idBaja','text',array('label'=>'Nro. Trámite'))
+            ->add('idInventario','text',array('label'=>'Nro. Inventario'))
+            ->add('motivo')
 
         ;
     }
@@ -39,7 +42,6 @@ class RetiroBodyAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-
         $link_parameters = array();
 
         if ($this->hasParentFieldDescription()) {
@@ -55,13 +57,12 @@ class RetiroBodyAdmin extends AbstractAdmin
         }
 
         $formMapper
-//            ->add('idRetiro')
-            ->add('idInventario', 'sonata_type_model', array('required' => false,'btn_add'=>false)
+            ->add('idInventario', 'sonata_type_model', array('required' => false, 'btn_add'=>false)
                 ,array(
                     'admin_code' => 'utn_dashboard_main.admin.inventario',
                     'link_parameters' => $link_parameters
                 ))
-
+            ->add('motivo')
         ;
     }
 
@@ -71,23 +72,8 @@ class RetiroBodyAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('id')
+            ->add('motivo')
+            ->add('idBajaInventario')
         ;
     }
-
-    protected function configureRoutes(RouteCollection $collection)
-    {
-        $collection->remove('delete');
-        //$collection->remove('create');
-        //$collection->remove('edit');
-    }
-    protected $datagridValues = array(
-        // mostrar pagina principal
-        '_page' => 1,
-        // por defecto ASC
-        '_sort_order' => 'DESC',
-        // criterio de ordenamiento
-        '_sort_by' => 'idRetiro',
-    );
-
 }
