@@ -95,6 +95,16 @@ class ControlAdmin extends AbstractAdmin
         '_sort_by' => 'fechaCorrida',
     );
 
+    public function createQuery($context = 'list')
+    {
+        $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
 
+        $query = parent::createQuery($context);
+        $query->andWhere(
+            $query->expr()->eq($query->getRootAlias().'.codUsuario', ':usuario')
+        );
+        $query->setParameter('usuario', $user->getUsername());
+        return $query;
+    }
 
 }

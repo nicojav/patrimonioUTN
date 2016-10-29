@@ -57,14 +57,14 @@ sonata_admin:
                                 - utn_dashboard_main.admin.notificacion # SACAR
                                 - retiros.admin.retiro
 #                                - retiros.admin.retiro_body
-                            roles: [ ROLE_SUPER_ADMIN,ROLE_PATRIMONIO ]
+                            roles: [ ROLE_SUPER_ADMIN,ROLE_PATRIMONIO,ROLE_USUARIO ]
             sonata.admin.group.demo5:
                             label: Bajas
                             icon:  '<i class="fa fa-play-circle"></i>'
                             items:
                                 - baja.admin.baja
 #                                - baja.admin.baja_inventario
-                            roles: [ ROLE_SUPER_ADMIN,ROLE_PATRIMONIO ]
+                            roles: [ ROLE_SUPER_ADMIN,ROLE_PATRIMONIO,ROLE_USUARIO ]
 
 sonata_user:
     security_acl: true

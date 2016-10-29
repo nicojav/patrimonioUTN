@@ -119,5 +119,16 @@ class BajaAdmin extends AbstractAdmin
         }
     }
 
+    public function createQuery($context = 'list')
+    {
+        $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
+
+        $query = parent::createQuery($context);
+        $query->andWhere(
+            $query->expr()->eq($query->getRootAlias().'.idUsuario', ':usuario')
+        );
+        $query->setParameter('usuario', $user->getId());
+        return $query;
+    }
 
 }
