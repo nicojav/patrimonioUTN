@@ -97,13 +97,19 @@ class ControlAdmin extends AbstractAdmin
 
     public function createQuery($context = 'list')
     {
-        $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
+        if($this->getConfigurationPool()->getContainer()->get('security.context')->isGranted('ROLE_USUARIO'))
+        {
+            //Patrimonio y Super Admin tienen acceso a todas las tablas
+            $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
+            $query = parent::createQuery($context);
+            $query->andWhere(
+                $query->expr()->eq($query->getRootAlias().'.codUsuario', ':usuario')
+                             );
+            $query->setParameter('usuario', $user->getUsername());
+            return $query;
+        }
 
         $query = parent::createQuery($context);
-        $query->andWhere(
-            $query->expr()->eq($query->getRootAlias().'.codUsuario', ':usuario')
-        );
-        $query->setParameter('usuario', $user->getUsername());
         return $query;
     }
 

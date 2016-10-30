@@ -40,7 +40,7 @@ class BajaAdmin extends AbstractAdmin
             ->add('_action', null, array('label'=>'Acciones',
                 'actions' => array(
                     'show' => array(),
-//                    'detalle' => array('template' => 'BajaBundle:CRUD:ver_detalle_control.html.twig')
+                    'detalle' => array('template' => 'BajaBundle:CRUD:ver_detalle_control.html.twig')
                 )
             ))
 
@@ -120,14 +120,20 @@ class BajaAdmin extends AbstractAdmin
     }
 
     public function createQuery($context = 'list')
-    {
-        $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
+    {  //Patrimonio y Super Admin tienen acceso a todas las tablas
+
+        if($this->getConfigurationPool()->getContainer()->get('security.context')->isGranted('ROLE_USUARIO'))
+        {
+            $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
+            $query = parent::createQuery($context);
+            $query->andWhere(
+                $query->expr()->eq($query->getRootAlias().'.idUsuario', ':usuario')
+            );
+            $query->setParameter('usuario', $user->getId());
+            return $query;
+        }
 
         $query = parent::createQuery($context);
-        $query->andWhere(
-            $query->expr()->eq($query->getRootAlias().'.idUsuario', ':usuario')
-        );
-        $query->setParameter('usuario', $user->getId());
         return $query;
     }
 
