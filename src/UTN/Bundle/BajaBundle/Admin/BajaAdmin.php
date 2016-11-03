@@ -34,9 +34,9 @@ class BajaAdmin extends AbstractAdmin
         $listMapper
             ->add('idBaja','integer',array('label'=>'Nro Trámite'))
             ->add('idUsuario','integer',array('label'=>'Usuario Solicitante'))
-            ->add('fechaInicio','date',array('label'=>'Fecha Inicio','format'=>'d-m-Y','timezone'=>'America/Buenos_aires'))
+            ->add('fechaInicio','datetime',array('label'=>'Fecha Inicio','format'=>'d-m-Y','timezone'=>'America/Buenos_aires'))
             ->add('idEstado','text',array('label'=>'Estado Trámite'))
-            ->add('fechaActualizacion','date',array('label'=>'Fecha Actualizacion','format'=>'d-m-Y','timezone'=>'America/Buenos_aires'))
+            ->add('fechaActualizacion','datetime',array('label'=>'Fecha Actualizacion','format'=>'d-m-Y','timezone'=>'America/Buenos_aires'))
             ->add('_action', null, array('label'=>'Acciones',
                 'actions' => array(
                     'show' => array(),
@@ -54,10 +54,10 @@ class BajaAdmin extends AbstractAdmin
     {
         $formMapper
 //            ->add('idBaja')
-            ->add('idUsuario')
-            ->add('fechaInicio','sonata_type_date_picker')
+//            ->add('idUsuario')
+//            ->add('fechaInicio','sonata_type_date_picker')
             ->add('motivo')
-            ->add('fechaActualizacion','sonata_type_date_picker')
+//            ->add('fechaActualizacion','sonata_type_date_picker')
            ->add('idEstado')
             ->end()
             ->with('Inventarios Solicitud Baja', array('collapsed' => true))
@@ -107,6 +107,10 @@ class BajaAdmin extends AbstractAdmin
 
     public function prePersist($object)
     {
+        $object->setIdUsuario($this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser()->getId());
+        $object->setFechaInicio(new \DateTime());
+        $object->setFechaActualizacion(new \DateTime());
+
         foreach ($object->getIdInventario() as $trasnInv) {
             $trasnInv->setIdBaja($object);
         }
@@ -114,6 +118,10 @@ class BajaAdmin extends AbstractAdmin
 
     public function preUpdate($object)
     {
+        $object->setIdUsuario($this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser()->getId());
+        $object->setFechaInicio(new \DateTime());
+        $object->setFechaActualizacion(new \DateTime());
+
         foreach ($object->getIdInventario() as $trasnInv) {
             $trasnInv->setIdBaja($object);
         }

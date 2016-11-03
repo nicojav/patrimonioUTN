@@ -70,7 +70,10 @@ class Retiro
      */
     protected $idRetiro;
 
-
+    /**
+     * @var \UTN\Bundle\UsuarioBundle\Entity\Usuario
+     */
+    private $idUsuario;
 
     /**
      * Set nombreCompleto
@@ -319,5 +322,28 @@ class Retiro
     {
         return $this->idInventario;
     }
+    /**
+     * Set idUsuario
+     *
+     * @param \UTN\Bundle\UsuarioBundle\Entity\Usuario $idUsuario
+     *
+     * @return Retiro
+     */
+//    public function setIdUsuario(\UTN\Bundle\UsuarioBundle\Entity\Usuario $idUsuario = null)
+public function setIdUsuario($idUsuario)
+    {
+        $this->idUsuario = $idUsuario;
 
+        return $this;
+    }
+
+    /**
+     * Get idUsuario
+     *
+     * @return \UTN\Bundle\UsuarioBundle\Entity\Usuario
+     */
+    public function getIdUsuario()
+    {
+        return $this->idUsuario;
+    }
 }

@@ -8,8 +8,16 @@
     <id name="idBaja" type="integer" column="id_baja">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="fechaInicio" type="date" column="fecha_inicio" nullable="false"/>
-    <field name="fechaActualizacion" type="date" column="fecha_actualizacion" nullable="false"/>
+    <field name="fechaInicio" type="datetime" column="fecha_inicio" nullable="false">
+      <options>
+        <option name="default">CURRENT_TIMESTAMP</option>
+      </options>
+    </field>
+    <field name="fechaActualizacion" type="datetime" column="fecha_actualizacion" nullable="false">
+      <options>
+        <option name="default">CURRENT_TIMESTAMP</option>
+      </options>
+    </field>
     <field name="motivo" type="string" column="motivo" length="1000" nullable="false">
       <options>
         <option name="fixed"/>
@@ -20,11 +28,7 @@
         <join-column name="id_estado" referenced-column-name="id_estado"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="idUsuario" target-entity="UTN\Bundle\UsuarioBundle\Entity\Usuario" fetch="LAZY">
-      <join-columns>
-        <join-column name="id_usuario" referenced-column-name="id_usuario"/>
-      </join-columns>
-    </many-to-one>
+    <field name="idUsuario" type="integer" column="id_usuario" nullable="true"/>
     <one-to-many field="idInventario" target-entity="BajaInventario" mapped-by="idBaja">
       <cascade>
         <cascade-persist/>

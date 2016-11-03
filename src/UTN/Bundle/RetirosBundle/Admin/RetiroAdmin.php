@@ -62,6 +62,7 @@ class RetiroAdmin extends AbstractAdmin
     {
         $formMapper
 //            ->add('idRetiro')
+//            ->add('idUsuario')
             ->add('nombreCompleto')
             ->add('documento')
             ->add('telefono')
@@ -123,6 +124,8 @@ class RetiroAdmin extends AbstractAdmin
 
     public function prePersist($object)
     {
+        $object->setIdUsuario($this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser()->getId());
+
         foreach ($object->getIdInventario() as $trasnInv) {
             $trasnInv->setIdRetiro($object);
         }
@@ -130,9 +133,28 @@ class RetiroAdmin extends AbstractAdmin
 
     public function preUpdate($object)
     {
+        $object->setIdUsuario($this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser()->getId());
+
         foreach ($object->getIdInventario() as $trasnInv) {
             $trasnInv->setIdRetiro($object);
         }
     }
 
+    public function createQuery($context = 'list')
+    {  //Patrimonio y Super Admin tienen acceso a todas las tablas
+
+        if($this->getConfigurationPool()->getContainer()->get('security.context')->isGranted('ROLE_USUARIO'))
+        {
+            $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
+            $query = parent::createQuery($context);
+            $query->andWhere(
+                $query->expr()->eq($query->getRootAlias().'.idUsuario', ':usuario')
+            );
+            $query->setParameter('usuario', $user->getId());
+            return $query;
+        }
+
+        $query = parent::createQuery($context);
+        return $query;
+    }
 }

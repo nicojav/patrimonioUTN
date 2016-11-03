@@ -49,9 +49,6 @@ class LogMovimientoAdmin extends AbstractAdmin
             ->add('fecha','datetime',array('label'=>'Fecha','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
             ->add('idInventario.idAulaControl','text',array('label'=>'Aula'))
             ->add('sensor.idSensor','text',array('label'=>'Sensor'))
-
-
-
          ;
  }
 
@@ -105,4 +102,6 @@ class LogMovimientoAdmin extends AbstractAdmin
             'idSensor','idEstadoMovimiento'
         );
     }
+
+
 }

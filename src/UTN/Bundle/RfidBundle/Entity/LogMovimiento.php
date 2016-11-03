@@ -59,6 +59,12 @@ class LogMovimiento
     private $idEstadoMovimiento;
 
     /**
+     * @var \UTN\Bundle\UsuarioBundle\Entity\Usuario
+     */
+    private $idUsuario;
+
+
+    /**
      * Get idLogMovimiento
      *
      * @return integer
@@ -168,5 +174,27 @@ class LogMovimiento
     {
         return  (String)$this->getIdLogMovimiento();
     }
+    /**
+     * Set idUsuario
+     *
+     * @param \UTN\Bundle\UsuarioBundle\Entity\Usuario $idUsuario
+     *
+     * @return LogMovimiento
+     */
+    public function setIdUsuario(\UTN\Bundle\UsuarioBundle\Entity\Usuario $idUsuario = null)
+    {
+        $this->idUsuario = $idUsuario;
 
+        return $this;
+    }
+
+    /**
+     * Get idUsuario
+     *
+     * @return \UTN\Bundle\UsuarioBundle\Entity\Usuario
+     */
+    public function getIdUsuario()
+    {
+        return $this->idUsuario;
+    }
 }

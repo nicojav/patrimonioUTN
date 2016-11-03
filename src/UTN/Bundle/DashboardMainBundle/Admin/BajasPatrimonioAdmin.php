@@ -62,7 +62,7 @@ class BajasPatrimonioAdmin extends AbstractAdmin
             ->add('idUsuario',null,array('label'=>'Solicitó','disabled'  => true))
             ->add('fechaInicio','sonata_type_date_picker',array('disabled'  => true))
             ->add('motivo',null,array('disabled'  => true))
-            ->add('fechaActualizacion','sonata_type_date_picker',array('disabled'  => true))
+//            ->add('fechaActualizacion','sonata_type_date_picker',array('disabled'  => true))
             ->end()
             ->with('Inventarios Solicitud Baja', array('collapsed' => true))
             ->add('idInventario', 'sonata_type_collection', array('btn_add' => false,
@@ -103,6 +103,7 @@ class BajasPatrimonioAdmin extends AbstractAdmin
 
     public function prePersist($object)
     {
+        $object->setFechaActualizacion(new \DateTime());
         foreach ($object->getIdInventario() as $trasnInv) {
             $trasnInv->setIdBaja($object);
         }
@@ -110,6 +111,7 @@ class BajasPatrimonioAdmin extends AbstractAdmin
 
     public function preUpdate($object)
     {
+        $object->setFechaActualizacion(new \DateTime());
         foreach ($object->getIdInventario() as $trasnInv) {
             $trasnInv->setIdBaja($object);
         }

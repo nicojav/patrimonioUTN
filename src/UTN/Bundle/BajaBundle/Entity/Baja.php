@@ -17,14 +17,14 @@ class Baja
      *
      * @ORM\Column(name="fecha_inicio", type="date", nullable=false)
      */
-    protected $fechaInicio;
+    protected $fechaInicio = 'CURRENT_TIMESTAMP';
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="fecha_actualizacion", type="date", nullable=false)
      */
-    protected $fechaActualizacion;
+    protected $fechaActualizacion = 'CURRENT_TIMESTAMP';
 
     /**
      * @var string
@@ -59,14 +59,7 @@ class Baja
      */
     protected $idEstado;
 
-    /**
-     * @var \UTN\Bundle\UsuarioBundle\Entity\Usuario
-     *
-     * @ORM\ManyToOne(targetEntity="UTN\Bundle\UsuarioBundle\Entity\Usuario")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_usuario", referencedColumnName="id_usuario")
-     * })
-     */
+
     protected $idUsuario;
 
     /**
@@ -225,7 +218,7 @@ class Baja
      *
      * @return Baja
      */
-    public function setIdUsuario(\UTN\Bundle\UsuarioBundle\Entity\Usuario $idUsuario = null)
+    public function setIdUsuario($idUsuario = null)
     {
         $this->idUsuario = $idUsuario;
 

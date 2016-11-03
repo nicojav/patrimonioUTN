@@ -34,5 +34,6 @@
         <cascade-persist/>
       </cascade>
     </one-to-many>
+    <field name="idUsuario" type="integer" column="id_usuario" nullable="true"/>
   </entity>
 </doctrine-mapping>
