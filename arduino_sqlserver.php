@@ -5,7 +5,7 @@
         $usuario = "administrator";
         $pass = "administrator";
         $servidor  ="utn.c0gs5ej8mv5r.us-west-2.rds.amazonaws.com";
-        $bdd = "patrimonioUTN";
+        $bdd = "patrimonioUTN2";
         $info = array('Database'=>$bdd,'UID'=>$usuario,'PWD'=>$pass);
         $conexion = sqlsrv_connect($servidor,$info);
 

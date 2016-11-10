@@ -45,7 +45,7 @@ class InventarioAdmin extends AbstractAdmin
             ->add('descripcion')
             ->add('fechaAlta','datetime',array('label'=>'Fecha Alta','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
             ->add('fechaActualizacion','datetime',array('label'=>'Fecha Actualización','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
-            ->add('alarmaActiva')
+            ->add('alarmaActiva',null,array('editable'=>true))
             ->add('etiquetaImpresa')
             ->add('fechaControl','datetime',array('label'=>'Fecha Último Control','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
             ->add('idUsuarioControl','text',array('label'=>'Id Usuario Control'))

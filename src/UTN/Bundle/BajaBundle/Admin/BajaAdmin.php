@@ -21,7 +21,7 @@ class BajaAdmin extends AbstractAdmin
             ->add('fechaInicio','doctrine_orm_date_range',array('field_type'=>'sonata_type_date_range_picker',))
             ->add('fechaActualizacion','doctrine_orm_date_range',array('field_type'=>'sonata_type_date_range_picker',))
             ->add('idBaja',null,array('label'=>'Nro Baja'))
-            ->add('idUsuario',null,array('label'=>'Usuario'))
+//            ->add('idUsuario',null,array('label'=>'Usuario'))
             ->add('idEstado',null,array('label'=>'Estado Trámite'))
         ;
     }
@@ -33,7 +33,7 @@ class BajaAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('idBaja','integer',array('label'=>'Nro Trámite'))
-            ->add('idUsuario','integer',array('label'=>'Usuario Solicitante'))
+//            ->add('idUsuario','integer',array('label'=>'Usuario Solicitante'))
             ->add('fechaInicio','datetime',array('label'=>'Fecha Inicio','format'=>'d-m-Y','timezone'=>'America/Buenos_aires'))
             ->add('idEstado','text',array('label'=>'Estado Trámite'))
             ->add('fechaActualizacion','datetime',array('label'=>'Fecha Actualizacion','format'=>'d-m-Y','timezone'=>'America/Buenos_aires'))
@@ -43,8 +43,7 @@ class BajaAdmin extends AbstractAdmin
                     'detalle' => array('template' => 'BajaBundle:CRUD:ver_detalle_control.html.twig')
                 )
             ))
-
-        ;
+            ;
     }
 
     /**
@@ -110,7 +109,6 @@ class BajaAdmin extends AbstractAdmin
         $object->setIdUsuario($this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser()->getId());
         $object->setFechaInicio(new \DateTime());
         $object->setFechaActualizacion(new \DateTime());
-
         foreach ($object->getIdInventario() as $trasnInv) {
             $trasnInv->setIdBaja($object);
         }

@@ -39,7 +39,7 @@ class BajasPatrimonioAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('idBaja','integer',array('label'=>'Nro Trámite'))
-            ->add('idUsuario','integer',array('label'=>'Usuario Solicitante'))
+//            ->add('idUsuario','integer',array('label'=>'Usuario Solicitante'))
             ->add('fechaInicio','date',array('label'=>'Fecha Inicio','format'=>'d-m-Y','timezone'=>'America/Buenos_aires'))
             ->add('idEstado','text',array('label'=>'Estado Trámite'))
             ->add('fechaActualizacion','date',array('label'=>'Fecha Actualizacion','format'=>'d-m-Y','timezone'=>'America/Buenos_aires'))
@@ -61,7 +61,6 @@ class BajasPatrimonioAdmin extends AbstractAdmin
             ->add('idBaja',null,array('label'=>'Baja Nro.','disabled'  => true))
             ->add('idUsuario',null,array('label'=>'Solicitó','disabled'  => true))
             ->add('fechaInicio','sonata_type_date_picker',array('disabled'  => true))
-            ->add('motivo',null,array('disabled'  => true))
 //            ->add('fechaActualizacion','sonata_type_date_picker',array('disabled'  => true))
             ->end()
             ->with('Inventarios Solicitud Baja', array('collapsed' => true))
@@ -86,9 +85,10 @@ class BajasPatrimonioAdmin extends AbstractAdmin
                          ->andWhere('s.idEstado in (?1,?2,?3)' )
                          ->setParameter( 1 ,'2') //Pendiente Aprobacion
                          ->setParameter( 2 ,'3') //Aprobar
-                          ->setParameter( 3 ,'4'); //Rechazar
+                          ->setParameter( 3 ,'0'); //Rechazar
                  }
              ))
+            ->add('motivo')
             ->end()
         ;
     }
@@ -161,4 +161,6 @@ class BajasPatrimonioAdmin extends AbstractAdmin
         '_sort_by' => 'idBaja',
         '_sort_by'=>'fechaActualizacion'
     );
+
+
 }
