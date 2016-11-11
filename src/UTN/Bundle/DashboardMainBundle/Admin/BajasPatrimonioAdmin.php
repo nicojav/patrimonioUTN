@@ -26,7 +26,7 @@ class BajasPatrimonioAdmin extends AbstractAdmin
             ->add('fechaInicio','doctrine_orm_date_range',array('field_type'=>'sonata_type_date_range_picker',))
             ->add('fechaActualizacion','doctrine_orm_date_range',array('field_type'=>'sonata_type_date_range_picker',))
             ->add('idBaja',null,array('label'=>'Nro Baja'))
-            ->add('idUsuario',null,array('label'=>'Usuario'))
+//            ->add('idUsuario',null,array('label'=>'Usuario'))
             ->add('idEstado',null,array('label'=>'Estado Trámite'))
         ;
     }
@@ -159,7 +159,8 @@ class BajasPatrimonioAdmin extends AbstractAdmin
         '_sort_order' => 'DESC',
         // criterio de ordenamiento
         '_sort_by' => 'idBaja',
-        '_sort_by'=>'fechaActualizacion'
+        '_sort_by'=>'fechaActualizacion',
+        '_sort_by'=>'idEStado'
     );
 
 
