@@ -9,6 +9,7 @@ imports:
     - { resource: "@ControlMovilBundle/Resources/config/services.yml" }
     - { resource: "@RetirosBundle/Resources/config/services.yml" }
     - { resource: "@BajaBundle/Resources/config/services.yml" }
+    - { resource: "@InventariosBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -64,6 +65,12 @@ sonata_admin:
                             items:
                                 - baja.admin.baja
 #                                - baja.admin.baja_inventario
+                            roles: [ ROLE_SUPER_ADMIN,ROLE_PATRIMONIO,ROLE_USUARIO ]
+            sonata.admin.group.demo6:
+                            label:  Inventarios
+                            icon:  '<i class="fa fa-play-circle"></i>'
+                            items:
+                                - inventarios.admin.inventario
                             roles: [ ROLE_SUPER_ADMIN,ROLE_PATRIMONIO,ROLE_USUARIO ]
 
 sonata_user:

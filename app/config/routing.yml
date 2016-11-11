@@ -1,3 +1,7 @@
+inventarios:
+    resource: "@InventariosBundle/Resources/config/routing.yml"
+    prefix:   /
+
 baja:
     resource: "@BajaBundle/Resources/config/routing.yml"
     prefix:   /
