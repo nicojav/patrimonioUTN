@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class NotificacionAdmin extends AbstractAdmin
 {
@@ -37,7 +38,6 @@ class NotificacionAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('mensaje')
             ->add('notificada')
             ->add('idNotificacion')
         ;
@@ -51,15 +51,7 @@ class NotificacionAdmin extends AbstractAdmin
         $listMapper
             ->add('mensaje')
             ->add('notificada')
-            //->add('idNotificacion')
-            /*->add('_action', null, array(
-                'actions' => array(
-                    'show' => array(),
-                    'edit' => array(),
-                    'delete' => array(),
-                )
-            ))*/
-        ;
+       ;
     }
 
     /**
@@ -85,4 +77,36 @@ class NotificacionAdmin extends AbstractAdmin
             ->add('idNotificacion')
         ;
     }
+    protected function configureRoutes(RouteCollection $collection)
+    {
+     $collection->remove('create');
+    }
+
+    protected $datagridValues = array(
+        // mostrar pagina principal
+        '_page' => 1,
+        // por defecto ASC
+        '_sort_order' => 'ASC',
+        // criterio de ordenamiento
+        '_sort_by'=>'notificada'
+        )
+    ;
+    public function createQuery($context = 'list')
+    {  //Patrimonio y Super Admin tienen acceso a todas las tablas
+
+        if($this->getConfigurationPool()->getContainer()->get('security.context')->isGranted('ROLE_USUARIO'))
+        {
+            $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
+            $query = parent::createQuery($context);
+            $query->andWhere(
+                $query->expr()->eq($query->getRootAlias().'.idUsuarioDestino', ':usuario')
+            );
+            $query->setParameter('usuario', $user->getId());
+            return $query;
+        }
+
+        $query = parent::createQuery($context);
+        return $query;
+    }
+
 }
