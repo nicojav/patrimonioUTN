@@ -1,0 +1,9 @@
+services:
+#    inventarios.example:
+#        class: InventariosBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    inventarios.admin.inventario:
+        class: UTN\Bundle\InventariosBundle\Admin\InventarioAdmin
+        arguments: [~, UTN\Bundle\InventariosBundle\Entity\Inventario, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Inventario }
