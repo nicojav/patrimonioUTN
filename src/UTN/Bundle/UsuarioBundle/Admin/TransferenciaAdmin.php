@@ -11,6 +11,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class TransferenciaAdmin extends AbstractAdmin
 {
@@ -56,8 +57,8 @@ class TransferenciaAdmin extends AbstractAdmin
             ->add('idTransferencia','integer',array('label'=>'Nro Trámite'))
             ->add('idResponsableOrigen','integer',array('label'=>'Responsable Origen'))
             ->add('idResponsableDestino','integer',array('label'=>'Responsable Destino'))
-            ->add('idUsuarioOrigen','integer',array('label'=>'Usuario Origen'))
-            ->add('idUsuarioDestino','integer',array('label'=>'Usuario Destino'))
+//            ->add('idUsuarioOrigen','integer',array('label'=>'Usuario Origen'))
+//            ->add('idUsuarioDestino','integer',array('label'=>'Usuario Destino'))
             ->add('descripcion')
             ->add('idEstadoTransferencia','integer',array('label'=>'Estado Transferencia'))
             ->add('fechaInicio','datetime',array('label'=>'Fecha','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
@@ -247,5 +248,9 @@ class TransferenciaAdmin extends AbstractAdmin
 
     }
 
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->remove('delete');
+    }
 
 }

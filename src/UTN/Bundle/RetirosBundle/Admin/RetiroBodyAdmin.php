@@ -58,8 +58,9 @@ class RetiroBodyAdmin extends AbstractAdmin
 //            ->add('idRetiro')
             ->add('idInventario', 'sonata_type_model', array('required' => false,'btn_add'=>false)
                 ,array(
-                    'admin_code' => 'utn_dashboard_main.admin.inventario',
-                    'link_parameters' => $link_parameters
+//                    'admin_code' => 'utn_dashboard_main.admin.inventario',
+                    'admin_code' => 'inventarios.admin.mis_inventarios',
+                    'link_parameters' => $link_parameters,
                 ))
 
         ;

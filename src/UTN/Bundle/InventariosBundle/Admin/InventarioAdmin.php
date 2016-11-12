@@ -118,6 +118,11 @@ class InventarioAdmin extends AbstractAdmin
                 $query->expr()->eq($query->getRootAlias().'.idResponsable', ':usuario')
             );
             $query->setParameter('usuario', $user->getId());
+
+            $query->andWhere(
+                $query->expr()->eq($query->getRootAlias().'.idEstado', ':estado')
+            );
+            $query->setParameter('estado',1);
             return $query;
         }
 

@@ -7,3 +7,9 @@ services:
         arguments: [~, UTN\Bundle\InventariosBundle\Entity\Inventario, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Inventario }
+
+    inventarios.admin.mis_inventarios:
+        class: UTN\Bundle\InventariosBundle\Admin\MisInventariosAdmin
+        arguments: [~, UTN\Bundle\InventariosBundle\Entity\Inventario, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Mis Inventarios }
