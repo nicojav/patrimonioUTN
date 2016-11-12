@@ -622,7 +622,10 @@ class Inventario
         return $this;
     }
 
-
+    public function __toString()
+    {
+        return  $this->getDescripcion() ?: "n/a";
+    }
 
 
 }

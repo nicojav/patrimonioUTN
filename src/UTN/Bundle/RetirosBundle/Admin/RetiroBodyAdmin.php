@@ -53,14 +53,23 @@ class RetiroBodyAdmin extends AbstractAdmin
                 $link_parameters['context'] = $context;
             }
         }
+       //Filtrar inventarios activos del usuario.
+        $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser()->getId();
+        $em = $this->modelManager->getEntityManager('UTN\Bundle\InventariosBundle\Entity\Inventario');
+        $query = $em->createQueryBuilder('c')
+            ->select('c')
+            ->from('InventariosBundle:Inventario', 'c')
+            ->where('c.idEstado = 1 and c.idResponsable ='.$user)
+            ->orderBy('c.idInventario');
 
         $formMapper
 //            ->add('idRetiro')
-            ->add('idInventario', 'sonata_type_model', array('required' => false,'btn_add'=>false)
+            ->add('idInventario', 'sonata_type_model', array('required' => false,'btn_add'=>false,'query' => $query)
                 ,array(
 //                    'admin_code' => 'utn_dashboard_main.admin.inventario',
                     'admin_code' => 'inventarios.admin.mis_inventarios',
                     'link_parameters' => $link_parameters,
+
                 ))
 
         ;
