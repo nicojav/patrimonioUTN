@@ -116,9 +116,12 @@ class MisInventariosAdmin extends AbstractAdmin
     public function createQuery($context = 'list')
     {  //Patrimonio y Super Admin tienen acceso a todas las tablas
 
+
         if($this->getConfigurationPool()->getContainer()->get('security.context')->isGranted('ROLE_USUARIO'))
         {
             $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
+
+            $em = $this->modelManager->getEntityManager('UTN\Bundle\InventariosBundle\Entity\Usuario');
             $query = parent::createQuery($context);
             $query->andWhere(
                 $query->expr()->eq($query->getRootAlias().'.idResponsable', ':usuario')
@@ -129,7 +132,6 @@ class MisInventariosAdmin extends AbstractAdmin
                 $query->expr()->eq($query->getRootAlias().'.idEstado', ':estado')
             );
             $query->setParameter('estado',1);
-
 
             return $query;
         }

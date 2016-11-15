@@ -100,9 +100,8 @@ class AsignarAdmin extends AbstractAdmin
 
             $query = parent::createQuery($context);
             $query->andWhere(
-                $query->expr()->eq($query->getRootAlias().'.idResponsable', ':usuario')
+                $query->expr()->isNull($query->getRootAlias().'.idResponsable')
             );
-            $query->setParameter('usuario', '0');
 
         return $query;
     }
