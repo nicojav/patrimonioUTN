@@ -34,6 +34,7 @@ sonata_admin:
                                 - utn_dashboard_main.admin.transfer_patrimonio
                                 - utn_dashboard_main.admin.bajas_patrimonio
                                 - inventarios.admin.inventario
+                                - inventarios.admin.asignar
                             roles: [ ROLE_SUPER_ADMIN,ROLE_PATRIMONIO ]
             sonata.admin.group.demo2:
                             label: Transferencias

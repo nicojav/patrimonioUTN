@@ -10,11 +10,11 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 
 
-class InventarioAdmin extends AbstractAdmin
+class AsignarAdmin extends AbstractAdmin
 {
-    protected $baseRouteName = 'admin_inventario';
+    protected $baseRouteName = 'admin_asignar';
 
-    protected $baseRoutePattern = '/Inventarios';
+    protected $baseRoutePattern = '/AsignarResponsable';
 
     /**
      * @param DatagridMapper $datagridMapper
@@ -22,13 +22,8 @@ class InventarioAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('descripcion')
             ->add('fechaAlta','doctrine_orm_date_range',array('field_type'=>'sonata_type_date_range_picker',))
-            ->add('fechaActualizacion','doctrine_orm_date_range',array('field_type'=>'sonata_type_date_range_picker',))
             ->add('alarmaActiva',null,array('label'=>'Alarma Activa'))
-            ->add('etiquetaImpresa',null,array('label'=>'Etiqueta Impresa'))
-            ->add('fechaControl','doctrine_orm_date_range',array('field_type'=>'sonata_type_date_range_picker',))
-            ->add('idUsuarioControl',null,array('label'=>'Controló'))
             ->add('idInventario',null,array('label'=>'Nro. Inventario'))
         ;
     }
@@ -45,13 +40,12 @@ class InventarioAdmin extends AbstractAdmin
             ->add('fechaActualizacion','datetime',array('label'=>'Fecha Actualización','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
             ->add('alarmaActiva',null,array('editable'=>true))
             ->add('etiquetaImpresa')
-            ->add('fechaControl','datetime',array('label'=>'Fecha Último Control','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
-            ->add('idUsuarioControl','text',array('label'=>'Id Usuario Control'))
-            ->add('codNroInventario')
-            ->add('codDependencia')
-            ->add('codGrupo')
-             ->add('programa')
-        ;
+            ->add('idResponsable',null,array('label'=>'Responsable Asignado','editable'=>true))
+            ->add('_action', null, array('label'=>'Acciones',
+                'actions' => array(
+                    'edit' => array(),
+                )
+            ))      ;
     }
 
     /**
@@ -61,15 +55,13 @@ class InventarioAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Alta Inventario', array('collapsed' => true))
-            ->add('idInventario',null,array('label'=>'Nro. Inventario'))
-            ->add('descripcion')
-            ->add('importe')
-            ->add('idEstado',null,array('label'=>'Estado'))
-            ->add('programa')
+            ->add('idInventario',null,array('label'=>'Nro. Inventario','read_only'=>true))
+            ->add('descripcion',null,array('label'=>'Descripción','read_only'=>true))
+            ->add('importe',null,array('label'=>'Importe $','read_only'=>true))
             ->end()
             ->with('Especie', array('collapsed' => true))
-            ->add('idEspecie',null,array('label'=>'Especie'))
-            ->add('idCuenta',null,array('label'=>'Cuenta'))
+            ->add('idEspecie',null,array('label'=>'Especie','read_only'=>true))
+            ->add('idCuenta',null,array('label'=>'Cuenta','read_only'=>true))
             ->end()
             ->with('Seguridad', array('collapsed' => true))
             ->add('alarmaActiva',null,array('label'=>'Activar Alarma'))
@@ -83,16 +75,11 @@ class InventarioAdmin extends AbstractAdmin
         ;
     }
 
-    /**
-     * @param ShowMapper $showMapper
-     */
-    protected function configureShowFields(ShowMapper $showMapper)
-    {
-    }
 
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->remove('delete');
+        $collection->remove('create');
     }
     protected $datagridValues = array(
         // mostrar pagina principal
@@ -103,34 +90,20 @@ class InventarioAdmin extends AbstractAdmin
         '_sort_by' => 'idInventario',
     );
 
-    public function prePersist($object)
+    public function preUpdate($object)
     {
-        $object->setFechaAlta(new \DateTime());
-        $object->setFechaActualizacion(new \DateTime());
-        $object->setcodNroInventario($object->getIdInventario());
-        $object->setEtiquetaImpresa(false);
+       $object->setFechaActualizacion(new \DateTime());
     }
 
     public function createQuery($context = 'list')
-    {  //Patrimonio y Super Admin tienen acceso a todas las tablas
+    {  //Inventarios dados de alta sin responsable
 
-        if($this->getConfigurationPool()->getContainer()->get('security.context')->isGranted('ROLE_USUARIO'))
-        {
-            $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
             $query = parent::createQuery($context);
             $query->andWhere(
                 $query->expr()->eq($query->getRootAlias().'.idResponsable', ':usuario')
             );
-            $query->setParameter('usuario', $user->getId());
+            $query->setParameter('usuario', '0');
 
-            $query->andWhere(
-                $query->expr()->eq($query->getRootAlias().'.idEstado', ':estado')
-            );
-            $query->setParameter('estado',1);
-            return $query;
-        }
-
-        $query = parent::createQuery($context);
         return $query;
     }
 

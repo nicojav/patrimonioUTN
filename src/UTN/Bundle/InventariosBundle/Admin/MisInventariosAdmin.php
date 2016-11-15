@@ -12,6 +12,9 @@ use Sonata\AdminBundle\Route\RouteCollection;
 
 class MisInventariosAdmin extends AbstractAdmin
 {
+    protected $baseRouteName = 'admin_mis_inventarios';
+
+    protected $baseRoutePattern = '/MisInventarios';
     /**
      * @param DatagridMapper $datagridMapper
      */

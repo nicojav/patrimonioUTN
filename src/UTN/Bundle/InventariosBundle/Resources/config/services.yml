@@ -13,3 +13,9 @@ services:
         arguments: [~, UTN\Bundle\InventariosBundle\Entity\Inventario, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Mis Inventarios }
+
+    inventarios.admin.asignar:
+        class: UTN\Bundle\InventariosBundle\Admin\AsignarAdmin
+        arguments: [~, UTN\Bundle\InventariosBundle\Entity\Inventario, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Asignar Responsable }
