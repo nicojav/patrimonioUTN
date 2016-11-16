@@ -119,21 +119,50 @@ class MisInventariosAdmin extends AbstractAdmin
 
         if($this->getConfigurationPool()->getContainer()->get('security.context')->isGranted('ROLE_USUARIO'))
         {
+            //Usuario Logueado
             $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
+
+            //idEstado 'Alta'
+            $em = $this->modelManager->getEntityManager('InventariosBundle:Estado');
+            $idEst = $em->getRepository('InventariosBundle:Estado')->find(1);
+            $idEst->getIdEstado();
+
+            //Verificar si tiene Usuario Superior
+
+            $em = $this->modelManager->getEntityManager('InventariosBundle:Usuario');
+            $idSuperior = $em->getRepository('InventariosBundle:Usuario')->find($user->getId());
 
             $em = $this->modelManager->getEntityManager('UTN\Bundle\InventariosBundle\Entity\Usuario');
             $query = parent::createQuery($context);
-            $query->andWhere(
-                $query->expr()->eq($query->getRootAlias().'.idResponsable', ':usuario')
-            );
-            $query->setParameter('usuario', $user->getId());
 
-            $query->andWhere(
-                $query->expr()->eq($query->getRootAlias().'.idEstado', ':estado')
-            );
-            $query->setParameter('estado',1);
+            if($idSuperior->getIdUsuarioSuperior() != null){
+                $query->andWhere(
+                    $query->expr()->eq($query->getRootAlias().'.idResponsable', ':superior')
+                );
+                $query->setParameter('superior',$idSuperior->getIdUsuarioSuperior());
 
-            return $query;
+                $query->andWhere(
+                    $query->expr()->eq($query->getRootAlias().'.idEstado', ':estado')
+                );
+                $query->setParameter('estado',$idEst);
+
+                return $query;
+            }
+            else {
+                $query->andWhere(
+                    $query->expr()->eq($query->getRootAlias() . '.idResponsable', ':usuario')
+                );
+                $query->setParameter('usuario', $user->getId());
+
+                $query->andWhere(
+                    $query->expr()->eq($query->getRootAlias() . '.idEstado', ':estado')
+                );
+
+                $query->setParameter('estado',$idEst);
+
+                return $query;
+            }
+
         }
 
         $query = parent::createQuery($context);

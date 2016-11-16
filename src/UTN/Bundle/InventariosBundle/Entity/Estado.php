@@ -68,4 +68,17 @@ class Estado
     {
         return  $this->getDescripcion() ?: "n/a";
     }
+
+
+    public function find($id)
+    {
+        $query = $this->createQueryBuilder('u')
+            ->select('u')
+            ->where('u.idEstado = :id')
+            ->setParameter('id', $id)
+            ->getQuery();
+
+        return $query->getSingleResult();
+    }
+
 }

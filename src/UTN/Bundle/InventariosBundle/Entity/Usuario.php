@@ -325,4 +325,17 @@ class Usuario
     {
         return  $this->getUsuario() ?: "n/a";
     }
+
+
+    public function find($id)
+    {
+        $query = $this->createQueryBuilder('u')
+            ->select('u')
+            ->where('u.idUsuario = :id')
+            ->setParameter('id', $id)
+            ->getQuery();
+
+        return $query->getSingleResult();
+    }
+
 }

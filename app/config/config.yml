@@ -73,7 +73,7 @@ sonata_admin:
                             icon:  '<i class="fa fa-play-circle"></i>'
                             items:
                                 - inventarios.admin.mis_inventarios
-                            roles: [ ROLE_SUPER_ADMIN,ROLE_PATRIMONIO,ROLE_USUARIO ]
+                            roles: [ ROLE_SUPER_ADMIN,ROLE_USUARIO ]
 
 sonata_user:
     security_acl: true
