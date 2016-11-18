@@ -68,15 +68,10 @@ class RetiroAdmin extends AbstractAdmin
             ->add('telefono')
             ->add('fechaDesde','sonata_type_date_picker')
             ->add('fechaHasta','sonata_type_date_picker')
-//            ->add('estadoRetiro', 'choice', array('label'=>'Estado','read_only'=>true,
-//                'choices' => array(
-//                    'P' => 'Pendiente Recepcion',
-//                    'C' => 'Confirmado'
-//                )))
             ->add('motivo')
             ->end()
             ->with('Inventarios Autorizados', array('collapsed' => true))
-            ->add('idInventario', 'sonata_type_collection', array(
+            ->add('idInventario', 'sonata_type_collection', array('label'=>'Agregar Inventarios',
                 'cascade_validation' => false,
                 'type_options' => array('delete' => false),
                 'required' => false

@@ -64,10 +64,8 @@ class RetiroBodyAdmin extends AbstractAdmin
             ->orderBy('c.idInventario');
 
         $formMapper
-//            ->add('idRetiro')
-            ->add('idInventario', 'sonata_type_model', array('required' => false,'btn_add'=>false,'query' => $query)
+            ->add('idInventario', 'sonata_type_model', array('required' => false,'btn_add'=>false,'query' => $query, 'label'=>'Nro Inventario')
                 ,array(
-//                    'admin_code' => 'utn_dashboard_main.admin.inventario',
                     'admin_code' => 'inventarios.admin.mis_inventarios',
                     'link_parameters' => $link_parameters,
 

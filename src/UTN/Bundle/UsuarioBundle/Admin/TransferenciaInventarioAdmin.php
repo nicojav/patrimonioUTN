@@ -70,12 +70,12 @@ class TransferenciaInventarioAdmin extends AbstractAdmin
             ->orderBy('c.idInventario');
 
         $formMapper
-            ->add('idInventario', 'sonata_type_model', array('required' => false, 'query'=> $query, 'btn_add'=>false)
+            ->add('idInventario', 'sonata_type_model', array('required' => false, 'query'=> $query, 'btn_add'=>false,'label'=>'Nro Inventario')
                 ,array(
                     'admin_code' => 'inventarios.admin.mis_inventarios',
                     'link_parameters' => $link_parameters
                 ))
-            ->add('descripcion')
+            ->add('descripcion',null,array('label'=>'Motivo de la Transferencia'))
         ;
 
 

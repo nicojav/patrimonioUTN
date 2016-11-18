@@ -370,4 +370,10 @@ class Transferencia
     {
         return $this->idInventario;
     }
+
+    public function __toString()
+    {
+        return  'TN: '.(String)$this->getIdTransferencia() ?: "n/a";
+    }
+
 }

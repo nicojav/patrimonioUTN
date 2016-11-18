@@ -78,16 +78,14 @@ class TransferenciaAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-
         $formMapper
-            ->add('idResponsableDestino',null,array('label' => 'Responsable Destino'))
-            ->add('idUsuarioDestino',null,array('label' => 'Usuario Destino'))
+            ->with('Solicitud de Transferencia - Destino', array('collapsed' => true))
+            ->add('idResponsableDestino',null,array('label' => 'Responsable'))
+            ->add('idUsuarioDestino',null,array('label' => 'Subresponsable'))
+            ->add('descripcion',null,array('label'=>'Motivo de la Solicitud'))
             ->add('idEstadoTransferencia','entity',
                 array(
                     'label' => 'Estado Transferencia',
-                    //'expanded' => true,
-                    //'disabled' => true,
-                    //'read_only' => true,
                     'class' => 'UTN\Bundle\UsuarioBundle\Entity\EstadoTransferencia',
                     'property' => 'descripcion',
                     'query_builder' => function (EntityRepository $er)
@@ -100,9 +98,9 @@ class TransferenciaAdmin extends AbstractAdmin
                             ->setParameter( 1 ,'1'); //Pendiente Aprobacion
                     }
                 ))
-            ->add('descripcion')
-
-            ->add('idInventario', 'sonata_type_collection', array(
+            ->end()
+            ->with('Inventarios a Transferir', array('collapsed' => true))
+            ->add('idInventario', 'sonata_type_collection', array('label'=>'Agregar Inventarios',
                 'cascade_validation' => false,
                 'type_options' => array('delete' => false),
                 'required' => false
@@ -112,7 +110,7 @@ class TransferenciaAdmin extends AbstractAdmin
                 'sortable'  => 'position',
                 //'admin_code' => 'utn_usuario.admin.transferencia_inventario'
             ))
-
+            ->end()
         ;
     }
 

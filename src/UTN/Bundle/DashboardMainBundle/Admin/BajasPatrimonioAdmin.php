@@ -57,16 +57,15 @@ class BajasPatrimonioAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-
+            ->with('Solicitud de Baja', array('collapsed' => true))
             ->add('idBaja',null,array('label'=>'Baja Nro.','disabled'  => true))
-            ->add('idUsuario',null,array('label'=>'Solicitó','disabled'  => true))
             ->add('fechaInicio','sonata_type_date_picker',array('disabled'  => true))
-//            ->add('fechaActualizacion','sonata_type_date_picker',array('disabled'  => true))
+            ->add('idUsuario',null,array('label'=>'Solicitó','disabled'  => true))
             ->end()
-            ->with('Inventarios Solicitud Baja', array('collapsed' => true))
+            ->with('Inventarios a Baja', array('collapsed' => true))
             ->add('idInventario', 'sonata_type_collection', array('label'=>'Detalle','btn_add' => false,
                 'cascade_validation' => false,
-                'type_options' => array('delete' => false),
+                'type_options' => array('delete' => false,'btn_add'=> false),
                 'required' => false,'disabled'  => true
             ))
             ->end()
@@ -88,7 +87,7 @@ class BajasPatrimonioAdmin extends AbstractAdmin
                           ->setParameter( 3 ,'0'); //Rechazar
                  }
              ))
-            ->add('motivo')
+            ->add('motivo',null,array('label'=>'Motivo de la solicitud / Comentarios'))
             ->end()
         ;
     }

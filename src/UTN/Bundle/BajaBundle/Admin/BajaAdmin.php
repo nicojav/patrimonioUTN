@@ -52,15 +52,11 @@ class BajaAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-//            ->add('idBaja')
-//            ->add('idUsuario')
-//            ->add('fechaInicio','sonata_type_date_picker')
-            ->add('motivo')
-//            ->add('fechaActualizacion','sonata_type_date_picker')
-//            ->add('idEstado')
+            ->with('Solicitud de Baja de Inventarios',array('collapsed'=>true))
+            ->add('motivo',null,array('label'=>'Motivo de la Baja'))
             ->end()
-            ->with('Inventarios Solicitud Baja', array('collapsed' => true))
-            ->add('idInventario', 'sonata_type_collection', array(
+            ->with('Seleccionar Inventarios a dar Baja', array('collapsed' => true))
+            ->add('idInventario', 'sonata_type_collection', array('label'=>'Agregar Inventarios',
                 'cascade_validation' => false,
                 'type_options' => array('delete' => false),
                 'required' => false

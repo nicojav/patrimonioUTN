@@ -237,6 +237,6 @@ class Baja
 
     public function __toString()
     {
-        return  (String)$this->getIdBaja() ?: "n/a";
+        return  'TB: '.(String)$this->getIdBaja() ?: "n/a";
     }
 }
