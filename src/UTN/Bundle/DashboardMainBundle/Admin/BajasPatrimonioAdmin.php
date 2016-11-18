@@ -26,7 +26,7 @@ class BajasPatrimonioAdmin extends AbstractAdmin
             ->add('fechaInicio','doctrine_orm_date_range',array('field_type'=>'sonata_type_date_range_picker',))
             ->add('fechaActualizacion','doctrine_orm_date_range',array('field_type'=>'sonata_type_date_range_picker',))
             ->add('idBaja',null,array('label'=>'Nro Baja'))
-//            ->add('idUsuario',null,array('label'=>'Usuario'))
+            ->add('idUsuario',null,array('label'=>'Usuario'))
             ->add('idEstado',null,array('label'=>'Estado Trámite'))
         ;
     }
@@ -39,7 +39,7 @@ class BajasPatrimonioAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('idBaja','integer',array('label'=>'Nro Trámite'))
-//            ->add('idUsuario','integer',array('label'=>'Usuario Solicitante'))
+            ->add('idUsuario','integer',array('label'=>'Usuario Solicitante'))
             ->add('fechaInicio','date',array('label'=>'Fecha Inicio','format'=>'d-m-Y','timezone'=>'America/Buenos_aires'))
             ->add('idEstado','text',array('label'=>'Estado Trámite'))
             ->add('fechaActualizacion','date',array('label'=>'Fecha Actualizacion','format'=>'d-m-Y','timezone'=>'America/Buenos_aires'))

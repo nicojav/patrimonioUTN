@@ -102,9 +102,16 @@ class BajaAdmin extends AbstractAdmin
 
     public function prePersist($object)
     {
-        $object->setIdUsuario($this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser()->getId());
+        //Set datos automaticos
         $object->setFechaInicio(new \DateTime());
         $object->setFechaActualizacion(new \DateTime());
+
+        //Get usuario logueado
+        $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
+        $em = $this->modelManager->getEntityManager('InventariosBundle:Usuario');
+        $usuarioLogueado = $em->getRepository('InventariosBundle:Usuario')->find($user->getId());
+        $object->setIdUsuario($usuarioLogueado);
+
         foreach ($object->getIdInventario() as $trasnInv) {
             $trasnInv->setIdBaja($object);
         }
@@ -112,9 +119,15 @@ class BajaAdmin extends AbstractAdmin
 
     public function preUpdate($object)
     {
-        $object->setIdUsuario($this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser()->getId());
+        //Set datos automaticos
         $object->setFechaInicio(new \DateTime());
         $object->setFechaActualizacion(new \DateTime());
+
+        //Get usuario logueado
+        $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
+        $em = $this->modelManager->getEntityManager('InventariosBundle:Usuario');
+        $usuarioLogueado = $em->getRepository('InventariosBundle:Usuario')->find($user->getId());
+        $object->setIdUsuario($usuarioLogueado);
 
         foreach ($object->getIdInventario() as $trasnInv) {
             $trasnInv->setIdBaja($object);

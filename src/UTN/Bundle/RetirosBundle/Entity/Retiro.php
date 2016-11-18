@@ -71,9 +71,14 @@ class Retiro
     protected $idRetiro;
 
     /**
-     * @var \UTN\Bundle\UsuarioBundle\Entity\Usuario
+     * @var \UTN\Bundle\InventariosBundle\Entity\Usuario
+     *
+     * @ORM\ManyToOne(targetEntity="UTN\Bundle\InventariosBundle\Entity\Usuario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_usuario", referencedColumnName="id_usuario")
+     * })
      */
-    private $idUsuario;
+    protected $idUsuario;
 
     /**
      * Set nombreCompleto
@@ -325,12 +330,11 @@ class Retiro
     /**
      * Set idUsuario
      *
-     * @param \UTN\Bundle\UsuarioBundle\Entity\Usuario $idUsuario
+     * @param \UTN\Bundle\InventariosBundle\Entity\Usuario $idUsuario
      *
      * @return Retiro
      */
-//    public function setIdUsuario(\UTN\Bundle\UsuarioBundle\Entity\Usuario $idUsuario = null)
-public function setIdUsuario($idUsuario)
+    public function setIdUsuario(\UTN\Bundle\InventariosBundle\Entity\Usuario $idUsuario = null)
     {
         $this->idUsuario = $idUsuario;
 

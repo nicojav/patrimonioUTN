@@ -28,7 +28,11 @@
         <join-column name="id_estado" referenced-column-name="id_estado"/>
       </join-columns>
     </many-to-one>
-    <field name="idUsuario" type="integer" column="id_usuario" nullable="true"/>
+    <many-to-one field="idUsuario" target-entity="UTN\Bundle\InventariosBundle\Entity\Usuario" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_usuario" referenced-column-name="id_usuario"/>
+      </join-columns>
+    </many-to-one>
     <one-to-many field="idInventario" target-entity="BajaInventario" mapped-by="idBaja">
       <cascade>
         <cascade-persist/>

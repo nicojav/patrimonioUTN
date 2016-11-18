@@ -60,6 +60,14 @@ class Baja
     protected $idEstado;
 
 
+    /**
+     * @var \UTN\Bundle\InventariosBundle\Entity\Usuario
+     *
+     * @ORM\ManyToOne(targetEntity="UTN\Bundle\InventariosBundle\Entity\Usuario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_usuario", referencedColumnName="id_usuario")
+     * })
+     */
     protected $idUsuario;
 
     /**
@@ -214,11 +222,11 @@ class Baja
     /**
      * Set idUsuario
      *
-     * @param \UTN\Bundle\UsuarioBundle\Entity\Usuario $idUsuario
+     * @param \UTN\Bundle\InventariosBundle\Entity\Usuario $idUsuario
      *
      * @return Baja
      */
-    public function setIdUsuario($idUsuario = null)
+    public function setIdUsuario(\UTN\Bundle\InventariosBundle\Entity\Usuario $idUsuario = null)
     {
         $this->idUsuario = $idUsuario;
 
@@ -228,7 +236,7 @@ class Baja
     /**
      * Get idUsuario
      *
-     * @return \UTN\Bundle\UsuarioBundle\Entity\Usuario
+     * @return \UTN\Bundle\InventariosBundle\Entity\Usuario
      */
     public function getIdUsuario()
     {
