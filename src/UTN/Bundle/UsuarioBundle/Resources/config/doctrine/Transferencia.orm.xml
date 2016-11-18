@@ -23,22 +23,22 @@
         <cascade-persist/>
       </cascade>
     </one-to-many>
-    <many-to-one field="idUsuarioDestino" target-entity="Usuario" fetch="LAZY">
+    <many-to-one field="idUsuarioDestino" target-entity="UTN\Bundle\InventariosBundle\Entity\Usuario" fetch="LAZY">
       <join-columns>
         <join-column name="id_usuario_destino" referenced-column-name="id_usuario"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="idUsuarioOrigen" target-entity="Usuario" fetch="LAZY">
+    <many-to-one field="idUsuarioOrigen" target-entity="UTN\Bundle\InventariosBundle\Entity\Usuario" fetch="LAZY">
       <join-columns>
         <join-column name="id_usuario_origen" referenced-column-name="id_usuario"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="idResponsableDestino" target-entity="Usuario" fetch="LAZY">
+    <many-to-one field="idResponsableDestino" target-entity="UTN\Bundle\InventariosBundle\Entity\Usuario" fetch="LAZY">
       <join-columns>
         <join-column name="id_responsable_destino" referenced-column-name="id_usuario"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="idResponsableOrigen" target-entity="Usuario" fetch="LAZY">
+    <many-to-one field="idResponsableOrigen" target-entity="UTN\Bundle\InventariosBundle\Entity\Usuario" fetch="LAZY">
       <join-columns>
         <join-column name="id_responsable_origen" referenced-column-name="id_usuario"/>
       </join-columns>

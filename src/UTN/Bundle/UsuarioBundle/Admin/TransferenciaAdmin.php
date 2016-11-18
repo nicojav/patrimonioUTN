@@ -57,8 +57,8 @@ class TransferenciaAdmin extends AbstractAdmin
             ->add('idTransferencia','integer',array('label'=>'Nro Trámite'))
             ->add('idResponsableOrigen','integer',array('label'=>'Responsable Origen'))
             ->add('idResponsableDestino','integer',array('label'=>'Responsable Destino'))
-//            ->add('idUsuarioOrigen','integer',array('label'=>'Usuario Origen'))
-//            ->add('idUsuarioDestino','integer',array('label'=>'Usuario Destino'))
+            ->add('idUsuarioOrigen','integer',array('label'=>'Usuario Origen'))
+            ->add('idUsuarioDestino','integer',array('label'=>'Usuario Destino'))
             ->add('descripcion')
             ->add('idEstadoTransferencia','integer',array('label'=>'Estado Transferencia'))
             ->add('fechaInicio','datetime',array('label'=>'Fecha','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
@@ -78,40 +78,9 @@ class TransferenciaAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-        /*$em = $this->modelManager->getEntityManager('UTN\Bundle\UsuarioBundle\Entity\Inventario');
-
-        $query = $em->createQueryBuilder('s')
-           ->select('s.descripcion')
-           ->from('UTN\Bundle\UsuarioBundle\Entity\Inventario') //->from('UTNUsuarioBundle:Inventario', 's')
-           ->groupBy('s.descripcion')
-        ;*/
-
-
 
         $formMapper
-            /* ->add('idInventario', 'entity',
-             array(
-                 'label' => 'Inventario',
-                 'multiple' => true,
-                 'expanded' => true,
-                 //'read_only' => true,
-                 'class' => 'UTN\Bundle\UsuarioBundle\Entity\Inventario',
-                 'property' => 'descripcion',
-                 'query_builder' => function (EntityRepository $er)
-                 {
-                     return $er
-                         ->createQueryBuilder('s');
-                         //->select('s.descripcion');
-                         //->andWhere('s.descripcion = ?1' )
-                         //->setParameter( 1 , 'BANCO'); //TEST
-                         //->groupBy('s.descripcion');
-                         //->from('UTN\Bundle\UsuarioBundle\Entity\Inventario','s');
-
-                 }
-             ))*/
-            ->add('idResponsableOrigen',null,array('label' => 'Responsable Origen'))
             ->add('idResponsableDestino',null,array('label' => 'Responsable Destino'))
-            ->add('idUsuarioOrigen',null,array('label' => 'Usuario Origen'))
             ->add('idUsuarioDestino',null,array('label' => 'Usuario Destino'))
             ->add('idEstadoTransferencia','entity',
                 array(
@@ -132,9 +101,7 @@ class TransferenciaAdmin extends AbstractAdmin
                     }
                 ))
             ->add('descripcion')
-            ->add('fechaInicio','sonata_type_date_picker')
-            ->add('fechaActualizacion','sonata_type_date_picker')
-            //->add('idTransferencia')
+
             ->add('idInventario', 'sonata_type_collection', array(
                 'cascade_validation' => false,
                 'type_options' => array('delete' => false),
@@ -171,6 +138,17 @@ class TransferenciaAdmin extends AbstractAdmin
 
     public function prePersist($object)
     {
+        //Set datos automaticos
+        $object->setFechaInicio(new \DateTime());
+        $object->setFechaActualizacion(new \DateTime());
+
+        //Get usuario logueado
+        $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
+        $em = $this->modelManager->getEntityManager('InventariosBundle:Usuario');
+        $usuarioLogueado = $em->getRepository('InventariosBundle:Usuario')->find($user->getId());
+        $object->setIdUsuarioOrigen($usuarioLogueado);
+        $object->setIdResponsableOrigen($usuarioLogueado);
+
         foreach ($object->getIdInventario() as $trasnInv) {
             $trasnInv->setIdTransferencia($object);
         }
@@ -178,6 +156,17 @@ class TransferenciaAdmin extends AbstractAdmin
 
     public function preUpdate($object)
     {
+        //Set datos automaticos
+        $object->setFechaInicio(new \DateTime());
+        $object->setFechaActualizacion(new \DateTime());
+
+        //Get usuario logueado
+        $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
+        $em = $this->modelManager->getEntityManager('InventariosBundle:Usuario');
+        $usuarioLogueado = $em->getRepository('InventariosBundle:Usuario')->find($user->getId());
+        $object->setIdUsuarioOrigen($usuarioLogueado);
+        $object->setIdResponsableOrigen($usuarioLogueado);
+
         foreach ($object->getIdInventario() as $trasnInv) {
             $trasnInv->setIdTransferencia($object);
         }
@@ -253,4 +242,48 @@ class TransferenciaAdmin extends AbstractAdmin
         $collection->remove('delete');
     }
 
+    public function createQuery($context = 'list')
+    {  //Patrimonio y Super Admin tienen acceso a todas las tablas
+
+        if($this->getConfigurationPool()->getContainer()->get('security.context')->isGranted('ROLE_USUARIO'))
+        {
+
+            $user = $this->getConfigurationPool()->getContainer()->get('security.context')->getToken()->getUser();
+            $em = $this->modelManager->getEntityManager('InventariosBundle:Usuario');
+            $usuarioLogueado = $em->getRepository('InventariosBundle:Usuario')->find($user->getId());
+            $query = parent::createQuery($context);
+
+            if(is_null($usuarioLogueado->getIdUsuarioSuperior())) //logueado responsable de area
+            {
+                $query->orWhere(
+                    $query->expr()->eq($query->getRootAlias() . '.idResponsableOrigen', ':usuario')
+                );
+                $query->setParameter('usuario', $usuarioLogueado->getIdSuperior());
+
+                $query->orWhere(
+                    $query->expr()->eq($query->getRootAlias() . '.idResponsableDestino', ':usuario')
+                );
+                $query->setParameter('usuario', $usuarioLogueado->getIdSuperior());
+                return $query;
+            }
+            else //logueado sub responsable (solo ve lo que esta dirigido a el
+            {
+                $query->orWhere(
+                    $query->expr()->eq($query->getRootAlias() . '.idUsuarioOrigen', ':usuario')
+                );
+                $query->setParameter('usuario', $usuarioLogueado->getIdUsuario());
+
+                $query->orWhere(
+                    $query->expr()->eq($query->getRootAlias() . '.idUsuarioDestino', ':usuario')
+                );
+                $query->setParameter('usuario', $usuarioLogueado->getIdUsuario());
+                return $query;
+
+            }
+
+        }
+
+        $query = parent::createQuery($context);
+        return $query;
+    }
 }

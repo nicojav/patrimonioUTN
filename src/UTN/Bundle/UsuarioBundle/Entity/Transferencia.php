@@ -43,9 +43,9 @@ class Transferencia
     private $idTransferencia;
 
     /**
-     * @var \UTN\Bundle\UsuarioBundle\Entity\Usuario
+     * @var \UTN\Bundle\InventariosBundle\Entity\Usuario
      *
-     * @ORM\ManyToOne(targetEntity="UTN\Bundle\UsuarioBundle\Entity\Usuario")
+     * @ORM\ManyToOne(targetEntity="UTN\Bundle\InventariosBundle\Entity\Usuario")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_usuario_origen", referencedColumnName="id_usuario")
      * })
@@ -53,9 +53,9 @@ class Transferencia
     private $idUsuarioOrigen;
 
     /**
-     * @var \UTN\Bundle\UsuarioBundle\Entity\Usuario
+     * @var \UTN\Bundle\InventariosBundle\Entity\Usuario
      *
-     * @ORM\ManyToOne(targetEntity="UTN\Bundle\UsuarioBundle\Entity\Usuario")
+     * @ORM\ManyToOne(targetEntity="UTN\Bundle\InventariosBundle\Entity\Usuario")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_usuario_destino", referencedColumnName="id_usuario")
      * })
@@ -63,9 +63,9 @@ class Transferencia
     private $idUsuarioDestino;
 
     /**
-     * @var \UTN\Bundle\UsuarioBundle\Entity\Usuario
+     * @var \UTN\Bundle\InventariosBundle\Entity\Usuario
      *
-     * @ORM\ManyToOne(targetEntity="UTN\Bundle\UsuarioBundle\Entity\Usuario")
+     * @ORM\ManyToOne(targetEntity="UTN\Bundle\InventariosBundle\Entity\Usuario")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_responsable_destino", referencedColumnName="id_usuario")
      * })
@@ -73,9 +73,9 @@ class Transferencia
     private $idResponsableDestino;
 
     /**
-     * @var \UTN\Bundle\UsuarioBundle\Entity\Usuario
+     * @var \UTN\Bundle\InventariosBundle\Entity\Usuario
      *
-     * @ORM\ManyToOne(targetEntity="UTN\Bundle\UsuarioBundle\Entity\Usuario")
+     * @ORM\ManyToOne(targetEntity="UTN\Bundle\InventariosBundle\Entity\Usuario")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_responsable_origen", referencedColumnName="id_usuario")
      * })
@@ -190,11 +190,11 @@ class Transferencia
     /**
      * Set idUsuarioOrigen
      *
-     * @param \UTN\Bundle\UsuarioBundle\Entity\Usuario $idUsuarioOrigen
+     * @param \UTN\Bundle\InventariosBundle\Entity\Usuario $idUsuarioOrigen
      *
      * @return Transferencia
      */
-    public function setIdUsuarioOrigen(\UTN\Bundle\UsuarioBundle\Entity\Usuario $idUsuarioOrigen = null)
+    public function setIdUsuarioOrigen(\UTN\Bundle\InventariosBundle\Entity\Usuario $idUsuarioOrigen = null)
     {
         $this->idUsuarioOrigen = $idUsuarioOrigen;
 
@@ -204,7 +204,7 @@ class Transferencia
     /**
      * Get idUsuarioOrigen
      *
-     * @return \UTN\Bundle\UsuarioBundle\Entity\Usuario
+     * @return \UTN\Bundle\InventariosBundle\Entity\Usuario
      */
     public function getIdUsuarioOrigen()
     {
@@ -214,11 +214,11 @@ class Transferencia
     /**
      * Set idUsuarioDestino
      *
-     * @param \UTN\Bundle\UsuarioBundle\Entity\Usuario $idUsuarioDestino
+     * @param \UTN\Bundle\InventariosBundle\Entity\Usuario $idUsuarioDestino
      *
      * @return Transferencia
      */
-    public function setIdUsuarioDestino(\UTN\Bundle\UsuarioBundle\Entity\Usuario $idUsuarioDestino = null)
+    public function setIdUsuarioDestino(\UTN\Bundle\InventariosBundle\Entity\Usuario $idUsuarioDestino = null)
     {
         $this->idUsuarioDestino = $idUsuarioDestino;
 
@@ -228,7 +228,7 @@ class Transferencia
     /**
      * Get idUsuarioDestino
      *
-     * @return \UTN\Bundle\UsuarioBundle\Entity\Usuario
+     * @return \UTN\Bundle\InventariosBundle\Entity\Usuario
      */
     public function getIdUsuarioDestino()
     {
@@ -238,11 +238,11 @@ class Transferencia
     /**
      * Set idResponsableDestino
      *
-     * @param \UTN\Bundle\UsuarioBundle\Entity\Usuario $idResponsableDestino
+     * @param \UTN\Bundle\InventariosBundle\Entity\Usuario $idResponsableDestino
      *
      * @return Transferencia
      */
-    public function setIdResponsableDestino(\UTN\Bundle\UsuarioBundle\Entity\Usuario $idResponsableDestino = null)
+    public function setIdResponsableDestino(\UTN\Bundle\InventariosBundle\Entity\Usuario $idResponsableDestino = null)
     {
         $this->idResponsableDestino = $idResponsableDestino;
 
@@ -252,7 +252,7 @@ class Transferencia
     /**
      * Get idResponsableDestino
      *
-     * @return \UTN\Bundle\UsuarioBundle\Entity\Usuario
+     * @return \UTN\Bundle\InventariosBundle\Entity\Usuario
      */
     public function getIdResponsableDestino()
     {
@@ -262,11 +262,11 @@ class Transferencia
     /**
      * Set idResponsableOrigen
      *
-     * @param \UTN\Bundle\UsuarioBundle\Entity\Usuario $idResponsableOrigen
+     * @param \UTN\Bundle\InventariosBundle\Entity\Usuario $idResponsableOrigen
      *
      * @return Transferencia
      */
-    public function setIdResponsableOrigen(\UTN\Bundle\UsuarioBundle\Entity\Usuario $idResponsableOrigen = null)
+    public function setIdResponsableOrigen(\UTN\Bundle\InventariosBundle\Entity\Usuario $idResponsableOrigen = null)
     {
         $this->idResponsableOrigen = $idResponsableOrigen;
 
@@ -276,7 +276,7 @@ class Transferencia
     /**
      * Get idResponsableOrigen
      *
-     * @return \UTN\Bundle\UsuarioBundle\Entity\Usuario
+     * @return \UTN\Bundle\InventariosBundle\Entity\Usuario
      */
     public function getIdResponsableOrigen()
     {

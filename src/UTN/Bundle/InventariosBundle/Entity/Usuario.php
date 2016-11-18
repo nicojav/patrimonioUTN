@@ -338,4 +338,21 @@ class Usuario
         return $query->getSingleResult();
     }
 
+    /**
+     * Get idSuperior
+     *
+     * @return \UTN\Bundle\InventariosBundle\Entity\Usuario
+     */
+    public function getIdSuperior()
+    {
+        if (is_null($this->idUsuarioSuperior)){
+            return $this->idUsuario;
+        }
+        else
+        {
+            return $this->idUsuarioSuperior;
+
+        }
+    }
+
 }
