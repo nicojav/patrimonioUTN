@@ -86,4 +86,10 @@ class BajaInventarioAdmin extends AbstractAdmin
             ->add('idBajaInventario')
         ;
     }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->remove('delete');
+
+    }
 }

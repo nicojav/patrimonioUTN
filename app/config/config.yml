@@ -38,7 +38,7 @@ sonata_admin:
                             roles: [ ROLE_SUPER_ADMIN,ROLE_PATRIMONIO ]
             sonata.admin.group.demo2:
                             label: Transferencias
-                            icon:  '<i class="fa fa-play-circle"></i>'
+                            icon:  '<i class="fa fa-share"></i>'
                             items:
                                 - utn_usuario.admin.transferencia
                                 - utn_usuario.admin.transferencia_resultados
@@ -55,7 +55,6 @@ sonata_admin:
                             icon : '<i class="fa fa-lock"></i>'
                             items:
                                 - rfid.admin.log_movimiento
-                                - control_movil.admin.control
 #                                - control_movil.admin.control_inventario
                                 - utn_dashboard_main.admin.notificacion # SACAR
                                 - retiros.admin.retiro
@@ -63,17 +62,24 @@ sonata_admin:
                             roles: [ ROLE_SUPER_ADMIN,ROLE_PATRIMONIO,ROLE_USUARIO ]
             sonata.admin.group.demo5:
                             label: Bajas
-                            icon:  '<i class="fa fa-play-circle"></i>'
+                            icon:  '<i class="fa fa-trash"></i>'
                             items:
                                 - baja.admin.baja
 #                                - baja.admin.baja_inventario
                             roles: [ ROLE_SUPER_ADMIN,ROLE_PATRIMONIO,ROLE_USUARIO ]
             sonata.admin.group.demo6:
                             label:  Inventarios
-                            icon:  '<i class="fa fa-play-circle"></i>'
+                            icon:  '<i class="fa fa-book"></i>'
                             items:
                                 - inventarios.admin.mis_inventarios
                             roles: [ ROLE_SUPER_ADMIN,ROLE_USUARIO ]
+            sonata.admin.group.demo7:
+                            label:  Control Movil
+                            icon:  '<i class="fa fa-tablet"></i>'
+                            items:
+                                - control_movil.admin.control
+                            roles: [ ROLE_SUPER_ADMIN,ROLE_PATRIMONIO,ROLE_USUARIO ]
+
 
 sonata_user:
     security_acl: true

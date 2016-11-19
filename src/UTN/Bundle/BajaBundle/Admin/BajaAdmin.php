@@ -37,9 +37,9 @@ class BajaAdmin extends AbstractAdmin
             ->add('fechaInicio','datetime',array('label'=>'Fecha Inicio','format'=>'d-m-Y','timezone'=>'America/Buenos_aires'))
             ->add('idEstado','text',array('label'=>'Estado Trámite'))
             ->add('fechaActualizacion','datetime',array('label'=>'Fecha Actualizacion','format'=>'d-m-Y','timezone'=>'America/Buenos_aires'))
+            ->add('motivo',null,array('label'=>'Motivo Trámite'))
             ->add('_action', null, array('label'=>'Acciones',
                 'actions' => array(
-                    'show' => array(),
                     'detalle' => array('template' => 'BajaBundle:CRUD:ver_detalle_control.html.twig')
                 )
             ))
