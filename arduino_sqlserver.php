@@ -2,9 +2,9 @@
    //  on load registra el movimiento de un bien en un determinado sensor para mapear el tracking a futuro.
 #       return $this->render('ArduinoBundle:Default:index.html.twig');
 
-        $usuario = "";
-        $pass = "";
-        $servidor  ="NOTEBOOK-PC\SQLEXPRESS";
+        $usuario = "administrator";
+        $pass = "administrator";
+        $servidor  ="utn.c0gs5ej8mv5r.us-west-2.rds.amazonaws.com,1433";
         $bdd = "patrimonioUTN2";
         $info = array('Database'=>$bdd,'UID'=>$usuario,'PWD'=>$pass);
         $conexion = sqlsrv_connect($servidor,$info);
