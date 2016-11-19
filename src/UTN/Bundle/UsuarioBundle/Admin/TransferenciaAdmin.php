@@ -83,21 +83,21 @@ class TransferenciaAdmin extends AbstractAdmin
             ->add('idResponsableDestino',null,array('label' => 'Responsable'))
             ->add('idUsuarioDestino',null,array('label' => 'Subresponsable'))
             ->add('descripcion',null,array('label'=>'Motivo de la Solicitud'))
-            ->add('idEstadoTransferencia','entity',
-                array(
-                    'label' => 'Estado Transferencia',
-                    'class' => 'UTN\Bundle\UsuarioBundle\Entity\EstadoTransferencia',
-                    'property' => 'descripcion',
-                    'query_builder' => function (EntityRepository $er)
-                    {
-                        return $er
-                            ->createQueryBuilder('s')
-                            //->select('s.descripcion')
-                            //->from('UTN\Bundle\UsuarioBundle\Entity\EstadoTransferencia','s')
-                            ->andWhere('s.idEstadoTransferencia in (?1)' )
-                            ->setParameter( 1 ,'1'); //Pendiente Aprobacion
-                    }
-                ))
+//            ->add('idEstadoTransferencia','entity',
+//                array(
+//                    'label' => 'Estado Transferencia',
+//                    'class' => 'UTN\Bundle\UsuarioBundle\Entity\EstadoTransferencia',
+//                    'property' => 'descripcion',
+//                    'query_builder' => function (EntityRepository $er)
+//                    {
+//                        return $er
+//                            ->createQueryBuilder('s')
+//                            //->select('s.descripcion')
+//                            //->from('UTN\Bundle\UsuarioBundle\Entity\EstadoTransferencia','s')
+//                            ->andWhere('s.idEstadoTransferencia in (?1)' )
+//                            ->setParameter( 1 ,'1'); //Pendiente Aprobacion
+//                    }
+//                ))
             ->end()
             ->with('Inventarios a Transferir', array('collapsed' => true))
             ->add('idInventario', 'sonata_type_collection', array('label'=>'Agregar Inventarios',
@@ -146,6 +146,9 @@ class TransferenciaAdmin extends AbstractAdmin
         $usuarioLogueado = $em->getRepository('InventariosBundle:Usuario')->find($user->getId());
         $object->setIdUsuarioOrigen($usuarioLogueado);
         $object->setIdResponsableOrigen($usuarioLogueado);
+
+        $estado = $em->getRepository('UTN\Bundle\UsuarioBundle\Entity\EstadoTransferencia')->find(1);
+        $object->setIdEstadoTransferencia($estado);
 
         foreach ($object->getIdInventario() as $trasnInv) {
             $trasnInv->setIdTransferencia($object);

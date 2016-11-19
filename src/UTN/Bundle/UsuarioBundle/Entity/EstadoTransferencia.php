@@ -74,5 +74,15 @@ class EstadoTransferencia
     }
 
 
+    public function find($id)
+    {
+        $query = $this->createQueryBuilder('u')
+            ->select('u')
+            ->where('u.idEstadoTransferencia = :id')
+            ->setParameter('id', $id)
+            ->getQuery();
+
+        return $query->getSingleResult();
+    }
 
 }
