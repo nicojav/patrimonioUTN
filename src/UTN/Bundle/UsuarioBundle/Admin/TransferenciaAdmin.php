@@ -53,7 +53,6 @@ class TransferenciaAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            //->add('idInventario')
             ->add('idTransferencia','integer',array('label'=>'Nro Trámite'))
             ->add('idResponsableOrigen','integer',array('label'=>'Responsable Origen'))
             ->add('idResponsableDestino','integer',array('label'=>'Responsable Destino'))
@@ -81,23 +80,8 @@ class TransferenciaAdmin extends AbstractAdmin
         $formMapper
             ->with('Solicitud de Transferencia - Destino', array('collapsed' => true))
             ->add('idResponsableDestino',null,array('label' => 'Responsable'))
-            ->add('idUsuarioDestino',null,array('label' => 'Subresponsable'))
+//            ->add('idUsuarioDestino',null,array('label' => 'Subresponsable'))
             ->add('descripcion',null,array('label'=>'Motivo de la Solicitud'))
-//            ->add('idEstadoTransferencia','entity',
-//                array(
-//                    'label' => 'Estado Transferencia',
-//                    'class' => 'UTN\Bundle\UsuarioBundle\Entity\EstadoTransferencia',
-//                    'property' => 'descripcion',
-//                    'query_builder' => function (EntityRepository $er)
-//                    {
-//                        return $er
-//                            ->createQueryBuilder('s')
-//                            //->select('s.descripcion')
-//                            //->from('UTN\Bundle\UsuarioBundle\Entity\EstadoTransferencia','s')
-//                            ->andWhere('s.idEstadoTransferencia in (?1)' )
-//                            ->setParameter( 1 ,'1'); //Pendiente Aprobacion
-//                    }
-//                ))
             ->end()
             ->with('Inventarios a Transferir', array('collapsed' => true))
             ->add('idInventario', 'sonata_type_collection', array('label'=>'Agregar Inventarios',
