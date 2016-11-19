@@ -64,7 +64,7 @@ class InventarioAdmin extends AbstractAdmin
             ->add('idInventario',null,array('label'=>'Nro. Inventario'))
             ->add('descripcion')
             ->add('importe')
-            ->add('idEstado',null,array('label'=>'Estado'))
+//            ->add('idEstado',null,array('label'=>'Estado'))
             ->add('programa')
             ->end()
             ->with('Especie', array('collapsed' => true))
@@ -109,6 +109,10 @@ class InventarioAdmin extends AbstractAdmin
         $object->setFechaActualizacion(new \DateTime());
         $object->setcodNroInventario($object->getIdInventario());
         $object->setEtiquetaImpresa(false);
+        $em = $this->modelManager->getEntityManager('InventariosBundle:Estado');
+        $estado = $em->getRepository('InventariosBundle:Estado')->find(2);
+        $object->setIdEstado($estado);
+
     }
 
     public function createQuery($context = 'list')
