@@ -66,13 +66,6 @@ class TrasnferenciaResultadosAdmin extends AbstractAdmin
             ->add('idEstadoTransferencia','integer',array('label'=>'Estado Transferencia'))
             ->add('fechaInicio','datetime',array('label'=>'Fecha','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
             ->add('fechaActualizacion','datetime',array('label'=>'Fecha','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
-            ->add('_action', null, array(
-                'actions' => array(
-                    //'show' => array(),
-                    'edit' => array(),
-                    'delete' => array(),
-                )
-            ))
         ;
     }
 
