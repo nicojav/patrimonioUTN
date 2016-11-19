@@ -33,11 +33,11 @@ class ControlInventarioAdmin extends AbstractAdmin
             ->add('idInventario',null,array('label'=>'Descripción'))
 //            ->add('idControlInventario')
             ->addIdentifier('idEstadoControl',null,array('label'=>'Estado'))
-            ->add('_action', null, array('label'=>'Acciones',
-                'actions' => array(
-                    'edit' => array('template' => 'ControlMovilBundle:CRUD:list__action_edit.html.twig')
-                )
-            ))
+//            ->add('_action', null, array('label'=>'Acciones',
+//                'actions' => array(
+//                    'edit' => array('template' => 'ControlMovilBundle:CRUD:list__action_edit.html.twig')
+//                )
+//            ))
         ;
     }
 
@@ -48,7 +48,7 @@ class ControlInventarioAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('idControl',null,array('label'=>'ID Control','read_only'=>true,'disabled'=>true))
-            ->add('codInventario',null,array('label'=>'Cod Inventario Ecaneado'))
+            ->add('codInventario',null,array('label'=>'Cod Inventario Ecaneado','read_only'=>true,'disabled'=>true))
             ->add('idInventario',null,array('label'=>'Descripcion Inventario','read_only'=>true,'disabled'=>true))
         ;
     }
