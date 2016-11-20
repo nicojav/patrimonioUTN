@@ -31,7 +31,7 @@ class LogMovimiento
     /**
      * @var \Inventario
      *
-     * @ORM\ManyToOne(targetEntity="UTN\Bundle\DashboardMainBundle\Entity\Inventario")
+     * @ORM\ManyToOne(targetEntity="UTN\Bundle\InventariosBundle\Entity\Inventario")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_inventario", referencedColumnName="id_inventario")
      * })
@@ -101,11 +101,11 @@ class LogMovimiento
     /**
      * Set idInventario
      *
-     * @param \UTN\Bundle\DashboardMainBundle\Entity\Inventario $idInventario
+     * @param \UTN\Bundle\InventariosBundle\Entity\Inventario $idInventario
      *
      * @return LogMovimiento
      */
-    public function setIdInventario(\UTN\Bundle\DashboardMainBundle\Entity\Inventario $idInventario = null)
+    public function setIdInventario(\UTN\Bundle\InventariosBundle\Entity\Inventario $idInventario = null)
     {
         $this->idInventario = $idInventario;
 
@@ -115,7 +115,7 @@ class LogMovimiento
     /**
      * Get idInventario
      *
-     * @return \UTN\Bundle\DashboardMainBundle\Entity\Inventario
+     * @return \UTN\Bundle\InventariosBundle\Entity\Inventario
      */
     public function getIdInventario()
     {

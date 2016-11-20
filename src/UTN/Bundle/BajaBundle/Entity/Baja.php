@@ -50,9 +50,9 @@ class Baja
     protected $idInventario;
 
     /**
-     * @var \UTN\Bundle\DashboardMainBundle\Entity\Estado
+     * @var \UTN\Bundle\InventariosBundle\Entity\Estado
      *
-     * @ORM\ManyToOne(targetEntity="UTN\Bundle\DashboardMainBundle\Entity\Estado")
+     * @ORM\ManyToOne(targetEntity="UTN\Bundle\InventariosBundle\Entity\Estado")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_estado", referencedColumnName="id_estado")
      * })
@@ -198,11 +198,11 @@ class Baja
     /**
      * Set idEstado
      *
-     * @param \UTN\Bundle\DashboardMainBundle\Entity\Estado $idEstado
+     * @param \UTN\Bundle\InventariosBundle\Entity\Estado $idEstado
      *
      * @return Baja
      */
-    public function setIdEstado(\UTN\Bundle\DashboardMainBundle\Entity\Estado $idEstado = null)
+    public function setIdEstado(\UTN\Bundle\InventariosBundle\Entity\Estado $idEstado = null)
     {
         $this->idEstado = $idEstado;
 
@@ -212,7 +212,7 @@ class Baja
     /**
      * Get idEstado
      *
-     * @return \UTN\Bundle\DashboardMainBundle\Entity\Estado
+     * @return \UTN\Bundle\InventariosBundle\Entity\Estado
      */
     public function getIdEstado()
     {

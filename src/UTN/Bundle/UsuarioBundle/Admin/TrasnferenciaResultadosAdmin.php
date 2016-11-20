@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Doctrine\ORM\EntityRepository;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class TrasnferenciaResultadosAdmin extends AbstractAdmin
 {
@@ -23,12 +24,10 @@ class TrasnferenciaResultadosAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            //->add('idInventario')
-            ->add('idResponsableOrigen')
-            ->add('idResponsableDestino')
-            ->add('descripcion')
-            ->add('fechaInicio')
-            ->add('fechaActualizacion')
+            ->add('idResponsableOrigen',null,array('label'=>'Responsable Origen'))
+            ->add('idResponsableDestino',null,array('label'=>'Responsable Destino'))
+            ->add('fechaInicio','doctrine_orm_date_range',array('field_type'=>'sonata_type_date_range_picker',))
+            ->add('fechaActualizacion','doctrine_orm_date_range',array('field_type'=>'sonata_type_date_range_picker',))
             ->add('idTransferencia')
         ;
     }
@@ -58,14 +57,13 @@ class TrasnferenciaResultadosAdmin extends AbstractAdmin
         $listMapper
             //->add('idInventario')
             ->add('idTransferencia','integer',array('label'=>'Nro Trámite'))
-            ->add('idResponsableOrigen','integer',array('label'=>'Responsable Origen'))
-            ->add('idResponsableDestino','integer',array('label'=>'Responsable Destino'))
-            ->add('idUsuarioOrigen','integer',array('label'=>'Usuario Origen'))
-            ->add('idUsuarioDestino','integer',array('label'=>'Usuario Destino'))
-            ->add('descripcion')
-            ->add('idEstadoTransferencia','integer',array('label'=>'Estado Transferencia'))
-            ->add('fechaInicio','datetime',array('label'=>'Fecha','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
-            ->add('fechaActualizacion','datetime',array('label'=>'Fecha','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
+            ->add('idUsuarioOrigen','text',array('label'=>'Inicio Trámite: Usuario'))
+            ->add('idResponsableOrigen','text',array('label'=>'Responsable Área a cargo'))
+            ->add('idResponsableDestino','text',array('label'=>'Responsable Área destino'))
+            ->add('descripcion','text',array('label'=>'Motivo del Trámite','sorteable'=>'false'))
+            ->add('idEstadoTransferencia','text',array('label'=>'Estado Transferencia'))
+            ->add('fechaInicio','date',array('label'=>'Fecha Inicio','format'=>'d-m-Y','sorteable'=>'true'))
+            ->add('fechaActualizacion','datetime',array('label'=>'Fecha Actualización','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
         ;
     }
 
@@ -135,19 +133,20 @@ class TrasnferenciaResultadosAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         parent::configureShowFields($showMapper);
-        /* $showMapper
-            ->add('idInventario')
-            ->add('idResponsableOrigen')
-            ->add('idResponsableDestino')
-            ->add('idUsuarioOrigen')
-            ->add('idUsuarioDestino')
-            ->add('idEstadoTransferencia')
-            ->add('descripcion')
-            ->add('fechaInicio')
-            ->add('fechaActualizacion')
-            ->add('idTransferencia')
-        ;*/
-    }
 
+    }
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->remove('delete');
+        $collection->remove('create');
+    }
+    protected $datagridValues = array(
+        // mostrar pagina principal
+        '_page' => 1,
+        // por defecto ASC
+        '_sort_order' => 'DESC',
+        // criterio de ordenamiento
+        '_sort_by' => 'idTransferencia'
+    );
 
 }

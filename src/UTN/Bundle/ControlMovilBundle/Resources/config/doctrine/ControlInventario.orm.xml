@@ -24,7 +24,7 @@
         <join-column name="id_estado_control" referenced-column-name="id_estado_control"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="idInventario" target-entity="UTN\Bundle\DashboardMainBundle\Entity\Inventario" fetch="LAZY">
+    <many-to-one field="idInventario" target-entity="UTN\Bundle\InventariosBundle\Entity\Inventario" fetch="LAZY">
       <join-columns>
         <join-column name="id_inventario" referenced-column-name="id_inventario"/>
       </join-columns>

@@ -75,7 +75,7 @@ class BajasPatrimonioAdmin extends AbstractAdmin
                  'label' => 'Estado Tramite',
                  'expanded' => true,
                  //'read_only' => true,
-                 'class' => 'UTN\Bundle\DashboardMainBundle\Entity\Estado',
+                 'class' => 'UTN\Bundle\InventariosBundle\Entity\Estado',
                  'property' => 'descripcion',
                  'query_builder' => function (EntityRepository $er)
                  {

@@ -624,7 +624,8 @@ class Inventario
 
     public function __toString()
     {
-        return  $this->getDescripcion() ?: "n/a";
+        return (String)$this->getIdInventario().' - '.$this->getDescripcion();
+        //return  $this->getDescripcion() ?: "n/a";
     }
 
 

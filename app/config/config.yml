@@ -30,7 +30,6 @@ sonata_admin:
                             label: Patrimonio
                             icon:  '<i class="fa fa-television"></i>'
                             items:
-                                - utn_dashboard_main.admin.inventario
                                 - utn_dashboard_main.admin.transfer_patrimonio
                                 - utn_dashboard_main.admin.bajas_patrimonio
                                 - inventarios.admin.inventario

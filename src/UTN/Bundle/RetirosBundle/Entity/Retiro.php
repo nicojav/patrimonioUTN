@@ -321,7 +321,7 @@ class Retiro
     /**
      * Get idInventario
      *
-     * @return \UTN\Bundle\DashboardMainBundle\Entity\Inventario
+     * @return \UTN\Bundle\InventariosBundle\Entity\Inventario
      */
     public function getIdInventario()
     {

@@ -64,18 +64,16 @@ class InventarioAdmin extends AbstractAdmin
             ->add('idInventario',null,array('label'=>'Nro. Inventario'))
             ->add('descripcion')
             ->add('importe')
-//            ->add('idEstado',null,array('label'=>'Estado'))
             ->add('programa')
             ->end()
-            ->with('Especie', array('collapsed' => true))
-            ->add('idEspecie',null,array('label'=>'Especie'))
+            ->with('Cuenta', array('collapsed' => true))
             ->add('idCuenta',null,array('label'=>'Cuenta'))
+            ->add('idEspecie',null,array('label'=>'Especie'))
             ->end()
             ->with('Seguridad', array('collapsed' => true))
             ->add('alarmaActiva',null,array('label'=>'Activar Alarma'))
             ->end()
             ->with('Asignacion Área Responsable', array('collapsed' => true))
-            ->add('codDependencia')
             ->add('codGrupo')
             ->add('idResponsable',null,array('label'=>'Nombre Responsable'))
             ->add('idSector',null,array('label'=>'Sector'))
@@ -112,6 +110,7 @@ class InventarioAdmin extends AbstractAdmin
         $em = $this->modelManager->getEntityManager('InventariosBundle:Estado');
         $estado = $em->getRepository('InventariosBundle:Estado')->find(2);
         $object->setIdEstado($estado);
+        $object->setCodDependencia(7);
 
     }
 
