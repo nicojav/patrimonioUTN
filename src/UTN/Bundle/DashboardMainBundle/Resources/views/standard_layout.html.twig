@@ -5,6 +5,15 @@
      {#{{ parent() }}#}
  {#{% endblock sonata_admin_content %}#}
 
+{% block side_bar_after_nav %}
+    <p class="text-center"><a href="" rel="noreferrer" target="_blank">UTN FRBA</a></p>
+{% endblock %}
+
+{% block sonata_sidebar_search %}
+
+{% endblock sonata_sidebar_search %}
+
+
 {% block stylesheets %}
     {{ parent() }}
     <link href="{{ asset('bundles/utndashboardmain/admin/css/alertify.core.css') }}" rel="stylesheet" type="text/css" />
