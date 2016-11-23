@@ -63,7 +63,7 @@ class BajaInventarioAdmin extends AbstractAdmin
             ->select('c')
             ->from('InventariosBundle:Inventario', 'c')
             ->from('InventariosBundle:Usuario','u')
-            ->where('(c.idEstado = 1 and c.idResponsable ='.$user.')or(c.idEstado = 1 and c.idResponsable = u.idUsuarioSuperior)')
+            ->where('(c.idEstado in(1,2) and c.idResponsable ='.$user.')or(c.idEstado in(1,2) and c.idResponsable = u.idUsuarioSuperior)')
             ->orderBy('c.idInventario');
 
         $formMapper

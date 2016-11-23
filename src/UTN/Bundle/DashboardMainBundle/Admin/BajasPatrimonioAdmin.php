@@ -157,9 +157,7 @@ class BajasPatrimonioAdmin extends AbstractAdmin
         // por defecto ASC
         '_sort_order' => 'DESC',
         // criterio de ordenamiento
-        '_sort_by' => 'idBaja',
-        '_sort_by'=>'fechaActualizacion',
-        '_sort_by'=>'idEStado'
+        '_sort_by' => 'idBaja'
     );
 
 

@@ -42,15 +42,16 @@ class InventarioAdmin extends AbstractAdmin
             ->add('idInventario','integer',array('label'=>'Nro. Inventario'))
             ->add('descripcion')
             ->add('fechaAlta','date',array('label'=>'Fecha Alta','format'=>'d-m-Y','sorteable'=>'true'))
+            ->add('idResponsable','text',array('label'=>'Responsable Asignado'))
             ->add('fechaActualizacion','datetime',array('label'=>'Fecha Actualización','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
             ->add('alarmaActiva',null,array('editable'=>true))
             ->add('etiquetaImpresa')
             ->add('fechaControl','datetime',array('label'=>'Fecha Último Control','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
-            ->add('idUsuarioControl','text',array('label'=>'Id Usuario Control'))
-            ->add('codNroInventario')
-            ->add('codDependencia')
-            ->add('codGrupo')
-             ->add('programa')
+            ->add('idUsuarioControl','text',array('label'=>'Usuario Control'))
+//            ->add('codNroInventario')
+//            ->add('codDependencia')
+//            ->add('codGrupo')
+//             ->add('programa')
         ;
     }
 
@@ -122,6 +123,10 @@ class InventarioAdmin extends AbstractAdmin
             $query->expr()->eq($query->getRootAlias().'.idEstado', ':estado')
         );
         $query->setParameter('estado',1);
+        $query->andWhere(
+            $query->expr()->isNotNull($query->getRootAlias().'.idResponsable')
+        );
+
         return $query;
     }
 
