@@ -54,6 +54,7 @@ sonata_admin:
                             icon : '<i class="fa fa-lock"></i>'
                             items:
                                 - rfid.admin.log_movimiento
+                                - rfid.admin.track
 #                                - control_movil.admin.control_inventario
                                 - utn_dashboard_main.admin.notificacion # SACAR
                                 - retiros.admin.retiro

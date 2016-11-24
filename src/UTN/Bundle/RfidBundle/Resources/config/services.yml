@@ -8,3 +8,8 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Registro de Seguridad }
 
+    rfid.admin.track:
+        class: UTN\Bundle\RfidBundle\Admin\Track
+        arguments: [~, UTN\Bundle\RfidBundle\Entity\LogMovimiento, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Track de Inventarios }

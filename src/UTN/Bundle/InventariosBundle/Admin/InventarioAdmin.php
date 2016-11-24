@@ -109,7 +109,7 @@ class InventarioAdmin extends AbstractAdmin
         $object->setcodNroInventario($object->getIdInventario());
         $object->setEtiquetaImpresa(false);
         $em = $this->modelManager->getEntityManager('InventariosBundle:Estado');
-        $estado = $em->getRepository('InventariosBundle:Estado')->find(2);
+        $estado = $em->getRepository('InventariosBundle:Estado')->find(1);
         $object->setIdEstado($estado);
         $object->setCodDependencia(7);
 
