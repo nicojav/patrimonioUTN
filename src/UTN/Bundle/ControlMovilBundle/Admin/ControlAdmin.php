@@ -92,6 +92,7 @@ class ControlAdmin extends AbstractAdmin
         // por defecto ASC
         '_sort_order' => 'DESC',
         // criterio de ordenamiento
+        '_sort_by' => 'idControl',
         '_sort_by' => 'fechaCorrida',
     );
 

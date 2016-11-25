@@ -75,9 +75,9 @@ class Control
     private $idEstadoControl;
 
     /**
-     * @var \UTN\Bundle\UsuarioBundle\Entity\Aula
+     * @var \UTN\Bundle\InventariosBundle\Entity\Aula
      *
-     * @ORM\ManyToOne(targetEntity="UTN\Bundle\UsuarioBundle\Entity\Aula")
+     * @ORM\ManyToOne(targetEntity="UTN\Bundle\InventariosBundle\Entity\Aula")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_aula", referencedColumnName="id_aula")
      * })
@@ -85,9 +85,9 @@ class Control
     private $idAula;
 
     /**
-     * @var \UTN\Bundle\UsuarioBundle\Entity\Usuario
+     * @var \UTN\Bundle\InventariosBundle\Entity\Usuario
      *
-     * @ORM\ManyToOne(targetEntity="UTN\Bundle\UsuarioBundle\Entity\Usuario")
+     * @ORM\ManyToOne(targetEntity="UTN\Bundle\InventariosBundle\Entity\Usuario")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_usuario", referencedColumnName="id_usuario")
      * })
@@ -277,11 +277,11 @@ class Control
     /**
      * Set idAula
      *
-     * @param \UTN\Bundle\UsuarioBundle\Entity\Aula $idAula
+     * @param \UTN\Bundle\InventariosBundle\Entity\Aula $idAula
      *
      * @return Control
      */
-    public function setIdAula(\UTN\Bundle\UsuarioBundle\Entity\Aula $idAula = null)
+    public function setIdAula(\UTN\Bundle\InventariosBundle\Entity\Aula $idAula = null)
     {
         $this->idAula = $idAula;
 
@@ -291,7 +291,7 @@ class Control
     /**
      * Get idAula
      *
-     * @return \UTN\Bundle\UsuarioBundle\Entity\Aula
+     * @return \UTN\Bundle\InventariosBundle\Entity\Aula
      */
     public function getIdAula()
     {
@@ -301,11 +301,11 @@ class Control
     /**
      * Set idUsuario
      *
-     * @param \UTN\Bundle\UsuarioBundle\Entity\Usuario $idUsuario
+     * @param \UTN\Bundle\InventariosBundle\Entity\Usuario $idUsuario
      *
      * @return Control
      */
-    public function setIdUsuario(\UTN\Bundle\UsuarioBundle\Entity\Usuario $idUsuario = null)
+    public function setIdUsuario(\UTN\Bundle\InventariosBundle\Entity\Usuario $idUsuario = null)
     {
         $this->idUsuario = $idUsuario;
 
@@ -315,7 +315,7 @@ class Control
     /**
      * Get idUsuario
      *
-     * @return \UTN\Bundle\UsuarioBundle\Entity\Usuario
+     * @return \UTN\Bundle\InventariosBundle\Entity\Usuario
      */
     public function getIdUsuario()
     {

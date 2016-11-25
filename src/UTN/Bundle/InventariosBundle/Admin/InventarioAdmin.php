@@ -47,7 +47,7 @@ class InventarioAdmin extends AbstractAdmin
             ->add('alarmaActiva',null,array('editable'=>true))
             ->add('etiquetaImpresa')
             ->add('fechaControl','datetime',array('label'=>'Fecha Último Control','format'=>'d-m-Y H:i','timezone'=>'America/Buenos_aires','sorteable'=>'true'))
-            ->add('idUsuarioControl','text',array('label'=>'Usuario Control'))
+ //           ->add('idUsuarioControl','text',array('label'=>'Usuario Control'))
 //            ->add('codNroInventario')
 //            ->add('codDependencia')
 //            ->add('codGrupo')

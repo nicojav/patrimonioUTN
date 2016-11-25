@@ -28,11 +28,11 @@ class ControlInventarioAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('idControl',null,array('label'=>'ID Control'))
-            ->add('codInventario',null,array('label'=>'Inventario Escaneado'))
-            ->add('idInventario',null,array('label'=>'Descripción'))
+            ->add('idControl',null,array('label'=>'Nro. Control'))
+//            ->add('codInventario',null,array('label'=>'Inventario Escaneado'))
+            ->add('idInventario',null,array('label'=>'Inventario Escaneado - Descripción'))
 //            ->add('idControlInventario')
-            ->addIdentifier('idEstadoControl',null,array('label'=>'Estado'))
+            ->add('idEstadoControl',null,array('label'=>'Estado'))
 //            ->add('_action', null, array('label'=>'Acciones',
 //                'actions' => array(
 //                    'edit' => array('template' => 'ControlMovilBundle:CRUD:list__action_edit.html.twig')
